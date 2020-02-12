@@ -1,13 +1,34 @@
 {
   "name": "vn-interest",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "node server.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "heroku-postbuild": "ng build --prod"
+  },
+  "author": {
+    "email": "trinhduykhang1313@gmail.com",
+    "name": "Khang Duy"
+  },
+  "bugs": {
+    "email": "trinhduykhang1313@gmail.com"
+  },
+  "description": "An open source for vietnam's financial information",
+  "license": "MIT",
+  "keywords": [
+    "interst rate",
+    "vn interest rate",
+    "vn loan rate",
+    "viet nam",
+    "vietnam financial"
+  ],
+  "engines": {
+    "node": "~12.14.0",
+    "npm": "~6.13.4"
   },
   "private": true,
   "dependencies": {
