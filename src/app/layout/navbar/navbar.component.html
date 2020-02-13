@@ -1,0 +1,31 @@
+<header class="top-header">
+  <a href="/" class="app-icon"></a>
+  <div class="flex-header">
+    <div class="header-left">
+      <ul class="horizon-list">
+        <li>
+          <a mat-button [routerLink]="['/']">Trang chính</a>
+        </li>
+        <li>
+          <a mat-button [routerLink]="['/interest']">Lãi suất tiền gửi</a>
+        </li>
+        <li>
+          <a mat-button [routerLink]="['/loan']">Lãi suất cho vay</a>
+        </li>
+      </ul>
+    </div>
+    <div class="header-right">
+      <ul class="horizon-list">
+        <li>
+          <a mat-button [routerLink]="['/signin']" *ngIf="!login">Đăng nhập</a>
+        </li>
+        <li>
+          <a mat-button [routerLink]="['/join']" *ngIf="!login">Đăng ký</a>
+        </li>
+        <li>
+          <a mat-button [routerLink]="['/signout']" *ngIf="login">Đăng xuất</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</header>
