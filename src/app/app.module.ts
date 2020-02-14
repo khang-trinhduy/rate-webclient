@@ -18,6 +18,9 @@ import { InterestComponent } from "./layout/interest/interest.component";
 import { LoanComponent } from "./layout/loan/loan.component";
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
+import { MatCheckboxModule } from "@angular/material/checkbox";
+import { MatExpansionModule } from "@angular/material/expansion";
+import { SettingComponent } from './components/setting/setting.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +34,8 @@ import { HttpClientModule } from "@angular/common/http";
     FormComponent,
     InterestComponent,
     LoanComponent,
-    DashboardComponent
+    DashboardComponent,
+    SettingComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +44,9 @@ import { HttpClientModule } from "@angular/common/http";
     MatButtonModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatCheckboxModule,
+    MatExpansionModule
   ],
   providers: [],
   bootstrap: [AppComponent]

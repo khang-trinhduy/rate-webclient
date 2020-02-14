@@ -10,6 +10,13 @@ export class FilterComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    window.addEventListener("load", () => {
+      let left = document.querySelector('.left-range')
+      let right = document.querySelector('.right-range')
+      if (left && right) {
+        
+      }
+    })
   }
 
 }
