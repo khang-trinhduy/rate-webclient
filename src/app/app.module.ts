@@ -20,7 +20,9 @@ import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatExpansionModule } from "@angular/material/expansion";
-import { SettingComponent } from './components/setting/setting.component';
+import { SettingComponent } from "./components/setting/setting.component";
+import { MatRadioModule } from "@angular/material/radio";
+import { MatFormFieldModule } from "@angular/material/form-field";
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +48,9 @@ import { SettingComponent } from './components/setting/setting.component';
     FormsModule,
     HttpClientModule,
     MatCheckboxModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatRadioModule,
+    MatFormFieldModule
   ],
   providers: [],
   bootstrap: [AppComponent]
