@@ -23,6 +23,7 @@ import { MatExpansionModule } from "@angular/material/expansion";
 import { SettingComponent } from "./components/setting/setting.component";
 import { MatRadioModule } from "@angular/material/radio";
 import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule } from "@angular/material/input";
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,7 +51,8 @@ import { MatFormFieldModule } from "@angular/material/form-field";
     MatCheckboxModule,
     MatExpansionModule,
     MatRadioModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]
