@@ -1,0 +1,24 @@
+$breakpoint: "500px"
+
+@media all and ( max-width: $breakpoint )
+  .flex-table 
+    display: block!important
+    & > .flex-cell
+      width: 100%
+      &.foot
+        margin-bottom: 1em
+
+.flex-cell
+  background-color: aliceblue
+  text-align: center
+  padding: 1vh 0.5vh
+  border: 1px solid
+  width: 150px
+  margin: 0.2vh
+  line-height: 1.5em
+.flex-table
+  display: flex
+  flex-wrap: wrap
+  flex-direction: row
+  justify-content: center
+  margin: 1vh 1.5vh

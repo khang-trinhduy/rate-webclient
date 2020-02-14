@@ -1,1 +1,58 @@
-<p>table works!</p>
+<div class="table-container">
+  <div class="flex-table" *ngIf="rates; else loading">
+    <div
+      *ngFor="let item of rates; let i = index"
+      class="flex-cell"
+      [style.order]="item.order"
+    >
+      <!-- <div class="index-cell">{{ i }}</div> -->
+      <div
+        style="order: 0;"
+        [ngStyle]="{'backgroundColor': getColor(item.code)}"
+        class="code-cell head"
+      >
+        {{ item.code }}
+      </div>
+      <div style="order: 1;" class="unli-cell">
+        <div class="percent-area">{{ item.interestRates[0].value }}</div>
+        <div class="money-area">{{ item.interestRates[0].threshold }}</div>
+      </div>
+      <div style="order: 2;" class="1mo-cell">
+        <div class="percent-area">{{ item.interestRates[1].value }}</div>
+        <div class="money-area">{{ item.interestRates[1].threshold }}</div>
+      </div>
+      <div style="order: 4;" class="3mo-cell">
+        <div class="percent-area">{{ item.interestRates[2].value }}</div>
+        <div class="money-area">{{ item.interestRates[2].threshold }}</div>
+      </div>
+      <div style="order: 5;" class="6mo-cell">
+        <div class="percent-area">{{ item.interestRates[3].value }}</div>
+        <div class="money-area">{{ item.interestRates[3].threshold }}</div>
+      </div>
+      <div style="order: 6;" class="9mo-cell">
+        <div class="percent-area">{{ item.interestRates[4].value }}</div>
+        <div class="money-area">{{ item.interestRates[4].threshold }}</div>
+      </div>
+      <div style="order: 7;" class="12mo-cell">
+        <div class="percent-area">{{ item.interestRates[5].value }}</div>
+        <div class="money-area">{{ item.interestRates[5].threshold }}</div>
+      </div>
+      <div style="order: 8;" class="13mo-cell">
+        <div class="percent-area">{{ item.interestRates[6].value }}</div>
+        <div class="money-area">{{ item.interestRates[6].threshold }}</div>
+      </div>
+      <div style="order: 9;" class="24mo-cell">
+        <div class="percent-area">{{ item.interestRates[7].value }}</div>
+        <div class="money-area">
+          {{ item.interestRates[7].threshold }}
+        </div>
+      </div>
+      <div style="order: 10;" class="36mo-cell foot">
+        <div class="percent-area">{{ item.interestRates[8].value }}</div>
+        <div class="money-area">{{ item.interestRates[8].threshold }}</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #loading>loading...</ng-template>

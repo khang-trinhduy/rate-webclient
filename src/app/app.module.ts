@@ -16,6 +16,8 @@ import { RateComponent } from "./user/rate/rate.component";
 import { FormComponent } from "./components/form/form.component";
 import { InterestComponent } from "./layout/interest/interest.component";
 import { LoanComponent } from "./layout/loan/loan.component";
+import { ReactiveFormsModule, FormsModule } from "@angular/forms";
+import { HttpClientModule } from "@angular/common/http";
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +37,10 @@ import { LoanComponent } from "./layout/loan/loan.component";
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatButtonModule
+    MatButtonModule,
+    ReactiveFormsModule,
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
