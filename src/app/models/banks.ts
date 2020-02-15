@@ -1,0 +1,23 @@
+export class Banks {
+  agribank: string = "#005a3c";
+  acb: string = "";
+  vietcombank: string = "#74b142";
+  techcombank: string = "";
+  bidv: string = "#213a99";
+  cb: string = "";
+  msb: string = "#ea6d21";
+  mb: string = "";
+  vietinbank: string = "#cf0228";
+  scb: string = "#c01224";
+  oceanbank: string = "#8aced8";
+  baca: string = "#c88b02";
+  maritimebank: string = "#e51b23";
+  nama: string = "#f8da01";
+  ncb: string = "#004a94";
+  dongabank: string = "#015498";
+  vib: string = "#014f94";
+  shb: string = "#f47c35";
+  ocb: string = "#008843";
+  eximbank: string = "#0069ac";
+  baoviet: string = "#0075c0";
+}

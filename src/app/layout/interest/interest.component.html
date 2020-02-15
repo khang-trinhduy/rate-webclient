@@ -4,7 +4,14 @@
       <app-filter></app-filter>
       <app-setting></app-setting>
     </div>
-    <app-table [rates]="rates"></app-table>
-    <app-chart></app-chart>
+    <div class="data-container">
+      <div class="data-header">
+        <h2 class="header-line">Lãi suất tiền gửi</h2>
+      </div>
+      <div class="flex-data">
+        <app-table [rates]="rates"></app-table>
+        <app-chart [rates]="rates"></app-chart>
+      </div>
+    </div>
   </div>
 </div>

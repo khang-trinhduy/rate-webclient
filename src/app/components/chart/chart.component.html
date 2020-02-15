@@ -1,1 +1,21 @@
-<p>chart works!</p>
+<div class="chart-container">
+  <div class="chart-header">
+    <h3 class="header-line">Biểu đồ</h3>
+  </div>
+  <div class="flex-chart">
+    <div class="compare-chart">
+      <div
+        *ngFor="let item of banks"
+        [ngStyle]="{
+          animation: getAnimation(item.code),
+          'background-color': getBgColor(item.code)
+        }"
+        class="chart-bar"
+      >
+        {{ item.code }}
+        <span class="percent-line" style="left: 50%"> {{ item.percent }}</span>
+      </div>
+    </div>
+    <div class="forecast-chart"></div>
+  </div>
+</div>

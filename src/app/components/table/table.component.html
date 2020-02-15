@@ -1,4 +1,7 @@
 <div class="table-container">
+  <div class="table-header">
+    <h3 class="header-line">Danh sách lãi suất</h3>
+  </div>
   <div class="flex-table" *ngIf="rates; else loading">
     <div
       *ngFor="let item of rates; let i = index"
