@@ -12,7 +12,7 @@ export class Banks {
   oceanbank: string = "#8aced8";
   baca: string = "#c88b02";
   maritimebank: string = "#e51b23";
-  nama: string = "#f8da01";
+  nam: string = "#f8da01";
   ncb: string = "#004a94";
   dongabank: string = "#015498";
   vib: string = "#014f94";

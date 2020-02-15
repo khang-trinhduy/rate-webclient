@@ -24,6 +24,7 @@ import { SettingComponent } from "./components/setting/setting.component";
 import { MatRadioModule } from "@angular/material/radio";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
+import { CompareComponent } from './components/compare/compare.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +39,8 @@ import { MatInputModule } from "@angular/material/input";
     InterestComponent,
     LoanComponent,
     DashboardComponent,
-    SettingComponent
+    SettingComponent,
+    CompareComponent
   ],
   imports: [
     BrowserModule,

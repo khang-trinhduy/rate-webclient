@@ -9,7 +9,7 @@ import { Rate } from "src/app/models/rate";
   styleUrls: ["./interest.component.sass"]
 })
 export class InterestComponent implements OnInit {
-  rates: Observable<Rate[]>;
+  rates: Rate[];
   constructor(private service: RateService) {}
 
   ngOnInit() {
