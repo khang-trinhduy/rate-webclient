@@ -8,10 +8,20 @@
       <div class="data-header">
         <h2 class="header-line">Lãi suất tiền gửi</h2>
       </div>
-      <div class="flex-data" *ngIf="rates">
-        <app-table [rates]="rates"></app-table>
-        <app-chart [rates]="rates"></app-chart>
-      </div>
+      <mat-tab-group class="tabs-area">
+        <mat-tab label="Tại quầy">
+          <div class="flex-data" *ngIf="rates">
+            <app-table [rates]="rates"></app-table>
+            <app-chart [rates]="rates"></app-chart>
+          </div>
+        </mat-tab>
+        <mat-tab label="Online">
+          <div class="flex-data" *ngIf="rates">
+            <app-table [rates]="rates"></app-table>
+            <app-chart [rates]="rates"></app-chart>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
     </div>
   </div>
 </div>

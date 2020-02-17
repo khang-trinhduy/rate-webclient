@@ -24,7 +24,8 @@ import { SettingComponent } from "./components/setting/setting.component";
 import { MatRadioModule } from "@angular/material/radio";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
-import { CompareComponent } from './components/compare/compare.component';
+import { CompareComponent } from "./components/compare/compare.component";
+import { MatTabsModule } from "@angular/material/tabs";
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,7 +55,8 @@ import { CompareComponent } from './components/compare/compare.component';
     MatExpansionModule,
     MatRadioModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

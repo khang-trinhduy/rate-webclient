@@ -13,6 +13,8 @@
           *ngFor="let item of rates"
           [ngStyle]="{ width: getWidth(item.code) }"
         >
+        <span>
+        {{item.code}}</span>
           <div
             [ngStyle]="{
               animation: getAnimation(item.code),
@@ -20,7 +22,7 @@
             }"
             class="chart-bar"
           >
-            {{ item.code }}
+            <!-- {{ item.code }} -->
             <span [ngStyle]="{'animation': display(item.code)}" class="percent-line" style="left: 50%">
               {{ item.percent }}</span
             >
