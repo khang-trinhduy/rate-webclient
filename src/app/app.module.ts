@@ -26,6 +26,8 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { CompareComponent } from "./components/compare/compare.component";
 import { MatTabsModule } from "@angular/material/tabs";
+import { RowComponent } from './components/row/row.component';
+import { BookmarkComponent } from './components/bookmark/bookmark.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +43,9 @@ import { MatTabsModule } from "@angular/material/tabs";
     LoanComponent,
     DashboardComponent,
     SettingComponent,
-    CompareComponent
+    CompareComponent,
+    RowComponent,
+    BookmarkComponent
   ],
   imports: [
     BrowserModule,

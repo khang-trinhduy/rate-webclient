@@ -4,7 +4,7 @@ export class Banks {
   vietcombank: string = "#74b142";
   techcombank: string = "";
   bidv: string = "#213a99";
-  cb: string = "";
+  cb: string = "#fdba13";
   msb: string = "#ea6d21";
   mb: string = "";
   vietinbank: string = "#cf0228";

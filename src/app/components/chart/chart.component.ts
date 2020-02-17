@@ -18,7 +18,7 @@ export class ChartComponent implements OnInit {
       let period = 12;
       for (let i = 0; i < this.rates.length; i++) {
         const bank = this.rates[i];
-        let rate = bank.interestRates.find(e => e.period === period).value || 0;
+        let rate = bank.interestRates.twelveM.value || 0;
         // let chart = new Chart();
         bank.index = i + 1;
         bank.width = `${rate * 10}%`;
