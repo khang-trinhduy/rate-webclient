@@ -24,10 +24,12 @@ import { SettingComponent } from "./components/setting/setting.component";
 import { MatRadioModule } from "@angular/material/radio";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
-import { CompareComponent } from "./components/compare/compare.component";
 import { MatTabsModule } from "@angular/material/tabs";
 import { RowComponent } from './components/row/row.component';
 import { BookmarkComponent } from './components/bookmark/bookmark.component';
+import { MatIconModule } from "@angular/material/icon";
+import { DetailComponent } from './layout/detail/detail.component';
+import { ChangeComponent } from './components/change/change.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,9 +45,10 @@ import { BookmarkComponent } from './components/bookmark/bookmark.component';
     LoanComponent,
     DashboardComponent,
     SettingComponent,
-    CompareComponent,
     RowComponent,
-    BookmarkComponent
+    BookmarkComponent,
+    DetailComponent,
+    ChangeComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +63,8 @@ import { BookmarkComponent } from './components/bookmark/bookmark.component';
     MatRadioModule,
     MatFormFieldModule,
     MatInputModule,
-    MatTabsModule
+    MatTabsModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

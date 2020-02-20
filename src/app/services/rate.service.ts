@@ -19,6 +19,18 @@ export class RateService {
       .pipe(catchError(this.handleError<any>("GET RATES")));
   }
 
+  getStat(type): Observable<any> {
+    return this.http
+      .get(`${environment.api}/stats?type=${type}`)
+      .pipe(catchError(this.handleError<any>("GET STAT")));
+  }
+
+  getStats(): Observable<any> {
+    return this.http
+      .get(`${environment.api}/stats`)
+      .pipe(catchError(this.handleError<any>("GET STATS")));
+  }
+
   getInterests(): Observable<any> {
     return this.http
       .get(`${environment.api}/interests`)

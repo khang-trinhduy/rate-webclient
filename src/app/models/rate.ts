@@ -66,3 +66,11 @@ export interface Filter {
 export interface Row {
   code: string;
 }
+
+export interface Stat {
+  type: string;
+  maximum: number;
+  minimum: number;
+  count: number;
+  _id: string;
+}

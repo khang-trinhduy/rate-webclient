@@ -10,11 +10,14 @@ import { Rate } from "src/app/models/rate";
 })
 export class InterestComponent implements OnInit {
   rates: Rate[];
+  tableStyle: string = "row";
   constructor(private service: RateService) {}
 
   ngOnInit() {
     this.service.getRates().subscribe(res => (this.rates = res));
   }
 
-  
+  tableStyleHandler = event => {
+    this.tableStyle = event;
+  };
 }

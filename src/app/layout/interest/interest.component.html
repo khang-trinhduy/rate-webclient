@@ -2,7 +2,7 @@
   <div class="flex-container">
     <div class="tool-container">
       <app-filter></app-filter>
-      <app-setting></app-setting>
+      <app-setting (tableStyleChange)="tableStyleHandler($event)"></app-setting>
     </div>
     <div class="data-container">
       <div class="data-header">
@@ -11,7 +11,8 @@
       <mat-tab-group class="tabs-area">
         <mat-tab label="Tại quầy">
           <div class="flex-data" *ngIf="rates">
-            <app-table [rates]="rates"></app-table>
+            <app-table *ngIf="tableStyle === 'box'" [rates]="rates"></app-table>
+            <app-row *ngIf="tableStyle === 'row'" [banks]="rates"></app-row>
             <app-chart [rates]="rates"></app-chart>
           </div>
         </mat-tab>

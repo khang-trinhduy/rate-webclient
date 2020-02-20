@@ -10,6 +10,12 @@
             <h4 class="header-line">Bảng</h4>
           </div>
           <div class="table-content">
+            <div class="type-options">
+              <mat-radio-group (change)="tableTypeRadChange()" [(ngModel)]="tableType">
+                <mat-radio-button value="row">Ngắn gọn</mat-radio-button>
+                <mat-radio-button value="box">Chi tiết</mat-radio-button>
+              </mat-radio-group>
+            </div>
             <div class="period-options">
               <mat-expansion-panel>
                 <mat-expansion-panel-header>
