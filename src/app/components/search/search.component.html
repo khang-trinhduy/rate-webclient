@@ -1,0 +1,28 @@
+<div class="search-container">
+  <div class="flex-container">
+    <div class="rate-area">
+      <div class="rate-input">
+        <input placeholder="Lãi suất" type="text" />
+      </div>
+    </div>
+    <div class="period-area">
+      <span>Kỳ hạn: </span>
+      <select
+        aria-placeholder="Kỳ hạn"
+        [(ngModel)]="period"
+        name="period"
+        id="period"
+      >
+        <option *ngFor="let period of periods" [value]="period.value">{{
+          period.viewValue
+        }}</option>
+      </select>
+    </div>
+    <div class="gift-area">
+      <mat-checkbox [(ngModel)]="gift">Có quà tặng</mat-checkbox>
+    </div>
+    <div class="btn-area">
+      <button class="search-btn">Tìm kiếm</button>
+    </div>
+  </div>
+</div>

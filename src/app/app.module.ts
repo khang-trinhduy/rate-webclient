@@ -28,8 +28,15 @@ import { MatTabsModule } from "@angular/material/tabs";
 import { RowComponent } from './components/row/row.component';
 import { BookmarkComponent } from './components/bookmark/bookmark.component';
 import { MatIconModule } from "@angular/material/icon";
-import { DetailComponent } from './layout/detail/detail.component';
 import { ChangeComponent } from './components/change/change.component';
+import { DetailComponent } from './layout/detail/detail.component';
+import { InfoComponent } from './components/info/info.component';
+import { SearchComponent } from './components/search/search.component';
+import { CardComponent } from './components/card/card.component';
+import { ContentComponent } from './components/content/content.component';
+import { NewComponent } from './components/new/new.component';
+import { MatSelectModule } from "@angular/material/select";
+import { ChartsModule } from 'ng2-charts';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,8 +54,13 @@ import { ChangeComponent } from './components/change/change.component';
     SettingComponent,
     RowComponent,
     BookmarkComponent,
+    ChangeComponent,
     DetailComponent,
-    ChangeComponent
+    InfoComponent,
+    SearchComponent,
+    CardComponent,
+    ContentComponent,
+    NewComponent
   ],
   imports: [
     BrowserModule,
@@ -64,7 +76,9 @@ import { ChangeComponent } from './components/change/change.component';
     MatFormFieldModule,
     MatInputModule,
     MatTabsModule,
-    MatIconModule
+    MatIconModule,
+    MatSelectModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

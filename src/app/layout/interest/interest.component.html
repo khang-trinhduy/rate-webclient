@@ -13,7 +13,7 @@
           <div class="flex-data" *ngIf="rates">
             <app-table *ngIf="tableStyle === 'box'" [rates]="rates"></app-table>
             <app-row *ngIf="tableStyle === 'row'" [banks]="rates"></app-row>
-            <app-chart [rates]="rates"></app-chart>
+            <app-chart [rates]="rates" period="12m"></app-chart>
           </div>
         </mat-tab>
         <mat-tab label="Online">

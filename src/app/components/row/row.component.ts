@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { Rate, Stat } from "src/app/models/rate";
 import { RateService } from "src/app/services/rate.service";
-import { Banks } from 'src/app/models/banks';
+import { Banks } from "src/app/models/banks";
 
 @Component({
   selector: "app-row",
@@ -59,6 +59,14 @@ export class RowComponent implements OnInit {
       return false;
     }
   };
+
+  getLink(code, period = "") {
+    if (period) {
+      return "/detail?b=" + code + "&t=" + period;
+    } else {
+      return "/detail?b=" + code;
+    }
+  }
 
   compareHandler = () => {};
 

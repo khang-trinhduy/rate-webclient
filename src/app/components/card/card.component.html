@@ -1,0 +1,26 @@
+<div class="card-container">
+  <div class="flex-container">
+    <div class="card-header">
+      <h2 class="header-line">
+        Lãi suất tiền gửi
+      </h2>
+      <div class="time-container">
+        <mat-icon title="Thời gian cập nhật">schedule</mat-icon>
+        <i class="time-line"
+          >{{ rate.updated }} - {{ rate.source }}</i
+        >
+      </div>
+    </div>
+    <div class="card-content">
+      <div class="rate-area">{{ rate.rate }}%</div>
+      <div class="period-area">{{ rate.period }} {{ rate.periodType }}</div>
+    </div>
+    <div class="card-summary">
+      Lãi suất gửi tiền <b>{{ rate.type }}</b> kỳ hạn {{ rate.period }}
+      {{ rate.periodType }} hiện nay
+    </div>
+    <div class="card-button">
+      <mat-icon title="share">share</mat-icon>
+    </div>
+  </div>
+</div>

@@ -8,10 +8,10 @@
         <div class="cell-area" *ngFor="let bank of banks">
           <div class="row-line" *ngIf="bank.interestRates as item">
             <div class="cell-content head" [ngStyle]="{'backgroundColor': getColor(bank.code)}">
-              <a class="cell-text">{{ bank.code }}</a>
+              <a class="cell-text" [href]="getLink(bank.normalized)">{{ bank.code }}</a>
             </div>
             <div class="cell-content 0w" [ngClass]="{'max-rate': isMax('unlimit', item.unlimit?.value)}">
-              <a class="cell-text">{{ item.unlimit?.value }}</a>
+              <a class="cell-text" [href]="getLink(bank.normalized,'unlimit')">{{ item.unlimit?.value }}</a>
               <span
                 ><mat-icon class="gift-box" *ngIf="item.unlimit?.gift"
                   >card_giftcard</mat-icon
@@ -19,7 +19,7 @@
               >
             </div>
             <div class="cell-content 1w" [ngClass]="{'max-rate': isMax('onew', item.oneW?.value)}">
-              <a class="cell-text">{{ item.oneW?.value }}</a>
+              <a class="cell-text" [href]="getLink(bank.normalized,'1w')">{{ item.oneW?.value }}</a>
               <span
                 ><mat-icon class="gift-box" *ngIf="item.oneW?.gift"
                   >card_giftcard</mat-icon
@@ -27,7 +27,7 @@
               >
             </div>
             <div class="cell-content 2w" [ngClass]="{'max-rate': isMax('twow', item.twoW?.value)}">
-              <a class="cell-text">{{ item.twoW?.value }}</a>
+              <a class="cell-text" [href]="getLink(bank.normalized,'2w')">{{ item.twoW?.value }}</a>
               <span
                 ><mat-icon class="gift-box" *ngIf="item.twoW?.gift"
                   >card_giftcard</mat-icon
@@ -35,7 +35,7 @@
               >
             </div>
             <div class="cell-content 3w" [ngClass]="{'max-rate': isMax('threew', item.threeW?.value)}">
-              <a class="cell-text">{{ item.threeW?.value }}</a>
+              <a class="cell-text" [href]="getLink(bank.normalized,'3w')">{{ item.threeW?.value }}</a>
               <span
                 ><mat-icon class="gift-box" *ngIf="item.threeW?.gift"
                   >card_giftcard</mat-icon
@@ -43,7 +43,7 @@
               >
             </div>
             <div class="cell-content 1m" [ngClass]="{'max-rate': isMax('onem', item.oneM?.value)}">
-              <a class="cell-text">{{ item.fourW?.value }}</a>
+              <a class="cell-text" [href]="getLink(bank.normalized,'1m')">{{ item.fourW?.value }}</a>
               <span
                 ><mat-icon class="gift-box" *ngIf="item.fourW?.gift"
                   >card_giftcard</mat-icon
@@ -51,7 +51,7 @@
               >
             </div>
             <div class="cell-content 3m" [ngClass]="{'max-rate': isMax('threem', item.threeM?.value)}">
-              <a class="cell-text">{{ item.threeM?.value }}</a>
+              <a class="cell-text" [href]="getLink(bank.normalized,'3m')">{{ item.threeM?.value }}</a>
               <span
                 ><mat-icon class="gift-box" *ngIf="item.threeM?.gift"
                   >card_giftcard</mat-icon
@@ -59,7 +59,7 @@
               >
             </div>
             <div class="cell-content 6m" [ngClass]="{'max-rate': isMax('sixm', item.sixM?.value)}">
-              <a class="cell-text">{{ item.sixM?.value }}</a>
+              <a class="cell-text" [href]="getLink(bank.normalized,'6m')">{{ item.sixM?.value }}</a>
               <span
                 ><mat-icon class="gift-box" *ngIf="item.sixM?.gift"
                   >card_giftcard</mat-icon
@@ -67,7 +67,7 @@
               >
             </div>
             <div class="cell-content 9m" [ngClass]="{'max-rate': isMax('ninem', item.nineM?.value)}">
-              <a class="cell-text">{{ item.nineM?.value }}</a>
+              <a class="cell-text" [href]="getLink(bank.normalized,'9m')">{{ item.nineM?.value }}</a>
               <span
                 ><mat-icon class="gift-box" *ngIf="item.nineM?.gift"
                   >card_giftcard</mat-icon
@@ -75,7 +75,7 @@
               >
             </div>
             <div class="cell-content 12m" [ngClass]="{'max-rate': isMax('twelvem', item.twelveM?.value)}">
-              <a class="cell-text">{{ item.twelveM?.value }}</a>
+              <a class="cell-text" [href]="getLink(bank.normalized,'12m')">{{ item.twelveM?.value }}</a>
               <span
                 ><mat-icon class="gift-box" *ngIf="item.twelveM?.gift"
                   >card_giftcard</mat-icon
@@ -83,7 +83,7 @@
               >
             </div>
             <div class="cell-content 18m" [ngClass]="{'max-rate': isMax('eighteenm', item.eighteenM?.value)}">
-              <a class="cell-text">{{ item.eighteenM?.value }}</a>
+              <a class="cell-text" [href]="getLink(bank.normalized,'18m')">{{ item.eighteenM?.value }}</a>
               <span
                 ><mat-icon class="gift-box" *ngIf="item.eighteenM?.gift"
                   >card_giftcard</mat-icon
@@ -91,7 +91,7 @@
               >
             </div>
             <div class="cell-content 24m" [ngClass]="{'max-rate': isMax('twentyfourm', item.twentyFourM?.value)}">
-              <a class="cell-text">{{ item.twentyFourM?.value }}</a>
+              <a class="cell-text" [href]="getLink(bank.normalized,'24m')">{{ item.twentyFourM?.value }}</a>
               <span
                 ><mat-icon class="gift-box" *ngIf="item.twentyFourM?.gift"
                   >card_giftcard</mat-icon
@@ -99,7 +99,7 @@
               >
             </div>
             <div class="cell-content 36m" [ngClass]="{'max-rate': isMax('thirtysixm', item.thirtySixM?.value)}">
-              <a class="cell-text">{{ item.thirtySixM?.value }}</a>
+              <a class="cell-text" [href]="getLink(bank.normalized,'36m')">{{ item.thirtySixM?.value }}</a>
               <span
                 ><mat-icon class="gift-box" *ngIf="item.thirtySixM?.gift"
                   >card_giftcard</mat-icon

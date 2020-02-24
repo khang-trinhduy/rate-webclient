@@ -1,0 +1,46 @@
+<div class="content-container">
+  <div class="flex-container">
+    <div class="value-area" *ngIf="rate | async as rate">
+      <div class="value-card">
+        <div class="online-card">
+          <app-card [rate]="onlineRate"></app-card>
+        </div>
+        <div class="offline-card">
+          <app-card [rate]="offlineRate"></app-card>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="utility | async as item" class="benefit-area">
+      <h3 class="header-line">
+        Ưu đãi
+      </h3>
+      <ul>
+        <li *ngFor="let benefit of item?.benefits">
+          {{ benefit }}
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="flex-container">
+    <div *ngIf="utility | async as item" class="require-area">
+      <h3 class="header-line">
+        Điều kiện
+      </h3>
+      <ul>
+        <li *ngFor="let require of item?.requires">
+          {{ require }}
+        </li>
+      </ul>
+    </div>
+    <div *ngIf="utility | async as item" class="document-area">
+      <h3 class="header-line">
+        Hồ sơ
+      </h3>
+      <ul>
+        <li *ngFor="let document of item?.documents">
+          {{ document }}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

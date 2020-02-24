@@ -1,6 +1,7 @@
 export interface Rate {
   _id: string;
   name: string;
+  normalized: string;
   link: string;
   type: string;
   code: string;
@@ -19,6 +20,16 @@ export interface Rate {
     thirtySixM: Interest;
   };
   loanRates: Loan[];
+}
+
+export interface Card {
+  _id: string;
+  rate: number;
+  period: number;
+  periodType: string;
+  type: string;
+  source: string;
+  updated: Date;
 }
 
 export interface Source {
@@ -73,4 +84,24 @@ export interface Stat {
   minimum: number;
   count: number;
   _id: string;
+}
+
+export interface Information {
+  _id: string;
+  nativeName: string;
+  tradeName: string;
+  founded: Date;
+  revenue: number;
+  employees: number;
+  website: string;
+  logo: string;
+  headquarter: string;
+}
+
+export interface Utility {
+  _id: string;
+  benefits: string[];
+  requires: string[];
+  documents: string[];
+  code: string;
 }

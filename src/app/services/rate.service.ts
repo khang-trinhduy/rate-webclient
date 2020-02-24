@@ -43,6 +43,34 @@ export class RateService {
       .pipe(catchError(this.handleError<any>("GET LOANS")));
   }
 
+  getBank(code, type = ""): Observable<any> {
+    return this.http
+      .get(`${environment.api}/banks?code=${code}&type=${type}`)
+      .pipe(catchError(this.handleError<any>("GET BANK")));
+  }
+
+  getInfo(type): Observable<any> {
+    return this.http
+      .get(`${environment.api}/informations?type=${type}`)
+      .pipe(catchError(this.handleError<any>("GET INFORMATION")));
+  }
+
+  getUtility(code): Observable<any> {
+    return this.http
+      .get(`${environment.api}/utilities?b=${code}`, {
+        headers: this.httpHeaderOptions
+      })
+      .pipe(catchError(this.handleError<any>("GET UTILITY")));
+  }
+
+  getTop(period): Observable<any> {
+    return this.http
+      .get(`${environment.api}/rates?type=interest&sort=des&period=${period}`, {
+        headers: this.httpHeaderOptions
+      })
+      .pipe(catchError(this.handleError<any>("GET TOP RATE")));
+  }
+
   private handleError<T>(operation = "operation", result?: T) {
     return (error: any): Observable<T> => {
       // TODO: send the error to remote logging infrastructure
