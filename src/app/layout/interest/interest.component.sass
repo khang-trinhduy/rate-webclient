@@ -9,6 +9,16 @@
   justify-content: flex-start
   align-items: flex-start
   max-width: 290px
+$breakpoint: "1500px"
+@media all and ( max-width: $breakpoint )
+  .tool-container
+    display: none
+  .flex-table 
+    display: block!important
+    & > .flex-cell
+      width: 100%
+      &.foot
+        margin-bottom: 1em
 .data-container
   border-left: 1px solid rgba(0,0,0,0.14)
   display: block 
