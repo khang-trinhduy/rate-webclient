@@ -5,8 +5,8 @@
   <div class="row-content">
     <div class="line-area">
       <div class="line-content">
-        <div class="row-line">
-          <div class="cell-content head">
+        <div class="row-line top">
+          <div class="cell-content head top">
             <a class="cell-text">Ngân hàng</a>
           </div>
           <div class="cell-content 0w">
@@ -38,11 +38,11 @@
           <div class="row-line" *ngIf="bank.interestRates as item">
             <div
               class="cell-content head"
-              [ngStyle]="{ backgroundColor: getColor(bank.code) }"
             >
-              <a class="cell-text" [href]="getLink(bank.normalized)">{{
+              <img class="head-logo" [src]="getLogo(bank.code)" alt="" />
+              <!-- <a class="cell-text" [href]="getLink(bank.normalized)">{{
                 bank.code
-              }}</a>
+              }}</a> -->
             </div>
             <div
               class="cell-content 0w"
@@ -51,7 +51,7 @@
               <a
                 class="cell-text"
                 [href]="getLink(bank.normalized, 'unlimit')"
-                >{{ item.unlimit?.value }}</a
+                >{{ toDecimal(item.unlimit?.value) }}%</a
               >
               <div class="icon-container">
                 <span
@@ -111,8 +111,8 @@
               [ngClass]="{ 'max-rate': isMax('threem', item.threeM?.value) }"
             >
               <a class="cell-text" [href]="getLink(bank.normalized, '3m')">{{
-                item.threeM?.value
-              }}</a>
+                toDecimal(item.threeM?.value)
+              }}%</a>
               <div class="icon-container">
                 <span
                   ><mat-icon class="gift-box" *ngIf="item.threeM?.gift"
@@ -139,8 +139,8 @@
               [ngClass]="{ 'max-rate': isMax('sixm', item.sixM?.value) }"
             >
               <a class="cell-text" [href]="getLink(bank.normalized, '6m')">{{
-                item.sixM?.value
-              }}</a>
+                toDecimal(item.sixM?.value)
+              }}%</a>
               <div class="icon-container">
                 <span
                   ><mat-icon class="gift-box" *ngIf="item.sixM?.gift"
@@ -167,8 +167,8 @@
               [ngClass]="{ 'max-rate': isMax('ninem', item.nineM?.value) }"
             >
               <a class="cell-text" [href]="getLink(bank.normalized, '9m')">{{
-                item.nineM?.value
-              }}</a>
+                toDecimal(item.nineM?.value)
+              }}%</a>
               <div class="icon-container">
                 <span
                   ><mat-icon class="gift-box" *ngIf="item.nineM?.gift"
@@ -195,8 +195,8 @@
               [ngClass]="{ 'max-rate': isMax('twelvem', item.twelveM?.value) }"
             >
               <a class="cell-text" [href]="getLink(bank.normalized, '12m')">{{
-                item.twelveM?.value
-              }}</a>
+                toDecimal(item.twelveM?.value)
+              }}%</a>
               <div class="icon-container">
                 <span
                   ><mat-icon class="gift-box" *ngIf="item.twelveM?.gift"
@@ -225,8 +225,8 @@
               }"
             >
               <a class="cell-text" [href]="getLink(bank.normalized, '18m')">{{
-                item.eighteenM?.value
-              }}</a>
+                toDecimal(item.eighteenM?.value)
+              }}%</a>
               <div class="icon-container">
                 <span
                   ><mat-icon class="gift-box" *ngIf="item.eighteenM?.gift"
@@ -255,8 +255,8 @@
               }"
             >
               <a class="cell-text" [href]="getLink(bank.normalized, '24m')">{{
-                item.twentyFourM?.value
-              }}</a>
+                toDecimal(item.twentyFourM?.value)
+              }}%</a>
               <div class="icon-container">
                 <span
                   ><mat-icon class="gift-box" *ngIf="item.twentyFourM?.gift"
@@ -285,8 +285,8 @@
               }"
             >
               <a class="cell-text" [href]="getLink(bank.normalized, '36m')">{{
-                item.thirtySixM?.value
-              }}</a>
+                toDecimal(item.thirtySixM?.value)
+              }}%</a>
               <div class="icon-container">
                 <span
                   ><mat-icon class="gift-box" *ngIf="item.thirtySixM?.gift"

@@ -43,9 +43,17 @@ export class RowComponent implements OnInit {
     if (code) {
       let bank = new Logos();
       code = code.split(" ")[0].toLowerCase();
-      return bank[code];
+      return `${bank[code]}`;
     }
   }
+
+  toDecimal = (number: number) => {
+    if (number > 0) {
+      return (Math.round(number * 100) / 100).toFixed(2);
+    } else {
+      return '0.00';
+    }
+  };
 
   getColor(code: string) {
     if (code) {
