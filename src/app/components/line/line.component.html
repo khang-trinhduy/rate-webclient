@@ -1,0 +1,90 @@
+<div class="line-container">
+  <div class="header line-content"></div>
+
+  <div class="line-content" *ngFor="let item of banks">
+    <div class="cell-content logo"></div>
+    <div class="cell-content unlimit">
+      <div class="rate-content">
+        {{ item.interestRates.unlimit.value }}
+      </div>
+      <div class="detail-content">
+        Số tiền gửi: {{ getThreshold(item.interestRate.unlimit.threshold) }} Áp
+        dụng cho: {{ getLoc(item.interestRate.unlimit.loc) }} TG nhận lãi:
+        {{ getWithdraw(item.interestRate.unlimit.withdraw) }}
+      </div>
+    </div>
+    <div class="cell-content oneM">
+      <div class="rate-content">
+        {{ item.interestRates.oneM.value }}
+      </div>
+      <div class="detail-content">
+        Số tiền gửi: {{ getThreshold(item.interestRate.oneM.threshold) }} Áp
+        dụng cho: {{ getLoc(item.interestRate.oneM.loc) }} TG nhận lãi:
+        {{ getWithdraw(item.interestRate.oneM.withdraw) }}
+      </div>
+    </div>
+    <div class="cell-content threeM">
+      <div class="rate-content">
+        {{ item.interestRates.threeM.value }}
+      </div>
+      <div class="detail-content">
+        Số tiền gửi: {{ getThreshold(item.interestRate.threeM.threshold) }} Áp
+        dụng cho: {{ getLoc(item.interestRate.threeM.loc) }} TG nhận lãi:
+        {{ getWithdraw(item.interestRate.threeM.withdraw) }}
+      </div>
+    </div>
+    <div class="cell-content sixM">
+      <div class="rate-content">
+        {{ item.interestRates.sixM.value }}
+      </div>
+      <div class="detail-content">
+        Số tiền gửi: {{ getThreshold(item.interestRate.sixM.threshold) }} Áp
+        dụng cho: {{ getLoc(item.interestRate.sixM.loc) }} TG nhận lãi:
+        {{ getWithdraw(item.interestRate.sixM.withdraw) }}
+      </div>
+    </div>
+    <div class="cell-content twelveM">
+      <div class="rate-content">
+        {{ item.interestRates.twelveM.value }}
+      </div>
+      <div class="detail-content">
+        Số tiền gửi: {{ getThreshold(item.interestRate.twelveM.threshold) }} Áp
+        dụng cho: {{ getLoc(item.interestRate.twelveM.loc) }} TG nhận lãi:
+        {{ getWithdraw(item.interestRate.twelveM.withdraw) }}
+      </div>
+    </div>
+    <div class="cell-content eighteenM">
+      <div class="rate-content">
+        {{ item.interestRates.eighteenM.value }}
+      </div>
+      <div class="detail-content">
+        Số tiền gửi:
+        {{ getThreshold(item.interestRate.eighteenM.threshold) }} Áp dụng cho:
+        {{ getLoc(item.interestRate.eighteenM.loc) }} TG nhận lãi:
+        {{ getWithdraw(item.interestRate.eighteenM.withdraw) }}
+      </div>
+    </div>
+    <div class="cell-content twentyFourM">
+      <div class="rate-content">
+        {{ item.interestRates.twentyFourM.value }}
+      </div>
+      <div class="detail-content">
+        Số tiền gửi:
+        {{ getThreshold(item.interestRate.twentyFourM.threshold) }} Áp dụng cho:
+        {{ getLoc(item.interestRate.twentyFourM.loc) }} TG nhận lãi:
+        {{ getWithdraw(item.interestRate.withdraw) }}
+      </div>
+    </div>
+    <div class="cell-content thirtySixM">
+      <div class="rate-content">
+        {{ item.interestRates.thirtySixM.value }}
+      </div>
+      <div class="detail-content">
+        Số tiền gửi:
+        {{ getThreshold(item.interestRate.thirtySixM.threshold) }} Áp dụng cho:
+        {{ getLoc(item.interestRate.thirtySixM.loc) }} TG nhận lãi:
+        {{ getWithdraw(item.interestRate.thirtySixM.withdraw) }}
+      </div>
+    </div>
+  </div>
+</div>

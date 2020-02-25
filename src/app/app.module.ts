@@ -39,6 +39,7 @@ import { MatSelectModule } from "@angular/material/select";
 import { ChartsModule } from 'ng2-charts';
 import { LoginComponent } from './layout/login/login.component';
 import { RegisterComponent } from './layout/register/register.component';
+import { LineComponent } from './components/line/line.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -64,7 +65,8 @@ import { RegisterComponent } from './layout/register/register.component';
     ContentComponent,
     NewComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    LineComponent
   ],
   imports: [
     BrowserModule,
