@@ -15,6 +15,7 @@ export class NavbarComponent implements OnInit {
     private api: UserService
   ) {}
   loc = this.location.path(false);
+  showTool = true;
   ngOnInit() {}
 
   public get login(): boolean {
@@ -26,5 +27,21 @@ export class NavbarComponent implements OnInit {
       this.api.signOut();
       window.location.reload(true);
     }
+  }
+
+  toggleTool() {
+    var tool = document.querySelector(".tool-container");
+    if (this.showTool) {
+      if (tool) {
+        (<HTMLElement>tool).style.animation =
+          "push 0.35s linear 0s forwards 1 normal";
+      }
+    } else {
+      if (tool) {
+        (<HTMLElement>tool).style.animation =
+          "pull 0.35s linear 0s forwards 1 normal";
+      }
+    }
+    this.showTool = !!!this.showTool;
   }
 }

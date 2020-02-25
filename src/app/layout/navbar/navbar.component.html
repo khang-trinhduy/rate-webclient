@@ -1,8 +1,10 @@
 <header class="top-header">
-  <a href="/" class="app-icon"></a>
   <div class="flex-header">
     <div class="header-left">
       <ul class="horizon-list">
+        <li>
+          <button (click)="toggleTool()" mat-button><mat-icon>menu</mat-icon></button>
+        </li>
         <li>
           <a mat-button [routerLink]="['/']">Trang chính</a>
         </li>
@@ -17,10 +19,22 @@
     <div class="header-right">
       <ul class="horizon-list">
         <li>
-          <a mat-button [routerLink]="['/signin']" [queryParams]="{ref: loc}" *ngIf="!login">Đăng nhập</a>
+          <a
+            mat-button
+            [routerLink]="['/signin']"
+            [queryParams]="{ ref: loc }"
+            *ngIf="!login"
+            >Đăng nhập</a
+          >
         </li>
         <li>
-          <a mat-button [routerLink]="['/signup']" [queryParams]="{ref: loc}" *ngIf="!login">Đăng ký</a>
+          <a
+            mat-button
+            [routerLink]="['/signup']"
+            [queryParams]="{ ref: loc }"
+            *ngIf="!login"
+            >Đăng ký</a
+          >
         </li>
         <li>
           <a mat-button (click)="logout()" *ngIf="login">Đăng xuất</a>
