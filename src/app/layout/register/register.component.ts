@@ -20,7 +20,9 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     if (this.auth.isLoggedIn()) {
-      this.router.navigateByUrl(this.activeRoute.snapshot.queryParams["ref"]);
+      this.router.navigateByUrl(
+        this.activeRoute.snapshot.queryParams["ref"] || "/"
+      );
     }
   }
 
@@ -46,10 +48,17 @@ export class RegisterComponent implements OnInit {
         () => {
           if (!this.invalid_credentials) {
             let redirect = this.activeRoute.snapshot.queryParams["ref"];
-            if (redirect.includes("/signin") || redirect.includes("/signup")) {
-              this.router.navigateByUrl("/");
+            if (redirect) {
+              if (
+                redirect.includes("/signin") ||
+                redirect.includes("/signup")
+              ) {
+                this.router.navigateByUrl("/");
+              } else {
+                this.router.navigateByUrl(redirect);
+              }
             } else {
-              this.router.navigateByUrl(redirect);
+              this.router.navigateByUrl("/");
             }
           }
         }
