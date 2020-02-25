@@ -11,9 +11,15 @@
           </div>
           <div class="table-content">
             <div class="type-options">
-              <mat-radio-group (change)="tableTypeRadChange()" [(ngModel)]="tableType">
-                <mat-radio-button value="row">Ngắn gọn</mat-radio-button>
-                <mat-radio-button value="box">Chi tiết</mat-radio-button>
+              <mat-radio-group
+                (change)="tableTypeRadChange()"
+                [(ngModel)]="tableType"
+              >
+                <mat-radio-button value="row">Excel</mat-radio-button>
+                <mat-radio-button value="box">Thẻ</mat-radio-button>
+                <mat-radio-button value="line"
+                  >Excel (chi tiết)</mat-radio-button
+                >
               </mat-radio-group>
             </div>
             <div class="period-options">
@@ -87,7 +93,9 @@
               </mat-radio-group>
             </div>
             <div class="display-options">
-              <mat-checkbox (change)="toggleDisplay()" [(ngModel)]="showChart">Hiện biểu đồ</mat-checkbox>
+              <mat-checkbox (change)="toggleDisplay()" [(ngModel)]="showChart"
+                >Hiện biểu đồ</mat-checkbox
+              >
             </div>
           </div>
         </div>

@@ -38,10 +38,11 @@
           <div class="row-line" *ngIf="bank.interestRates as item">
             <div
               class="cell-content head"
+              [ngStyle]="{ backgroundColor: getColor(bank.code) }"
             >
-              <a class="cell-text" [href]="getLink(bank.normalized)">
-                <img class="logo" [src]="getLogo(bank.code)" alt="" />
-              </a>
+              <a class="cell-text" [href]="getLink(bank.normalized)">{{
+                bank.code
+              }}</a>
             </div>
             <div
               class="cell-content 0w"
@@ -52,11 +53,26 @@
                 [href]="getLink(bank.normalized, 'unlimit')"
                 >{{ item.unlimit?.value }}</a
               >
-              <span
-                ><mat-icon class="gift-box" *ngIf="item.unlimit?.gift"
-                  >card_giftcard</mat-icon
-                ></span
-              >
+              <div class="icon-container">
+                <span
+                  ><mat-icon class="gift-box" *ngIf="item.unlimit?.gift"
+                    >card_giftcard</mat-icon
+                  ></span
+                >
+                <span
+                  ><mat-icon class="gift-box" *ngIf="item.unlimit?.loc"
+                    >location_on</mat-icon
+                  ></span
+                >
+                <span
+                  ><mat-icon
+                    class="gift-box"
+                    *ngIf="!item.unlimit?.threshold"
+                    [title]="item.unlimit?.threshold"
+                    >attach_money</mat-icon
+                  ></span
+                >
+              </div>
             </div>
             <!-- <div class="cell-content 1w" [ngClass]="{'max-rate': isMax('onew', item.oneW?.value)}">
               <a class="cell-text" [href]="getLink(bank.normalized,'1w')">{{ item.oneW?.value }}</a>
@@ -97,11 +113,26 @@
               <a class="cell-text" [href]="getLink(bank.normalized, '3m')">{{
                 item.threeM?.value
               }}</a>
-              <span
-                ><mat-icon class="gift-box" *ngIf="item.threeM?.gift"
-                  >card_giftcard</mat-icon
-                ></span
-              >
+              <div class="icon-container">
+                <span
+                  ><mat-icon class="gift-box" *ngIf="item.threeM?.gift"
+                    >card_giftcard</mat-icon
+                  ></span
+                >
+                <span
+                  ><mat-icon class="gift-box" *ngIf="item.threeM?.loc"
+                    >location_on</mat-icon
+                  ></span
+                >
+                <span
+                  ><mat-icon
+                    class="gift-box"
+                    *ngIf="!item.threeM?.threshold"
+                    [title]="item.threeM?.threshold"
+                    >attach_money</mat-icon
+                  ></span
+                >
+              </div>
             </div>
             <div
               class="cell-content 6m"
@@ -110,11 +141,26 @@
               <a class="cell-text" [href]="getLink(bank.normalized, '6m')">{{
                 item.sixM?.value
               }}</a>
-              <span
-                ><mat-icon class="gift-box" *ngIf="item.sixM?.gift"
-                  >card_giftcard</mat-icon
-                ></span
-              >
+              <div class="icon-container">
+                <span
+                  ><mat-icon class="gift-box" *ngIf="item.sixM?.gift"
+                    >card_giftcard</mat-icon
+                  ></span
+                >
+                <span
+                  ><mat-icon class="gift-box" *ngIf="item.sixM?.loc"
+                    >location_on</mat-icon
+                  ></span
+                >
+                <span
+                  ><mat-icon
+                    class="gift-box"
+                    *ngIf="!item.sixM?.threshold"
+                    [title]="item.sixM?.threshold"
+                    >attach_money</mat-icon
+                  ></span
+                >
+              </div>
             </div>
             <div
               class="cell-content 9m"
@@ -123,11 +169,26 @@
               <a class="cell-text" [href]="getLink(bank.normalized, '9m')">{{
                 item.nineM?.value
               }}</a>
-              <span
-                ><mat-icon class="gift-box" *ngIf="item.nineM?.gift"
-                  >card_giftcard</mat-icon
-                ></span
-              >
+              <div class="icon-container">
+                <span
+                  ><mat-icon class="gift-box" *ngIf="item.nineM?.gift"
+                    >card_giftcard</mat-icon
+                  ></span
+                >
+                <span
+                  ><mat-icon class="gift-box" *ngIf="item.nineM?.loc"
+                    >location_on</mat-icon
+                  ></span
+                >
+                <span
+                  ><mat-icon
+                    class="gift-box"
+                    *ngIf="!item.nineM?.threshold"
+                    [title]="item.nineM?.threshold"
+                    >attach_money</mat-icon
+                  ></span
+                >
+              </div>
             </div>
             <div
               class="cell-content 12m"
@@ -136,11 +197,26 @@
               <a class="cell-text" [href]="getLink(bank.normalized, '12m')">{{
                 item.twelveM?.value
               }}</a>
-              <span
-                ><mat-icon class="gift-box" *ngIf="item.twelveM?.gift"
-                  >card_giftcard</mat-icon
-                ></span
-              >
+              <div class="icon-container">
+                <span
+                  ><mat-icon class="gift-box" *ngIf="item.twelveM?.gift"
+                    >card_giftcard</mat-icon
+                  ></span
+                >
+                <span
+                  ><mat-icon class="gift-box" *ngIf="item.twelveM?.loc"
+                    >location_on</mat-icon
+                  ></span
+                >
+                <span
+                  ><mat-icon
+                    class="gift-box"
+                    *ngIf="!item.twelveM?.threshold"
+                    [title]="item.twelveM?.threshold"
+                    >attach_money</mat-icon
+                  ></span
+                >
+              </div>
             </div>
             <div
               class="cell-content 18m"
@@ -151,11 +227,26 @@
               <a class="cell-text" [href]="getLink(bank.normalized, '18m')">{{
                 item.eighteenM?.value
               }}</a>
-              <span
-                ><mat-icon class="gift-box" *ngIf="item.eighteenM?.gift"
-                  >card_giftcard</mat-icon
-                ></span
-              >
+              <div class="icon-container">
+                <span
+                  ><mat-icon class="gift-box" *ngIf="item.eighteenM?.gift"
+                    >card_giftcard</mat-icon
+                  ></span
+                >
+                <span
+                  ><mat-icon class="gift-box" *ngIf="item.eighteenM?.loc"
+                    >location_on</mat-icon
+                  ></span
+                >
+                <span
+                  ><mat-icon
+                    class="gift-box"
+                    *ngIf="!item.eighteenM?.threshold"
+                    [title]="item.eighteenM?.threshold"
+                    >attach_money</mat-icon
+                  ></span
+                >
+              </div>
             </div>
             <div
               class="cell-content 24m"
@@ -166,11 +257,26 @@
               <a class="cell-text" [href]="getLink(bank.normalized, '24m')">{{
                 item.twentyFourM?.value
               }}</a>
-              <span
-                ><mat-icon class="gift-box" *ngIf="item.twentyFourM?.gift"
-                  >card_giftcard</mat-icon
-                ></span
-              >
+              <div class="icon-container">
+                <span
+                  ><mat-icon class="gift-box" *ngIf="item.twentyFourM?.gift"
+                    >card_giftcard</mat-icon
+                  ></span
+                >
+                <span
+                  ><mat-icon class="gift-box" *ngIf="item.twentyFourM?.loc"
+                    >location_on</mat-icon
+                  ></span
+                >
+                <span
+                  ><mat-icon
+                    class="gift-box"
+                    *ngIf="!item.twentyFourM?.threshold"
+                    [title]="item.twentyFourM?.threshold"
+                    >attach_money</mat-icon
+                  ></span
+                >
+              </div>
             </div>
             <div
               class="cell-content 36m"
@@ -181,11 +287,26 @@
               <a class="cell-text" [href]="getLink(bank.normalized, '36m')">{{
                 item.thirtySixM?.value
               }}</a>
-              <span
-                ><mat-icon class="gift-box" *ngIf="item.thirtySixM?.gift"
-                  >card_giftcard</mat-icon
-                ></span
-              >
+              <div class="icon-container">
+                <span
+                  ><mat-icon class="gift-box" *ngIf="item.thirtySixM?.gift"
+                    >card_giftcard</mat-icon
+                  ></span
+                >
+                <span
+                  ><mat-icon class="gift-box" *ngIf="item.thirtySixM?.loc"
+                    >location_on</mat-icon
+                  ></span
+                >
+                <span
+                  ><mat-icon
+                    class="gift-box"
+                    *ngIf="!item.thirtySixM?.threshold"
+                    [title]="item.thirtySixM?.threshold"
+                    >attach_money</mat-icon
+                  ></span
+                >
+              </div>
             </div>
           </div>
         </div>

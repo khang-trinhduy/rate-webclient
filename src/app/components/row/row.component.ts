@@ -47,6 +47,14 @@ export class RowComponent implements OnInit {
     }
   }
 
+  getColor(code: string) {
+    if (code) {
+      let bank = new Banks();
+      code = code.split(" ")[0].toLowerCase();
+      return bank[code];
+    }
+  }
+
   isMax = (type, val) => {
     if (this.stats) {
       let temp = this.stats.find(e => e.type === type);
