@@ -86,6 +86,9 @@
                 <mat-radio-button value="2">10 Năm</mat-radio-button>
               </mat-radio-group>
             </div>
+            <div class="display-options">
+              <mat-checkbox (change)="toggleDisplay()" [(ngModel)]="showChart">Hiện biểu đồ</mat-checkbox>
+            </div>
           </div>
         </div>
       </div>

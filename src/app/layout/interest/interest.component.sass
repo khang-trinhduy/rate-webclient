@@ -1,8 +1,8 @@
 .flex-container
-  display: flex
   flex-flow: row nowrap
   justify-content: space-evenly
   align-items: flex-start
+  display: flex
 .tool-container
   display: flex
   flex-flow: column nowrap
@@ -23,8 +23,11 @@ $breakpoint: "1500px"
   border-left: 1px solid rgba(0,0,0,0.14)
   display: block 
   position: relative
+  width: 100%
 app-table, app-row
   border-right: 1px solid rgba(0,0,0,0.14)
+app-row
+  width: 71.5%
 .flex-data
   display: flex
   flex-flow: row nowrap

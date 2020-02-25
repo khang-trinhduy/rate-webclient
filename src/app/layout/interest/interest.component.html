@@ -2,7 +2,7 @@
   <div class="flex-container">
     <div class="tool-container">
       <app-filter></app-filter>
-      <app-setting (tableStyleChange)="tableStyleHandler($event)"></app-setting>
+      <app-setting (display)="showChart($event)"  (tableStyleChange)="tableStyleHandler($event)"></app-setting>
     </div>
     <div class="data-container">
       <div class="data-header">

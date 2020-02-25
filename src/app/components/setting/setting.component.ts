@@ -9,10 +9,16 @@ export class SettingComponent implements OnInit {
   constructor() {}
 
   tableType: string = "row";
+  showChart: boolean = true;
+  @Output() display: EventEmitter<any> = new EventEmitter();
   @Output() tableStyleChange: EventEmitter<string> = new EventEmitter();
   ngOnInit() {}
 
   tableTypeRadChange = () => {
     this.tableStyleChange.emit(this.tableType);
   };
+
+  toggleDisplay() {
+    this.display.emit(this.showChart);
+  }
 }
