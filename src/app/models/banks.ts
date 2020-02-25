@@ -1,3 +1,5 @@
+import { environment } from 'src/environments/environment';
+
 export class Banks {
   agribank: string = "#005a3c";
   acb: string = "";
@@ -21,3 +23,28 @@ export class Banks {
   eximbank: string = "#0069ac";
   baoviet: string = "#0075c0";
 }
+
+export class Logos {
+  agribank: string = environment.static + "/public/images/agribank.jpg";
+  acb: string = environment.static + "/public/images/acb.jpg";
+  vietcombank: string = environment.static + "/public/images/vietcombank.png";
+  techcombank: string = environment.static + "/public/images/agribank.jpg";
+  bidv: string = environment.static + "/public/images/bidv.png";
+  cb: string = environment.static + "/public/images/cb.jpg";
+  msb: string = environment.static + "/public/images/msb.jpg";
+  mb: string = environment.static + "/public/images/agribank.jpg";
+  vietinbank: string = environment.static + "/public/images/vietinbank.png";
+  scb: string = environment.static + "/public/images/scb.jpg"
+  oceanbank: string = environment.static + "/public/images/oceanbank.jpg";
+  baca: string = environment.static + "/public/images/agribank.jpg";
+  maritimebank: string = environment.static + "/public/images/agribank.jpg";
+  nam: string = environment.static + "/public/images/nama.jpg";
+  ncb: string = environment.static + "/public/images/ncb.jpg";
+  dongabank: string = environment.static + "/public/images/agribank.jpg";
+  vib: string = environment.static + "/public/images/vib.png";
+  shb: string = environment.static + "/public/images/shb.png";
+  ocb: string = environment.static + "/public/images/ocb.png";
+  eximbank: string = environment.static + "/public/images/eximbank.jpg";
+  baoviet: string = environment.static + "/public/images/baovietbank.jpg";
+}
+

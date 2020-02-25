@@ -7,60 +7,41 @@
       <div class="line-content">
         <div class="row-line">
           <div class="cell-content head">
-            <a class="cell-text" style="color: rgba(0, 0, 0, 0.5)!important;"
-              >Ngân hàng</a
-            >
+            <a class="cell-text">Ngân hàng</a>
           </div>
           <div class="cell-content 0w">
-            <a class="cell-text" style="color: rgba(0, 0, 0, 0.5)!important;"
-              >Không kỳ hạn</a
-            >
+            <a class="cell-text">Không kỳ hạn</a>
           </div>
           <div class="cell-content 3m">
-            <a class="cell-text" style="color: rgba(0, 0, 0, 0.5)!important;"
-              >3 tháng</a
-            >
+            <a class="cell-text">3 tháng</a>
           </div>
           <div class="cell-content 6m">
-            <a class="cell-text" style="color: rgba(0, 0, 0, 0.5)!important;"
-              >6 tháng</a
-            >
+            <a class="cell-text">6 tháng</a>
           </div>
           <div class="cell-content 9m">
-            <a class="cell-text" style="color: rgba(0, 0, 0, 0.5)!important;"
-              >9 tháng</a
-            >
+            <a class="cell-text">9 tháng</a>
           </div>
           <div class="cell-content 12m">
-            <a class="cell-text" style="color: rgba(0, 0, 0, 0.5)!important;"
-              >12 tháng</a
-            >
+            <a class="cell-text">12 tháng</a>
           </div>
           <div class="cell-content 18m">
-            <a class="cell-text" style="color: rgba(0, 0, 0, 0.5)!important;"
-              >18 tháng</a
-            >
+            <a class="cell-text">18 tháng</a>
           </div>
           <div class="cell-content 24m">
-            <a class="cell-text" style="color: rgba(0, 0, 0, 0.5)!important;"
-              >24 tháng</a
-            >
+            <a class="cell-text">24 tháng</a>
           </div>
           <div class="cell-content 36m">
-            <a class="cell-text" style="color: rgba(0, 0, 0, 0.5)!important;"
-              >36 tháng</a
-            >
+            <a class="cell-text">36 tháng</a>
           </div>
         </div>
         <div class="cell-area" *ngFor="let bank of banks">
           <div class="row-line" *ngIf="bank.interestRates as item">
             <div
               class="cell-content head"
-              [ngStyle]="{ backgroundColor: getColor(bank.code) }"
             >
-              <a class="cell-text" [href]="getLink(bank.normalized)">{{
-                bank.code
-              }}</a>
+              <a class="cell-text" [href]="getLink(bank.normalized)">
+                <img class="logo" [src]="getLogo(bank.code)" alt="" />
+              </a>
             </div>
             <div
               class="cell-content 0w"
