@@ -37,6 +37,8 @@ import { ContentComponent } from './components/content/content.component';
 import { NewComponent } from './components/new/new.component';
 import { MatSelectModule } from "@angular/material/select";
 import { ChartsModule } from 'ng2-charts';
+import { LoginComponent } from './layout/login/login.component';
+import { RegisterComponent } from './layout/register/register.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -60,7 +62,9 @@ import { ChartsModule } from 'ng2-charts';
     SearchComponent,
     CardComponent,
     ContentComponent,
-    NewComponent
+    NewComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

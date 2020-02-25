@@ -1,0 +1,54 @@
+<div class="login-area">
+  <form [formGroup]="signupForm" (ngSubmit)="signup(signupForm.value)">
+    <mat-form-field>
+      <input matInput placeholder="Username" formControlName="username" />
+      <mat-error *ngIf="username.errors && username.errors.required">
+        Username is <strong>required</strong>
+      </mat-error>
+      <mat-error
+        *ngIf="
+          username.errors && username.errors.exist && !username.errors.required
+        "
+        >Username already existed</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Email" formControlName="email" />
+      <mat-error *ngIf="email.errors && email.errors.required"
+        >Email is <strong>required</strong></mat-error
+      >
+      <mat-error
+        *ngIf="email.errors && email.errors.exist && !email.errors.required"
+        >Email already existed</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        placeholder="Password"
+        formControlName="password"
+        type="password"
+      />
+      <mat-error *ngIf="password.errors && password.errors.required">
+        Password is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <!-- <p
+        class="custom-error"
+        *ngIf="signupForm.errors && signupForm.errors.invalid_credentials"
+      >
+        Username or password is incorrected!
+      </p> -->
+    <div class="btn-signup">
+      <button type="submit" mat-raised-button>
+        Sign up
+      </button>
+    </div>
+    <div class="forgot-area">
+      <p>
+        Already have an account?
+        <a [routerLink]="['/signin']" class="forgot-link">Sign in</a>
+      </p>
+    </div>
+  </form>
+</div>

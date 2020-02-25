@@ -1,0 +1,35 @@
+<div class="login-container">
+  <form [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
+    <mat-form-field>
+      <input matInput placeholder="Username" formControlName="username" />
+      <mat-error *ngIf="username.errors && username.errors.required">
+        Username is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        placeholder="Password"
+        formControlName="password"
+        type="password"
+      />
+      <mat-error *ngIf="password.errors && password.errors.required">
+        Password is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <p
+      class="custom-error"
+      *ngIf="loginForm.errors && loginForm.errors.invalid_credentials"
+    >
+      Username or password is incorrected!
+    </p>
+    <div class="btn-login">
+      <button type="submit" mat-raised-button>
+        Login
+      </button>
+    </div>
+    <div class="forgot-area">
+      <a href="#" class="forgot-link">Forgot password</a>
+    </div>
+  </form>
+</div>
