@@ -23,7 +23,7 @@
         Quà tặng:
       </h3>
       <p *ngFor="let line of gifts">
-        {{ line.content }} (ngày áp dụng {{ line.applyDate }})
+        {{ line.content }} (ngày áp dụng {{ toDate(line.applyDate) }})
       </p>
     </div>
     <div class="card-button">
