@@ -36,13 +36,20 @@ export class ContentComponent implements OnInit {
 
   hideSetting() {
     var search = document.querySelector(".search-container");
+    var setting = document.querySelector(".setting-text");
     if (search) {
       if (this.open) {
         (<HTMLElement>search).style.animation =
           "pullup 0.35s linear 0s forwards 1 normal";
+        if (setting) {
+          (<HTMLElement>setting).textContent = "Show setting";
+        }
       } else {
         (<HTMLElement>search).style.animation =
           "pulldown 0.35s linear 0s forwards 1 normal";
+        if (setting) {
+          (<HTMLElement>setting).textContent = "Hide setting";
+        }
       }
       this.open = !!!this.open;
     }

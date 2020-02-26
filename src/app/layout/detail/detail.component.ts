@@ -13,7 +13,7 @@ export class DetailComponent implements OnInit {
   bank: Rate;
   info$: Observable<Information>;
   utility: Observable<Utility>;
-  period; 
+  period;
   top = true;
   code;
   reviews;
@@ -23,12 +23,17 @@ export class DetailComponent implements OnInit {
   ngOnInit() {
     this.code = this.route.snapshot.queryParams["b"] || "agribank";
     let type = this.route.snapshot.queryParams["t"] || "";
-    this.period =  type;
-    this.service.getBank(this.code, type).subscribe(res => this.bank = res);
+    this.period = type;
+    this.service.getBank(this.code, type).subscribe(
+      res => (this.bank = res),
+      error => console.log(error),
+      () => {
+        this.reviews = this.service.getReview(this.bank._id);
+        this.summary = this.service.getReviewSummary(this.bank._id);
+      }
+    );
     this.info$ = this.service.getInfo(this.code);
     this.utility = this.service.getUtility(this.code);
-    this.reviews = this.service.getReview(this.bank._id);
-    this.reviews = this.service.getReviewSummary(this.bank._id);
   }
 
   resolve(string) {
