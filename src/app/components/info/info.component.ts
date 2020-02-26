@@ -13,6 +13,8 @@ export class InfoComponent implements OnInit {
 
   @Input() info$: Observable<Information>;
   domain: string = environment.static + "/";
-
+  format(number): String {
+    return number.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.") + " VNĐ";
+  }
   ngOnInit() {}
 }
