@@ -17,7 +17,7 @@
       Lãi suất gửi tiền <b>{{ rate.type }}</b> kỳ hạn {{ rate.period }}
       {{ rate.periodType }} hiện nay
     </div>
-    <div class="card-gift">
+    <div class="card-gift" *ngIf="gifts && gifts.length > 0">
       <h3>
         <mat-icon class="gift-icon">card_giftcard</mat-icon>
         Quà tặng:

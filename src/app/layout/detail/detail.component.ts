@@ -10,21 +10,25 @@ import { Observable } from "rxjs";
   styleUrls: ["./detail.component.sass"]
 })
 export class DetailComponent implements OnInit {
-  bank: Observable<Rate>;
+  bank: Rate;
   info$: Observable<Information>;
   utility: Observable<Utility>;
   period; 
   top = true;
   code;
+  reviews;
+  summary;
   constructor(private service: RateService, private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.code = this.route.snapshot.queryParams["b"] || "agribank";
     let type = this.route.snapshot.queryParams["t"] || "";
     this.period =  type;
-    this.bank = this.service.getBank(this.code, type);
+    this.service.getBank(this.code, type).subscribe(res => this.bank = res);
     this.info$ = this.service.getInfo(this.code);
     this.utility = this.service.getUtility(this.code);
+    this.reviews = this.service.getReview(this.bank._id);
+    this.reviews = this.service.getReviewSummary(this.bank._id);
   }
 
   resolve(string) {

@@ -71,6 +71,22 @@ export class RateService {
       .pipe(catchError(this.handleError<any>("GET TOP RATE")));
   }
 
+  getReview(bankid): Observable<any> {
+    return this.http
+      .get(`${environment.api}/reviews?bank=${bankid}`, {
+        headers: this.httpHeaderOptions
+      })
+      .pipe(catchError(this.handleError<any>("GET REVIEWS")));
+  }
+
+  getReviewSummary(bankid): Observable<any> {
+    return this.http
+      .get(`${environment.api}/reviews/summary?bank=${bankid}`, {
+        headers: this.httpHeaderOptions
+      })
+      .pipe(catchError(this.handleError<any>("GET REVIEW SUMMARY")));
+  }
+
   private handleError<T>(operation = "operation", result?: T) {
     return (error: any): Observable<T> => {
       // TODO: send the error to remote logging infrastructure

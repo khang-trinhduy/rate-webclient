@@ -8,7 +8,7 @@ import { Rate, Utility, Card } from "src/app/models/rate";
   styleUrls: ["./content.component.sass"]
 })
 export class ContentComponent implements OnInit {
-  @Input() rate: Observable<Rate>;
+  @Input() rate: Rate;
   @Input() utility: Observable<Utility>;
 
   open: boolean = true;

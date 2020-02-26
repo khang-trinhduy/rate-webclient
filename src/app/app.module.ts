@@ -40,6 +40,8 @@ import { ChartsModule } from 'ng2-charts';
 import { LoginComponent } from './layout/login/login.component';
 import { RegisterComponent } from './layout/register/register.component';
 import { LineComponent } from './components/line/line.component';
+import { ReviewComponent } from './components/review/review.component';
+import { AddReviewComponent } from './layout/add-review/add-review.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -66,7 +68,9 @@ import { LineComponent } from './components/line/line.component';
     NewComponent,
     LoginComponent,
     RegisterComponent,
-    LineComponent
+    LineComponent,
+    ReviewComponent,
+    AddReviewComponent
   ],
   imports: [
     BrowserModule,

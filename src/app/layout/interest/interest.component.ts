@@ -22,8 +22,6 @@ export class InterestComponent implements OnInit {
   };
 
   showChart = event => {
-    console.log(event);
-
     var chart = document.querySelector("app-chart");
     var row = document.querySelector("app-row");
     var line = document.querySelector("app-line");

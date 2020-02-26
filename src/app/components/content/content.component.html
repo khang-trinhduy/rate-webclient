@@ -6,7 +6,7 @@
     </div>
   </div>
   <div class="flex-container">
-    <div class="value-area" *ngIf="rate | async as rate">
+    <div class="value-area" *ngIf="rate">
       <div class="value-card">
         <div class="online-card">
           <app-card [rate]="onlineRate" [gifts]="rate?.gifts"></app-card>

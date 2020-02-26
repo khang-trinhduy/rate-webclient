@@ -16,5 +16,12 @@ export class InfoComponent implements OnInit {
   format(number): String {
     return number.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.") + " VNĐ";
   }
+  toDate(date) {
+    return date
+      .split("T")[0]
+      .split("-")
+      .reverse()
+      .join("/");
+  }
   ngOnInit() {}
 }
