@@ -3,10 +3,25 @@
     <h2 class="header-line">Đánh giá từ khách hàng</h2>
   </div>
   <div class="review-content">
-    <div class="summary-area">
-      <div class="summary-stars"></div>
-      <div class="summary-text"></div>
-      <div class="summary-desc"></div>
+    <div class="summary-area" *ngIf="summary | async as summary">
+      <div class="summary-stars">
+        <div
+          class="twinkle-stars"
+          [ngStyle]="{ width: getTwinkleWidth(summary?.average) }"
+        >
+          <mat-icon>star</mat-icon>
+          <mat-icon>star</mat-icon>
+          <mat-icon>star</mat-icon>
+          <mat-icon>star</mat-icon>
+          <mat-icon>star</mat-icon>
+        </div>
+        <div
+          class="helper"
+          [ngStyle]="{ width: getHelperWidth(summary?.average) }"
+        ></div>
+      </div>
+      <div class="summary-text">{{ summary?.average }} trên 5</div>
+      <div class="summary-desc">{{ summary?.total }} người đánh giá</div>
     </div>
     <div class="detail-area">
       <div class="5 stars-line"></div>
@@ -15,7 +30,7 @@
       <div class="2 stars-line"></div>
       <div class="1 stars-line"></div>
     </div>
-    <div class="top-review" *ngFor="let item of (reviews | async)">
+    <div class="top-review" *ngFor="let item of reviews | async">
       <div class="review-area">
         <div class="user-area">
           <div class="user-avatar">
@@ -42,9 +57,9 @@
       </div>
     </div>
     <div class="add-review">
-        <div class="add-btn">
-            Đánh giá
-        </div>
+      <div class="add-btn">
+        Đánh giá
+      </div>
     </div>
   </div>
 </div>

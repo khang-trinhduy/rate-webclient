@@ -81,7 +81,7 @@ export class RateService {
 
   getReviewSummary(bankid): Observable<any> {
     return this.http
-      .get(`${environment.api}/reviews/summary?bank=${bankid}`, {
+      .get(`${environment.api}/reviews/summary/${bankid}`, {
         headers: this.httpHeaderOptions
       })
       .pipe(catchError(this.handleError<any>("GET REVIEW SUMMARY")));
