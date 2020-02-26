@@ -6,9 +6,7 @@
       </h2>
       <div class="time-container">
         <mat-icon title="Thời gian cập nhật">schedule</mat-icon>
-        <i class="time-line"
-          >{{ rate.updated }} - {{ rate.source }}</i
-        >
+        <i class="time-line">{{ rate.updated }} - source: {{ rate.source }}</i>
       </div>
     </div>
     <div class="card-content">
@@ -18,6 +16,15 @@
     <div class="card-summary">
       Lãi suất gửi tiền <b>{{ rate.type }}</b> kỳ hạn {{ rate.period }}
       {{ rate.periodType }} hiện nay
+    </div>
+    <div class="card-gift">
+      <h3>
+        <mat-icon class="gift-icon">card_giftcard</mat-icon>
+        Quà tặng:
+      </h3>
+      <p *ngFor="let line of gifts">
+        {{ line.content }} (ngày áp dụng {{ line.applyDate }})
+      </p>
     </div>
     <div class="card-button">
       <mat-icon title="share">share</mat-icon>

@@ -54,8 +54,14 @@ export interface Interest {
   source: Source;
   lastUpdated: Date;
   gift: boolean;
+  gifts: Gift[]
 }
 
+export interface Gift {
+  _id: string;
+  applyDate: Date;
+  content: string;
+}
 export interface Loan {
   _id: string;
   value: number;

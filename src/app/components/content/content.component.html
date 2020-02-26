@@ -9,10 +9,10 @@
     <div class="value-area" *ngIf="rate | async as rate">
       <div class="value-card">
         <div class="online-card">
-          <app-card [rate]="onlineRate"></app-card>
+          <app-card [rate]="onlineRate" [gifts]="rate?.gifts"></app-card>
         </div>
         <div class="offline-card">
-          <app-card [rate]="offlineRate"></app-card>
+          <app-card [rate]="offlineRate" [gifts]="rate?.gifts"></app-card>
         </div>
       </div>
     </div>
