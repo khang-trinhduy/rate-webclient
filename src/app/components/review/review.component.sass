@@ -1,5 +1,7 @@
 .review-container
   padding: 1vh
+.add-review
+  margin-top: 1.5vh
 .add-btn
   width: 107.5px
   border-radius: 14.7px
@@ -21,6 +23,8 @@
   color: yellow
   display: flex
   flex-flow: row nowrap
+  &.small
+    width: 120px
 .twinkle-stars
   display: flex
   flex-flow: row nowrap
@@ -29,6 +33,14 @@
     font-size: 35px
     width: 35px
     height: 35px
+.twinkle-stars.small
+  display: flex
+  flex-flow: row nowrap
+  color: yellow
+  & mat-icon
+    font-size: 24px
+    width: 24px
+    height: 24px
 .helper
   background-color: rgba(255,255,255,0.8)
 .summary-text
@@ -47,3 +59,22 @@
   align-items: center
 .review-header .header-line
   margin-bottom: 0.8vh
+.review-title
+  display: flex
+  flex-flow: row nowrap
+  justify-content: flex-start
+  align-items: center
+.title-line
+  font-weight: bold
+  margin-top: 1vh
+  margin-left: 0.1vh
+  font-size: 0.78em
+.date-area
+  font-size: 0.69em
+  font-family: serif
+  margin-left: 0.3vh
+  margin-top: 0.3vh
+.review
+  margin-top: 1vh
+  margin-left: 0.1vh
+  font-size: 0.78em

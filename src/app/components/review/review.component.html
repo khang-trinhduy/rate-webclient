@@ -41,7 +41,24 @@
           </div>
         </div>
         <div class="review-title">
-          <div class="stars-line small"></div>
+          <div class="stars-line small">
+            <div class="summary-stars small">
+              <div
+                class="twinkle-stars small"
+                [ngStyle]="{ width: getTwinkleWidth(item?.stars, true) }"
+              >
+                <mat-icon>star</mat-icon>
+                <mat-icon>star</mat-icon>
+                <mat-icon>star</mat-icon>
+                <mat-icon>star</mat-icon>
+                <mat-icon>star</mat-icon>
+              </div>
+              <div
+                class="helper"
+                [ngStyle]="{ width: getHelperWidth(item?.stars, true) }"
+              ></div>
+            </div>
+          </div>
           <div class="title-line">
             {{ item?.title }}
           </div>
