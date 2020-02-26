@@ -61,14 +61,14 @@
                 >
                 <span
                   ><mat-icon class="gift-box" *ngIf="item.unlimit?.loc"
-                    >location_on</mat-icon
+                    [title]="getLoc(item.unlimit?.loc)">location_on</mat-icon
                   ></span
                 >
                 <span
                   ><mat-icon
                     class="gift-box"
                     *ngIf="!item.unlimit?.threshold"
-                    [title]="item.unlimit?.threshold"
+                      [title]="getThreshold(item.unlimit?.threshold)"
                     >attach_money</mat-icon
                   ></span
                 >
@@ -121,14 +121,14 @@
                 >
                 <span
                   ><mat-icon class="gift-box" *ngIf="item.threeM?.loc"
-                    >location_on</mat-icon
+                    [title]="getLoc(item.threeM?.loc)">location_on</mat-icon
                   ></span
                 >
                 <span
                   ><mat-icon
                     class="gift-box"
                     *ngIf="!item.threeM?.threshold"
-                    [title]="item.threeM?.threshold"
+                    [title]="getThreshold(item.threeM?.threshold)"
                     >attach_money</mat-icon
                   ></span
                 >
@@ -149,14 +149,14 @@
                 >
                 <span
                   ><mat-icon class="gift-box" *ngIf="item.sixM?.loc"
-                    >location_on</mat-icon
+                    [title]="getLoc(item.sixM?.loc)">location_on</mat-icon
                   ></span
                 >
                 <span
                   ><mat-icon
                     class="gift-box"
                     *ngIf="!item.sixM?.threshold"
-                    [title]="item.sixM?.threshold"
+                    [title]="getThreshold(item.sixM?.threshold)"
                     >attach_money</mat-icon
                   ></span
                 >
@@ -177,14 +177,14 @@
                 >
                 <span
                   ><mat-icon class="gift-box" *ngIf="item.nineM?.loc"
-                    >location_on</mat-icon
+                    [title]="getLoc(item.nineM?.loc)">location_on</mat-icon
                   ></span
                 >
                 <span
                   ><mat-icon
                     class="gift-box"
                     *ngIf="!item.nineM?.threshold"
-                    [title]="item.nineM?.threshold"
+                    [title]="getThreshold(item.nineM?.threshold)"
                     >attach_money</mat-icon
                   ></span
                 >
@@ -205,14 +205,14 @@
                 >
                 <span
                   ><mat-icon class="gift-box" *ngIf="item.twelveM?.loc"
-                    >location_on</mat-icon
+                    [title]="getLoc(item.twelveM?.loc)">location_on</mat-icon
                   ></span
                 >
                 <span
                   ><mat-icon
                     class="gift-box"
                     *ngIf="!item.twelveM?.threshold"
-                    [title]="item.twelveM?.threshold"
+                    [title]="getThreshold(item.twelveM?.threshold)"
                     >attach_money</mat-icon
                   ></span
                 >
@@ -235,14 +235,14 @@
                 >
                 <span
                   ><mat-icon class="gift-box" *ngIf="item.eighteenM?.loc"
-                    >location_on</mat-icon
+                    [title]="getLoc(item.eighteenM?.loc)">location_on</mat-icon
                   ></span
                 >
                 <span
                   ><mat-icon
                     class="gift-box"
                     *ngIf="!item.eighteenM?.threshold"
-                    [title]="item.eighteenM?.threshold"
+                    [title]="getThreshold(item.eighteenM?.threshold)"
                     >attach_money</mat-icon
                   ></span
                 >
@@ -265,14 +265,14 @@
                 >
                 <span
                   ><mat-icon class="gift-box" *ngIf="item.twentyFourM?.loc"
-                    >location_on</mat-icon
+                    [title]="getLoc(item.twentyFourM?.loc)">location_on</mat-icon
                   ></span
                 >
                 <span
                   ><mat-icon
                     class="gift-box"
                     *ngIf="!item.twentyFourM?.threshold"
-                    [title]="item.twentyFourM?.threshold"
+                    [title]="getThreshold(item.twentyFourM?.threshold)"
                     >attach_money</mat-icon
                   ></span
                 >
@@ -295,14 +295,14 @@
                 >
                 <span
                   ><mat-icon class="gift-box" *ngIf="item.thirtySixM?.loc"
-                    >location_on</mat-icon
+                    [title]="getLoc(item.thirtySixM?.loc)">location_on</mat-icon
                   ></span
                 >
                 <span
                   ><mat-icon
                     class="gift-box"
                     *ngIf="!item.thirtySixM?.threshold"
-                    [title]="item.thirtySixM?.threshold"
+                    [title]="getThreshold(item.thirtySixM?.threshold)"
                     >attach_money</mat-icon
                   ></span
                 >

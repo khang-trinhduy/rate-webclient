@@ -51,7 +51,7 @@ export class RowComponent implements OnInit {
     if (number > 0) {
       return (Math.round(number * 100) / 100).toFixed(2);
     } else {
-      return '0.00';
+      return "0.00";
     }
   };
 
@@ -83,6 +83,28 @@ export class RowComponent implements OnInit {
       return "/detail?b=" + code;
     }
   }
+
+  getThreshold = threshold => {
+    //TODO update threshold
+    return "Tối thiểu 1.000.000 VNĐ";
+  };
+
+  getLoc = loc => {
+    //TODO update location
+    let rd = this.getRandomInt(3);
+    switch (rd) {
+      case 0:
+        return "Cả nước";
+      case 1:
+        return "TP.HCM, Hà Nội";
+      case 2:
+        return "TP.HCM, Hà Nội, Hải Phòng, Đà Nẵng";
+    }
+  };
+
+  getRandomInt = max => {
+    return Math.floor(Math.random() * Math.floor(max));
+  };
 
   compareHandler = () => {};
 
