@@ -8,7 +8,10 @@
     <div class="right-area">
       <div class="content-area">
         <app-search></app-search>
-        <app-content [rate]="bank" [utility]="utility"></app-content>
+        <app-content
+          [rate]="rate"
+          [utility]="utility"
+        ></app-content>
       </div>
       <div class="chart-area">
         <app-chart [period]="period" [top]="top"></app-chart>

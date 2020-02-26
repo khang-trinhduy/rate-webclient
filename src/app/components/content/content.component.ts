@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { Observable } from "rxjs";
-import { Rate, Utility, Card } from "src/app/models/rate";
+import { Rate, Utility, Card, Interest } from "src/app/models/rate";
 
 @Component({
   selector: "app-content",
@@ -8,7 +8,7 @@ import { Rate, Utility, Card } from "src/app/models/rate";
   styleUrls: ["./content.component.sass"]
 })
 export class ContentComponent implements OnInit {
-  @Input() rate: Rate;
+  @Input() rate: Interest;
   @Input() utility: Observable<Utility>;
 
   open: boolean = true;

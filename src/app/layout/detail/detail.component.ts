@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { RateService } from "src/app/services/rate.service";
 import { ActivatedRoute } from "@angular/router";
-import { Rate, Information, Utility } from "src/app/models/rate";
+import { Rate, Information, Utility, Interest } from "src/app/models/rate";
 import { Observable } from "rxjs";
 
 @Component({
@@ -11,6 +11,7 @@ import { Observable } from "rxjs";
 })
 export class DetailComponent implements OnInit {
   bank: Rate;
+  rate: Interest;
   info$: Observable<Information>;
   utility: Observable<Utility>;
   period;
@@ -25,7 +26,10 @@ export class DetailComponent implements OnInit {
     let type = this.route.snapshot.queryParams["t"] || "";
     this.period = type;
     this.service.getBank(this.code, type).subscribe(
-      res => (this.bank = res),
+      res => {
+        this.bank = res["bank"];
+        this.rate = res["rate"];
+      },
       error => console.log(error),
       () => {
         this.reviews = this.service.getReview(this.bank._id);
