@@ -13,6 +13,14 @@ export class RateService {
   });
   constructor(private http: HttpClient) {}
 
+  addReview(id, form): Observable<any> {
+    return this.http
+      .post(`${environment.api}/users/${id}/reviews`, form, {
+        headers: this.httpHeaderOptions
+      })
+      .pipe(catchError(this.handleError<any>("CREATE REVIEW")));
+  }
+  
   getRates(): Observable<any> {
     return this.http
       .get(`${environment.api}`)

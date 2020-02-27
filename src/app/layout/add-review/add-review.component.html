@@ -7,7 +7,7 @@
     <mat-form-field>
       <mat-label>Nội dung đánh giá</mat-label>
       <textarea
-        formControlName="content"
+        formControlName="message"
         matInput
         placeholder=""
         value=""
@@ -30,7 +30,7 @@
     <mat-form-field class="invisible">
       <input matInput placeholder="" formControlName="bank" />
     </mat-form-field>
-    <button class="send-btn" mat-raised-button>Gửi</button>
+    <button [disabled]="reviewForm.invalid" [mat-dialog-close]="reviewForm.value" class="send-btn" mat-raised-button>Gửi</button>
     <!-- <button class="dismiss-btn" mat-raised-button (click)="form.close()">Hủy</button> -->
   </form>
 </div>

@@ -2,16 +2,17 @@
   <div class="flex-container">
     <div class="left-area">
       <app-info [info$]="info$"></app-info>
-      <app-review [reviews]="reviews" [summary]="summary"></app-review>
+      <app-review
+        [bankid]="bankid"
+        [reviews]="reviews"
+        [summary]="summary"
+      ></app-review>
       <app-new></app-new>
     </div>
     <div class="right-area">
       <div class="content-area">
         <app-search></app-search>
-        <app-content
-          [rate]="rate"
-          [utility]="utility"
-        ></app-content>
+        <app-content [rate]="rate" [utility]="utility"></app-content>
       </div>
       <div class="chart-area">
         <app-chart [period]="period" [top]="top"></app-chart>

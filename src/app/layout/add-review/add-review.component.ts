@@ -10,10 +10,10 @@ import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 export class AddReviewComponent implements OnInit {
   reviewForm: FormGroup = this.fb.group({
     title: [""],
-    content: ["", Validators.required],
+    message: ["", Validators.required],
     bank: ["", Validators.required],
     user: ["", Validators.required],
-    stars: ["", Validators.required]
+    stars: ["1", Validators.required]
   });
 
   constructor(
@@ -22,7 +22,12 @@ export class AddReviewComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.reviewForm.patchValue({bank: this.data.bankid})
+    this.reviewForm.patchValue({user: this.data.userid})
+  }
 
-  save() {}
+  save() {
+    this.dialogRef.close(this.reviewForm.value);
+  }
 }

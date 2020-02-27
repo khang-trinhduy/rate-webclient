@@ -1,7 +1,11 @@
 import { Component, OnInit, Input, Inject } from "@angular/core";
-import { Observable } from "rxjs";
+import { Observable, of, merge } from "rxjs";
 import { AddReviewComponent } from "src/app/layout/add-review/add-review.component";
 import { MatDialog } from "@angular/material/dialog";
+import { filter, first, concat } from "rxjs/operators";
+import { AuthService } from "src/app/services/auth.service";
+import { Router, ActivatedRoute } from "@angular/router";
+import { RateService } from "src/app/services/rate.service";
 
 @Component({
   selector: "app-review",
@@ -11,10 +15,18 @@ import { MatDialog } from "@angular/material/dialog";
 export class ReviewComponent implements OnInit {
   @Input() reviews: Observable<any>;
   @Input() summary: Observable<any>;
+  @Input() bankid;
+  constructor(
+    private router: Router,
+    private activeRoute: ActivatedRoute,
+    public dialog: MatDialog,
+    private auth: AuthService,
+    private srv: RateService
+  ) {}
 
-  constructor(public dialog: MatDialog) {}
-
-  ngOnInit() {}
+  ngOnInit() {
+    // this.reviews.subscribe(res => console.log(res._id)).unsubscribe();
+  }
 
   getTwinkleWidth = (stars, small = false) => {
     if (small) {
@@ -37,14 +49,31 @@ export class ReviewComponent implements OnInit {
   }
 
   add() {
-    const dialogRef = this.dialog.open(AddReviewComponent, {
-      width: "350px",
-      data: {
-        userid: "userid",
-        bankid: "bankid"
-      }
-    });
+    if (!this.auth.isLoggedIn()) {
+      console.log(window.location.search);
 
-    dialogRef.afterClosed().subscribe(result => {});
+      this.router.navigate(["/signin"], {
+        queryParams: {
+          ref: location.pathname + location.search
+        }
+      });
+    } else {
+      const dialogRef = this.dialog.open(AddReviewComponent, {
+        width: "350px",
+        data: {
+          userid: this.auth.currentUser()._id,
+          bankid: this.bankid
+        }
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          this.srv.addReview(result.user, result).subscribe(res => {
+            var observable = of(res);
+            this.reviews = merge(observable, this.reviews);
+          });
+        }
+      });
+    }
   }
 }

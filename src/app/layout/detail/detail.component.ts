@@ -19,6 +19,7 @@ export class DetailComponent implements OnInit {
   code;
   reviews;
   summary;
+  bankid;
   constructor(private service: RateService, private route: ActivatedRoute) {}
 
   ngOnInit() {
@@ -32,6 +33,7 @@ export class DetailComponent implements OnInit {
       },
       error => console.log(error),
       () => {
+        this.bankid = this.bank._id;
         this.reviews = this.service.getReview(this.bank._id);
         this.summary = this.service.getReviewSummary(this.bank._id);
       }
