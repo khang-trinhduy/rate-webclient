@@ -11,14 +11,17 @@
   max-width: 290px
 $breakpoint: "1500px"
 @media all and ( max-width: $breakpoint )
-  .tool-container
-    display: none
+  app-row,app-table,app-line
+    width: 100%!important
+    // display: none
   .flex-table 
     display: block!important
     & > .flex-cell
       width: 100%
       &.foot
         margin-bottom: 1em
+  .flex-data
+    flex-wrap: wrap!important
 .data-container
   border-left: 1px solid rgba(0,0,0,0.14)
   display: block 
