@@ -1,5 +1,7 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, Inject } from "@angular/core";
 import { Observable } from "rxjs";
+import { AddReviewComponent } from "src/app/layout/add-review/add-review.component";
+import { MatDialog } from "@angular/material/dialog";
 
 @Component({
   selector: "app-review",
@@ -10,7 +12,7 @@ export class ReviewComponent implements OnInit {
   @Input() reviews: Observable<any>;
   @Input() summary: Observable<any>;
 
-  constructor() {}
+  constructor(public dialog: MatDialog) {}
 
   ngOnInit() {}
 
@@ -32,5 +34,17 @@ export class ReviewComponent implements OnInit {
       .split("-")
       .reverse()
       .join("/");
+  }
+
+  add() {
+    const dialogRef = this.dialog.open(AddReviewComponent, {
+      width: "350px",
+      data: {
+        userid: "userid",
+        bankid: "bankid"
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {});
   }
 }

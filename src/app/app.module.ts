@@ -25,23 +25,24 @@ import { MatRadioModule } from "@angular/material/radio";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatTabsModule } from "@angular/material/tabs";
-import { RowComponent } from './components/row/row.component';
-import { BookmarkComponent } from './components/bookmark/bookmark.component';
+import { RowComponent } from "./components/row/row.component";
+import { BookmarkComponent } from "./components/bookmark/bookmark.component";
 import { MatIconModule } from "@angular/material/icon";
-import { ChangeComponent } from './components/change/change.component';
-import { DetailComponent } from './layout/detail/detail.component';
-import { InfoComponent } from './components/info/info.component';
-import { SearchComponent } from './components/search/search.component';
-import { CardComponent } from './components/card/card.component';
-import { ContentComponent } from './components/content/content.component';
-import { NewComponent } from './components/new/new.component';
+import { ChangeComponent } from "./components/change/change.component";
+import { DetailComponent } from "./layout/detail/detail.component";
+import { InfoComponent } from "./components/info/info.component";
+import { SearchComponent } from "./components/search/search.component";
+import { CardComponent } from "./components/card/card.component";
+import { ContentComponent } from "./components/content/content.component";
+import { NewComponent } from "./components/new/new.component";
 import { MatSelectModule } from "@angular/material/select";
-import { ChartsModule } from 'ng2-charts';
-import { LoginComponent } from './layout/login/login.component';
-import { RegisterComponent } from './layout/register/register.component';
-import { LineComponent } from './components/line/line.component';
-import { ReviewComponent } from './components/review/review.component';
-import { AddReviewComponent } from './layout/add-review/add-review.component';
+import { ChartsModule } from "ng2-charts";
+import { LoginComponent } from "./layout/login/login.component";
+import { RegisterComponent } from "./layout/register/register.component";
+import { LineComponent } from "./components/line/line.component";
+import { ReviewComponent } from "./components/review/review.component";
+import { AddReviewComponent } from "./layout/add-review/add-review.component";
+import { MatDialogModule } from "@angular/material/dialog";
 @NgModule({
   declarations: [
     AppComponent,
@@ -88,8 +89,10 @@ import { AddReviewComponent } from './layout/add-review/add-review.component';
     MatTabsModule,
     MatIconModule,
     MatSelectModule,
-    ChartsModule
+    ChartsModule,
+    MatDialogModule
   ],
+  entryComponents: [AddReviewComponent],
   providers: [],
   bootstrap: [AppComponent]
 })
