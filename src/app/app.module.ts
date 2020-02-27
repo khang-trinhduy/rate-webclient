@@ -43,6 +43,10 @@ import { LineComponent } from "./components/line/line.component";
 import { ReviewComponent } from "./components/review/review.component";
 import { AddReviewComponent } from "./layout/add-review/add-review.component";
 import { MatDialogModule } from "@angular/material/dialog";
+import { AddInterestComponent } from './layout/add-interest/add-interest.component';
+import { AddLoanComponent } from './layout/add-loan/add-loan.component';
+import { AddBankComponent } from './layout/add-bank/add-bank.component';
+import { AddGiftComponent } from './layout/add-gift/add-gift.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -71,7 +75,11 @@ import { MatDialogModule } from "@angular/material/dialog";
     RegisterComponent,
     LineComponent,
     ReviewComponent,
-    AddReviewComponent
+    AddReviewComponent,
+    AddInterestComponent,
+    AddLoanComponent,
+    AddBankComponent,
+    AddGiftComponent
   ],
   imports: [
     BrowserModule,
