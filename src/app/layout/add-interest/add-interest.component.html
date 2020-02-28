@@ -1,1 +1,37 @@
-<p>add-interest works!</p>
+<form [formGroup]="form" (ngSubmit)="save()">
+  <mat-form-field>
+    <mat-label>
+      Lãi suất
+    </mat-label>
+    <input matInput placeholder="" value="" />
+  </mat-form-field>
+  <mat-select
+    placeholder="Kỳ hạn"
+    [(ngModel)]="period"
+    formControlName="period"
+    name="period"
+  >
+    <mat-option *ngFor="let period of periods" [value]="period.value">
+      {{ period.viewValue }}
+    </mat-option>
+  </mat-select>
+  <mat-form-field>
+    <mat-label>Số tiền tối thiểu</mat-label>
+    <input matInput placeholder="label" value="" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Tỉnh thành áp dụng</mat-label>
+    <input matInput placeholder="label" value="" />
+  </mat-form-field>
+  <mat-select
+    placeholder="Hình thức nhận lãi"
+    [(ngModel)]="withdraw"
+    formControlName="withdraw"
+    name="withdraw"
+  >
+    <mat-option *ngFor="let withdraw of wTypes" [value]="withdraw.value">
+      {{ withdraw.viewValue }}
+    </mat-option>
+  </mat-select>
+  <button mat-raised-button>Tạo</button>
+</form>
