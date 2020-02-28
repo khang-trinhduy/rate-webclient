@@ -30,7 +30,7 @@
       <div class="2 stars-line"></div>
       <div class="1 stars-line"></div>
     </div>
-    <div class="top-review" *ngFor="let item of reviews | async">
+    <div class="top-review" *ngFor="let item of (reviews | async).slice(0, 3)">
       <div class="review-area">
         <div class="user-area">
           <div class="user-avatar">
