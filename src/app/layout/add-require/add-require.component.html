@@ -1,0 +1,29 @@
+<form (ngSubmit)="(save)" [formGroup]="form">
+    <mat-form-field>
+      <mat-label>Nội dung yêu cầu</mat-label>
+      <input matInput formControlName="contet" placeholder="" value="" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Thời gian áp dụng</mat-label>
+      <input matInput formControlName="date" placeholder="" value="" />
+    </mat-form-field>
+    <!-- <mat-form-field>
+        <mat-label>Website</mat-label>
+        <input matInput placeholder="" value="" />
+      </mat-form-field>
+      <mat-select placeholder="Loại" formControl="type" [(ngModel)]="type">
+        <mat-option *ngFor="let type of types" [value]="type.value">
+          {{ type.viewValue }}
+        </mat-option>
+      </mat-select>
+      <mat-form-field>
+        <mat-label>Trụ sở chính</mat-label>
+        <input matInput placeholder="label" value="value" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Ngày thành lập</mat-label>
+        <input matInput placeholder="label" value="value" />
+      </mat-form-field> -->
+    <button mat-raised-button>Tạo</button>
+  </form>
+  

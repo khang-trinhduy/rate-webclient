@@ -48,6 +48,7 @@ import { AddLoanComponent } from './layout/add-loan/add-loan.component';
 import { AddBankComponent } from './layout/add-bank/add-bank.component';
 import { AddGiftComponent } from './layout/add-gift/add-gift.component';
 import { AddUtilityComponent } from './layout/add-utility/add-utility.component';
+import { AddRequireComponent } from './layout/add-require/add-require.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -81,7 +82,8 @@ import { AddUtilityComponent } from './layout/add-utility/add-utility.component'
     AddLoanComponent,
     AddBankComponent,
     AddGiftComponent,
-    AddUtilityComponent
+    AddUtilityComponent,
+    AddRequireComponent
   ],
   imports: [
     BrowserModule,
