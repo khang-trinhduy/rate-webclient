@@ -47,6 +47,7 @@ import { AddInterestComponent } from './layout/add-interest/add-interest.compone
 import { AddLoanComponent } from './layout/add-loan/add-loan.component';
 import { AddBankComponent } from './layout/add-bank/add-bank.component';
 import { AddGiftComponent } from './layout/add-gift/add-gift.component';
+import { AddUtilityComponent } from './layout/add-utility/add-utility.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -79,7 +80,8 @@ import { AddGiftComponent } from './layout/add-gift/add-gift.component';
     AddInterestComponent,
     AddLoanComponent,
     AddBankComponent,
-    AddGiftComponent
+    AddGiftComponent,
+    AddUtilityComponent
   ],
   imports: [
     BrowserModule,

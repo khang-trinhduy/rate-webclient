@@ -2,11 +2,11 @@ import { Component, OnInit } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
 
 @Component({
-  selector: "app-add-gift",
-  templateUrl: "./add-gift.component.html",
-  styleUrls: ["./add-gift.component.sass"]
+  selector: "app-add-utility",
+  templateUrl: "./add-utility.component.html",
+  styleUrls: ["./add-utility.component.sass"]
 })
-export class AddGiftComponent implements OnInit {
+export class AddUtilityComponent implements OnInit {
   form = this.fb.group({
     name: ["", Validators.required],
     date: ["", Validators.required],
