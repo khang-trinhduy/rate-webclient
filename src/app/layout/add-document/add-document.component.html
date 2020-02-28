@@ -1,0 +1,12 @@
+<form (ngSubmit)="(save)" [formGroup]="form">
+    <mat-form-field>
+      <mat-label>Tên tài liệu</mat-label>
+      <input matInput formControlName="name" placeholder="" value="" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Thời gian áp dụng</mat-label>
+      <input matInput formControlName="date" placeholder="" value="" />
+    </mat-form-field>
+    <button mat-raised-button>Tạo</button>
+  </form>
+  
