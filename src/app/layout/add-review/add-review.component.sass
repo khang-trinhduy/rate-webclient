@@ -4,3 +4,14 @@ mat-form-field
     display: none
 .send-btn
   background-color: rgba(0, 85, 173, 0.8)
+.twinkle-stars span:hover:before,
+.twinkle-stars span:hover ~ span:before
+  content: '\2605'
+  position: absolute
+.twinkle-stars
+  unicode-bidi: bidi-override
+  direction: rtl
+.twinkle-stars span
+  display: inline-block
+  position: relative
+  width: 1.1em
