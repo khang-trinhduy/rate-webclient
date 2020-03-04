@@ -60,6 +60,16 @@ export class CellComponent implements OnInit, OnDestroy {
         return "TP.HCM, Hà Nội, Hải Phòng, Đà Nẵng";
     }
   };
+  //2020-02-01T17:00:00Z
+  toDate = date => {
+    if (date) {
+      return date
+        .split("T")[0]
+        .split("-")
+        .reverse()
+        .join("/");
+    }
+  };
 
   toDecimal = (number: number) => {
     if (number > 0) {

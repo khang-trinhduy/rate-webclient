@@ -14,7 +14,7 @@
             <app-table *ngIf="tableStyle === 'box'" [$banks]="$banks"></app-table>
             <app-row *ngIf="tableStyle === 'row'" [$banks]="$banks"></app-row>
             <app-line *ngIf="tableStyle === 'line'" [$banks]="$banks"></app-line>
-            <!-- <app-chart [$banks]="$banks" period="12m"></app-chart> -->
+            <app-chart [$banks]="$banks" period="12m"></app-chart>
           </div>
         </mat-tab>
         <mat-tab label="Online">
