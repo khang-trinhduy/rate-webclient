@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { RateService } from "src/app/services/rate.service";
-import { Observable } from "rxjs";
+import { Observable, concat, of, merge, combineLatest } from "rxjs";
 import { Bank } from "src/app/models/rate";
 
 @Component({
@@ -11,10 +11,12 @@ import { Bank } from "src/app/models/rate";
 export class InterestComponent implements OnInit {
   $banks: Observable<Bank[]>;
   tableStyle: string = "row";
+  pageSize = 10;
+  pageIndex = 1;
   constructor(private service: RateService) {}
 
   ngOnInit() {
-    this.$banks = this.service.getBanks();
+    this.$banks = this.service.getBanks(this.pageSize, this.pageIndex);
   }
 
   tableStyleHandler = event => {
@@ -43,4 +45,5 @@ export class InterestComponent implements OnInit {
       }
     }
   };
+
 }

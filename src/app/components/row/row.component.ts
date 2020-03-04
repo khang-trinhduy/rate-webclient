@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from "@angular/core";
 import { Bank, Stat } from "src/app/models/rate";
 import { RateService } from "src/app/services/rate.service";
 import { Banks, Logos } from "src/app/models/banks";
-import { Observable } from 'rxjs';
+import { Observable, merge, combineLatest } from "rxjs";
 
 @Component({
   selector: "app-row",
@@ -10,8 +10,10 @@ import { Observable } from 'rxjs';
   styleUrls: ["./row.component.sass"]
 })
 export class RowComponent implements OnInit {
-  @Input() $banks: Observable<Bank[]>;
+  $banks: Observable<Bank[]>;
 
+  pageSize = 10;
+  pageIndex = 1;
   stats: Stat[];
 
   constructor(private service: RateService) {}
@@ -32,7 +34,16 @@ export class RowComponent implements OnInit {
   ];
 
   ngOnInit() {
+    this.$banks = this.service.getBanks(this.pageSize, this.pageIndex);
     this.service.getStats().subscribe(res => (this.stats = res));
+  }
+
+  onScrollDown() {
+    console.log("scrolled");
+
+    this.pageIndex = this.pageIndex + 1;
+    let news = this.service.getBanks(this.pageSize, this.pageIndex);
+    this.$banks = combineLatest(this.$banks, news);
   }
 
   getLogo(code: string) {

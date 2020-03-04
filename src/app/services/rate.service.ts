@@ -57,9 +57,11 @@ export class RateService {
       .pipe(catchError(this.handleError<any>("GET LOANS")));
   }
 
-  getBanks(): Observable<any> {
+  getBanks(pageSize, pageIndex): Observable<any> {
     return this.http
-      .get(`${environment.api}/banks`, { headers: this.httpHeaderOptions })
+      .get(`${environment.api}/banks?size=${pageSize}&index=${pageIndex}`, {
+        headers: this.httpHeaderOptions
+      })
       .pipe(catchError(this.handleError<any>("GET BANKS")));
   }
 
