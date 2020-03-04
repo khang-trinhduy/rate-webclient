@@ -39,7 +39,7 @@ export interface Interest {
   offer: string[];
   require: string[];
   source: Source;
-  lastUpdated: Date;
+  lastUpdate: Date;
   gift: boolean;
   gifts: Gift[];
 }

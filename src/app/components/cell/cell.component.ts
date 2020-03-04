@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, OnDestroy } from "@angular/core";
-import { Interest, Stat } from "src/app/models/rate";
+import { Interest } from "src/app/models/rate";
 import { RateService } from "src/app/services/rate.service";
 
 @Component({
