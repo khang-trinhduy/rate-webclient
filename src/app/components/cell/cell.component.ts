@@ -42,7 +42,7 @@ export class CellComponent implements OnInit, OnDestroy {
     return false;
   };
 
-  getLink(code, period = "") {
+  getLink(code, period = 0) {
     if (period) {
       return "/detail?b=" + code + "&t=" + period;
     } else {
@@ -78,7 +78,7 @@ export class CellComponent implements OnInit, OnDestroy {
     }
   };
 
-  toDecimal = (number: number) => {
+  toDecimal = number => {
     if (number > 0) {
       return (Math.round(number * 100) / 100).toFixed(2);
     } else {
