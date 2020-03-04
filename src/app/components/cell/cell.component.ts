@@ -12,7 +12,10 @@ export class CellComponent implements OnInit, OnDestroy {
   @Input() bank;
 
   rate: Interest;
-  stats: Stat[];
+  d = new Date();
+  month = this.d.getMonth() + 1;
+  day = this.d.getDate() < 10 ? "0" + this.d.getDate() : this.d.getDate();
+  year = this.d.getFullYear();
 
   constructor(private service: RateService) {}
 
@@ -22,17 +25,21 @@ export class CellComponent implements OnInit, OnDestroy {
       .subscribe(res => (this.rate = res));
   }
 
-  isMax = (type, val) => {
-    if (this.stats) {
-      let temp = this.stats.find(e => e.type === type);
-      if (temp) {
-        if (val === temp.maximum) {
-          return true;
-        }
-        return false;
+  isMax = (val, period) => {
+    this.service.getStat(period).subscribe(res => {
+      if (val == res.maximum) {
+        return true;
       }
       return false;
+    });
+  };
+
+  isToday = date => {
+    let arr = date.split("T")[0].split("-");
+    if (arr[0] == this.year && arr[1] == this.month && arr[2] == this.day) {
+      return true;
     }
+    return false;
   };
 
   getLink(code, period = "") {

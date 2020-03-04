@@ -33,9 +33,9 @@ export class RateService {
       .pipe(catchError(this.handleError<any>("GET RATE")));
   }
 
-  getStat(type): Observable<any> {
+  getStat(period): Observable<any> {
     return this.http
-      .get(`${environment.api}/stats?type=${type}`)
+      .get(`${environment.api}/stats?period=${period}`)
       .pipe(catchError(this.handleError<any>("GET STAT")));
   }
 

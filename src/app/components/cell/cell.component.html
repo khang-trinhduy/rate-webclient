@@ -17,7 +17,7 @@
       ></span
     >
   </div>
-  <div class="footer">
+  <div class="footer" [ngClass]="{ today: isToday(rate.lastUpdate) }">
     <i>{{ toDate(rate.lastUpdate) }}</i>
   </div>
 </div>
