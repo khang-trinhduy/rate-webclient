@@ -9,24 +9,12 @@
   justify-content: flex-start
   align-items: flex-start
   max-width: 290px
-$breakpoint: "1500px"
-@media all and ( max-width: $breakpoint )
-  app-row,app-table,app-line
-    width: 100%!important
-    // display: none
-  .flex-table 
-    display: block!important
-    & > .flex-cell
-      width: 100%
-      &.foot
-        margin-bottom: 1em
-  .flex-data
-    flex-wrap: wrap!important
 .data-container
   border-left: 1px solid rgba(0,0,0,0.14)
   display: block 
   position: relative
   width: 100%
+  overflow: unset
 app-table, app-row
   border-right: 1px solid rgba(0,0,0,0.14)
 app-row,app-line
@@ -40,3 +28,16 @@ app-row,app-line
   border-bottom: 1px solid rgba(0,0,0,0.14)
 .header-line
   margin-left: 1.8vh
+$breakpoint: "1500px"
+@media all and ( max-width: $breakpoint )
+  app-row,app-table,app-line
+    width: 100%
+    // display: none
+  .flex-table 
+    display: block
+    & > .flex-cell
+      width: 100%
+      &.foot
+        margin-bottom: 1em
+  .flex-data
+    flex-wrap: wrap
