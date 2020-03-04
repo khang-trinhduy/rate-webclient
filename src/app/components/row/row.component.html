@@ -37,7 +37,7 @@
         <div class="cell-area" *ngFor="let bank of $banks | async">
           <div class="row-line">
             <div class="cell-content head">
-              <img class="head-logo" [src]="getLogo(bank?.code)" alt="" />
+              <img class="head-logo" [src]="getLogo(bank?.normalized)" alt="" />
             </div>
             <app-cell [period]="0" [bank]="bank?.normalized"></app-cell>
             <app-cell [period]="3" [bank]="bank?.normalized"></app-cell>
