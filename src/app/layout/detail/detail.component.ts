@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { RateService } from "src/app/services/rate.service";
 import { ActivatedRoute } from "@angular/router";
-import { Rate, Information, Utility, Interest } from "src/app/models/rate";
+import { Bank, Information, Utility, Interest } from "src/app/models/rate";
 import { Observable } from "rxjs";
 
 @Component({
@@ -10,7 +10,7 @@ import { Observable } from "rxjs";
   styleUrls: ["./detail.component.sass"]
 })
 export class DetailComponent implements OnInit {
-  bank: Rate;
+  bank: Bank;
   rate: Interest;
   info$: Observable<Information>;
   utility: Observable<Utility>;

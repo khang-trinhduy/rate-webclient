@@ -10,17 +10,17 @@
       </div>
       <mat-tab-group class="tabs-area">
         <mat-tab label="Tại quầy">
-          <div class="flex-data" *ngIf="rates">
-            <app-table *ngIf="tableStyle === 'box'" [rates]="rates"></app-table>
-            <app-row *ngIf="tableStyle === 'row'" [banks]="rates"></app-row>
-            <app-line *ngIf="tableStyle === 'line'" [banks]="rates"></app-line>
-            <app-chart [rates]="rates" period="12m"></app-chart>
+          <div class="flex-data" *ngIf="$banks">
+            <app-table *ngIf="tableStyle === 'box'" [$banks]="$banks"></app-table>
+            <app-row *ngIf="tableStyle === 'row'" [$banks]="$banks"></app-row>
+            <app-line *ngIf="tableStyle === 'line'" [$banks]="$banks"></app-line>
+            <!-- <app-chart [$banks]="$banks" period="12m"></app-chart> -->
           </div>
         </mat-tab>
         <mat-tab label="Online">
-          <div class="flex-data" *ngIf="rates">
-            <app-table [rates]="rates"></app-table>
-            <app-chart [rates]="rates"></app-chart>
+          <div class="flex-data" *ngIf="$banks">
+            <app-table [$banks]="$banks"></app-table>
+            <app-chart [$banks]="$banks"></app-chart>
           </div>
         </mat-tab>
       </mat-tab-group>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { RateService } from "src/app/services/rate.service";
 import { Observable } from "rxjs";
-import { Rate } from "src/app/models/rate";
+import { Bank } from "src/app/models/rate";
 
 @Component({
   selector: "app-interest",
@@ -9,12 +9,12 @@ import { Rate } from "src/app/models/rate";
   styleUrls: ["./interest.component.sass"]
 })
 export class InterestComponent implements OnInit {
-  rates: Rate[];
+  $banks: Observable<Bank[]>;
   tableStyle: string = "row";
   constructor(private service: RateService) {}
 
   ngOnInit() {
-    this.service.getRates().subscribe(res => (this.rates = res));
+    this.$banks = this.service.getBanks();
   }
 
   tableStyleHandler = event => {

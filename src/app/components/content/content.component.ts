@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { Observable } from "rxjs";
-import { Rate, Utility, Card, Interest } from "src/app/models/rate";
+import { Bank, Utility, Card, Interest } from "src/app/models/rate";
 
 @Component({
   selector: "app-content",

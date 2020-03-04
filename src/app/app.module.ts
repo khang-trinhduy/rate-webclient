@@ -50,6 +50,7 @@ import { AddGiftComponent } from './layout/add-gift/add-gift.component';
 import { AddUtilityComponent } from './layout/add-utility/add-utility.component';
 import { AddRequireComponent } from './layout/add-require/add-require.component';
 import { AddDocumentComponent } from './layout/add-document/add-document.component';
+import { CellComponent } from './components/cell/cell.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -85,7 +86,8 @@ import { AddDocumentComponent } from './layout/add-document/add-document.compone
     AddGiftComponent,
     AddUtilityComponent,
     AddRequireComponent,
-    AddDocumentComponent
+    AddDocumentComponent,
+    CellComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,20 @@
+<div class="cell-content" *ngIf="rate">
+  <a class="cell-text" [href]="getLink(bank, rate.period)"
+    >{{ toDecimal(rate.value) }}%</a
+  >
+  <div class="icon-container">
+    <span
+      ><mat-icon class="gift-box" *ngIf="rate.gift"
+        >card_giftcard</mat-icon
+      ></span
+    >
+    <span
+      ><mat-icon class="gift-box" *ngIf="rate.loc">location_on</mat-icon></span
+    >
+    <span
+      ><mat-icon class="gift-box" [title]="getThreshold(rate.threshold)"
+        >attach_money</mat-icon
+      ></span
+    >
+  </div>
+</div>

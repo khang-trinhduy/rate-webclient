@@ -7,7 +7,7 @@ import { Logos } from "src/app/models/banks";
   styleUrls: ["./line.component.sass"]
 })
 export class LineComponent implements OnInit {
-  @Input() banks;
+  @Input() $banks;
 
   constructor() {}
 

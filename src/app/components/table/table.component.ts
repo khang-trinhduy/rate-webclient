@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { RateService } from "src/app/services/rate.service";
 import { Observable } from "rxjs";
-import { Rate } from "src/app/models/rate";
 import { Banks } from "src/app/models/banks";
+import { Bank } from "src/app/models/rate";
 
 @Component({
   selector: "app-table",
@@ -10,7 +10,7 @@ import { Banks } from "src/app/models/banks";
   styleUrls: ["./table.component.sass"]
 })
 export class TableComponent implements OnInit {
-  @Input() rates: Rate[];
+  @Input() $banks: Observable<Bank[]>;
   constructor() {}
 
   ngOnInit() {}

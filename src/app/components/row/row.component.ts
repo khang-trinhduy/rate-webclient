@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from "@angular/core";
-import { Rate, Stat } from "src/app/models/rate";
+import { Bank, Stat } from "src/app/models/rate";
 import { RateService } from "src/app/services/rate.service";
 import { Banks, Logos } from "src/app/models/banks";
+import { Observable } from 'rxjs';
 
 @Component({
   selector: "app-row",
@@ -9,7 +10,7 @@ import { Banks, Logos } from "src/app/models/banks";
   styleUrls: ["./row.component.sass"]
 })
 export class RowComponent implements OnInit {
-  @Input() banks: Rate[];
+  @Input() $banks: Observable<Bank[]>;
 
   stats: Stat[];
 
@@ -32,11 +33,6 @@ export class RowComponent implements OnInit {
 
   ngOnInit() {
     this.service.getStats().subscribe(res => (this.stats = res));
-    if (this.banks) {
-      for (let i = 0; i < this.banks.length; i++) {
-        const bank = this.banks[i];
-      }
-    }
   }
 
   getLogo(code: string) {

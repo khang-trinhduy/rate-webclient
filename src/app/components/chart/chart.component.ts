@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from "@angular/core";
-import { Rate } from "src/app/models/rate";
+import { Bank } from "src/app/models/rate";
 import { Chart } from "src/app/models/chart";
 import { Banks } from "src/app/models/banks";
 import { RateService } from "src/app/services/rate.service";
@@ -10,7 +10,7 @@ import { RateService } from "src/app/services/rate.service";
   styleUrls: ["./chart.component.sass"]
 })
 export class ChartComponent implements OnInit {
-  @Input() rates;
+  @Input() $banks;
   @Input() period = "12m";
   @Input() top;
   @Input() bank;
@@ -18,41 +18,41 @@ export class ChartComponent implements OnInit {
   constructor(private service: RateService) {}
 
   ngOnInit() {
-    if (this.top && this.period) {
-      this.service.getTop(this.period).subscribe(
-        res => (this.rates = res),
-        error => {},
-        () => {
-          for (let i = 0; i < this.rates.length; i++) {
-            const bank = this.rates[i];
-            let rate = this.getRate(bank, this.period) | 0;
-            // let chart = new Chart();
-            bank.index = i + 1;
-            bank.width = `${rate * 10}%`;
-            bank.duration = (rate || 5) / 1.65;
-            bank.percent = `${rate}%`;
-            bank.margin - rate / 2;
-            bank.code = bank.code;
-            // this.banks.push(chart);
-          }
-        }
-      );
-    } else {
-      if (this.rates) {
-        for (let i = 0; i < this.rates.length; i++) {
-          const bank = this.rates[i];
-          let rate = this.getRate(bank, this.period) | 0;
-          // let chart = new Chart();
-          bank.index = i + 1;
-          bank.width = `${rate * 10}%`;
-          bank.duration = (rate || 5) / 1.65;
-          bank.percent = `${rate}%`;
-          bank.margin - rate / 2;
-          bank.code = bank.code;
-          // this.banks.push(chart);
-        }
-      }
-    }
+    // if (this.top && this.period) {
+    //   this.service.getTop(this.period).subscribe(
+    //     res => (this.rates = res),
+    //     error => {},
+    //     () => {
+    //       for (let i = 0; i < this.rates.length; i++) {
+    //         const bank = this.rates[i];
+    //         let rate = this.getRate(bank, this.period) | 0;
+    //         // let chart = new Chart();
+    //         bank.index = i + 1;
+    //         bank.width = `${rate * 10}%`;
+    //         bank.duration = (rate || 5) / 1.65;
+    //         bank.percent = `${rate}%`;
+    //         bank.margin - rate / 2;
+    //         bank.code = bank.code;
+    //         // this.banks.push(chart);
+    //       }
+    //     }
+    //   );
+    // } else {
+    //   if (this.rates) {
+    //     for (let i = 0; i < this.rates.length; i++) {
+    //       const bank = this.rates[i];
+    //       let rate = this.getRate(bank, this.period) | 0;
+    //       // let chart = new Chart();
+    //       bank.index = i + 1;
+    //       bank.width = `${rate * 10}%`;
+    //       bank.duration = (rate || 5) / 1.65;
+    //       bank.percent = `${rate}%`;
+    //       bank.margin - rate / 2;
+    //       bank.code = bank.code;
+    //       // this.banks.push(chart);
+    //     }
+    //   }
+    // }
   }
 
   getPeriod() {
@@ -117,33 +117,33 @@ export class ChartComponent implements OnInit {
     }
   }
 
-  getAnimation(code: string) {
-    if (code) {
-      var duration = this.rates.find(e => e.code === code).duration || 5;
-      return `${duration}s ease-in 0s 1 forwards increase`;
-    } else return `5s ease-in 0s 1 forwards increase`;
-  }
+  // getAnimation(code: string) {
+  //   if (code) {
+  //     var duration = this.rates.find(e => e.code === code).duration || 5;
+  //     return `${duration}s ease-in 0s 1 forwards increase`;
+  //   } else return `5s ease-in 0s 1 forwards increase`;
+  // }
 
-  display(code: string) {
-    if (code) {
-      var duration = this.rates.find(e => e.code === code).duration || 5;
-      return `${duration}s ease-in 0s 1 forwards appear`;
-    } else return `5s ease-in 5s 1 forwards normal appear`;
-  }
+  // display(code: string) {
+  //   if (code) {
+  //     var duration = this.rates.find(e => e.code === code).duration || 5;
+  //     return `${duration}s ease-in 0s 1 forwards appear`;
+  //   } else return `5s ease-in 5s 1 forwards normal appear`;
+  // }
 
-  getBgColor(code: string) {
-    code = code.split(" ")[0].toLowerCase();
-    let b = new Banks();
-    let color = b[code];
-    return color;
-  }
+  // getBgColor(code: string) {
+  //   code = code.split(" ")[0].toLowerCase();
+  //   let b = new Banks();
+  //   let color = b[code];
+  //   return color;
+  // }
 
-  getWidth(code: string) {
-    if (code) {
-      var width = this.rates.find(e => e.code === code).width || "50%";
-      return width;
-    } else {
-      return "50%";
-    }
-  }
+  // getWidth(code: string) {
+  //   if (code) {
+  //     var width = this.rates.find(e => e.code === code).width || "50%";
+  //     return width;
+  //   } else {
+  //     return "50%";
+  //   }
+  // }
 }

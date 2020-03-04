@@ -1,24 +1,11 @@
-export interface Rate {
+export interface Bank {
   _id: string;
   name: string;
   normalized: string;
   link: string;
   type: string;
   code: string;
-  interestRates: {
-    unlimit: Interest;
-    oneW: Interest;
-    twoW: Interest;
-    threeW: Interest;
-    fourW: Interest;
-    threeM: Interest;
-    sixM: Interest;
-    nineM: Interest;
-    twelveM: Interest;
-    eighteenM: Interest;
-    twentyFourM: Interest;
-    thirtySixM: Interest;
-  };
+  interests: Interest[];
   loanRates: Loan[];
 }
 
@@ -54,7 +41,7 @@ export interface Interest {
   source: Source;
   lastUpdated: Date;
   gift: boolean;
-  gifts: Gift[]
+  gifts: Gift[];
 }
 
 export interface Gift {

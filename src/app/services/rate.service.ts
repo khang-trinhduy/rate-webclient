@@ -20,11 +20,17 @@ export class RateService {
       })
       .pipe(catchError(this.handleError<any>("CREATE REVIEW")));
   }
-  
+
   getRates(): Observable<any> {
     return this.http
       .get(`${environment.api}`)
       .pipe(catchError(this.handleError<any>("GET RATES")));
+  }
+
+  getRate(bank, period): Observable<any> {
+    return this.http
+      .get(`${environment.api}/rates?code=${bank}&period=${period}`)
+      .pipe(catchError(this.handleError<any>("GET RATE")));
   }
 
   getStat(type): Observable<any> {
@@ -49,6 +55,12 @@ export class RateService {
     return this.http
       .get(`${environment.api}/loans`)
       .pipe(catchError(this.handleError<any>("GET LOANS")));
+  }
+
+  getBanks(): Observable<any> {
+    return this.http
+      .get(`${environment.api}/banks`, { headers: this.httpHeaderOptions })
+      .pipe(catchError(this.handleError<any>("GET BANKS")));
   }
 
   getBank(code, type = ""): Observable<any> {
