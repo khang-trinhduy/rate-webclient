@@ -78,7 +78,7 @@ export class CellComponent implements OnInit, OnDestroy {
     }
   };
 
-  toDecimal = (number: number) => {
+  toDecimal = number => {
     if (number > 0) {
       return (Math.round(number * 100) / 100).toFixed(2);
     } else {
