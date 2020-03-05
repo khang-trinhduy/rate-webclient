@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from "@angular/core";
 import { Bank, Stat } from "src/app/models/rate";
 import { RateService } from "src/app/services/rate.service";
 import { Banks, Logos } from "src/app/models/banks";
-import { Observable } from 'rxjs';
+import { Observable, merge, combineLatest } from "rxjs";
 
 @Component({
   selector: "app-row",
@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
   styleUrls: ["./row.component.sass"]
 })
 export class RowComponent implements OnInit {
-  @Input() $banks: Observable<Bank[]>;
+  $banks: Observable<Bank[]>;
 
   constructor(private service: RateService) {}
 

@@ -2,7 +2,10 @@
   <div class="flex-container">
     <div class="tool-container">
       <app-filter></app-filter>
-      <app-setting (display)="showChart($event)"  (tableStyleChange)="tableStyleHandler($event)"></app-setting>
+      <app-setting
+        (display)="showChart($event)"
+        (tableStyleChange)="tableStyleHandler($event)"
+      ></app-setting>
     </div>
     <div class="data-container">
       <div class="data-header">
@@ -11,9 +14,16 @@
       <mat-tab-group class="tabs-area">
         <mat-tab label="Tại quầy">
           <div class="flex-data" *ngIf="$banks">
-            <app-table *ngIf="tableStyle === 'box'" [$banks]="$banks"></app-table>
-            <app-row *ngIf="tableStyle === 'row'" [$banks]="$banks"></app-row>
-            <app-line *ngIf="tableStyle === 'line'" [$banks]="$banks"></app-line>
+            <app-table
+              *ngIf="tableStyle === 'box'"
+              [$banks]="$banks"
+            ></app-table>
+            
+            <app-row *ngIf="tableStyle === 'row'"></app-row>
+            <app-line
+              *ngIf="tableStyle === 'line'"
+              [$banks]="$banks"
+            ></app-line>
             <app-chart [$banks]="$banks" period="12m"></app-chart>
           </div>
         </mat-tab>

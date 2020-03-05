@@ -51,6 +51,7 @@ import { AddUtilityComponent } from './layout/add-utility/add-utility.component'
 import { AddRequireComponent } from './layout/add-require/add-require.component';
 import { AddDocumentComponent } from './layout/add-document/add-document.component';
 import { CellComponent } from './components/cell/cell.component';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 @NgModule({
   declarations: [
     AppComponent,
@@ -106,7 +107,8 @@ import { CellComponent } from './components/cell/cell.component';
     MatIconModule,
     MatSelectModule,
     ChartsModule,
-    MatDialogModule
+    MatDialogModule,
+    InfiniteScrollModule
   ],
   entryComponents: [AddReviewComponent],
   providers: [],
