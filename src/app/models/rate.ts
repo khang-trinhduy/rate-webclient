@@ -42,6 +42,7 @@ export interface Interest {
   lastUpdate: Date;
   gift: boolean;
   gifts: Gift[];
+  max: boolean;
 }
 
 export interface Gift {

@@ -13,7 +13,7 @@ export class CellComponent implements OnInit, OnDestroy {
   @Input() bank;
   sub: Subscription;
 
-  rate: Interest;
+  rates: Interest[];
   d = new Date();
   month = this.d.getMonth() + 1;
   day = this.d.getDate() < 10 ? "0" + this.d.getDate() : this.d.getDate();
@@ -24,7 +24,7 @@ export class CellComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.sub = this.service
       .getRate(this.bank, this.period)
-      .subscribe(res => (this.rate = res));
+      .subscribe(res => (this.rates = res));
   }
 
   isMax = (val, period) => {
@@ -43,6 +43,20 @@ export class CellComponent implements OnInit, OnDestroy {
     }
     return false;
   };
+
+  goUp(rates: Interest[]) {
+    if (rates && rates.length >= 2) {
+      return rates[0].value > rates[1].value;
+    }
+    return false;
+  }
+
+  goDown(rates: Interest[]) {
+    if (rates && rates.length >= 2) {
+      return rates[0].value < rates[1].value;
+    }
+    return false;
+  }
 
   getLink(code, period = 0) {
     if (period) {
