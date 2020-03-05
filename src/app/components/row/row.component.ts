@@ -30,6 +30,7 @@ export class RowComponent implements OnInit {
   ];
 
   ngOnInit() {
+    this.$banks = this.service.getBanks(50, 1);
   }
 
   getLogo(code: string) {
