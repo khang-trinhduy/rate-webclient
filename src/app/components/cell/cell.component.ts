@@ -2,7 +2,6 @@ import { Component, OnInit, Input, OnDestroy } from "@angular/core";
 import { Interest } from "src/app/models/rate";
 import { RateService } from "src/app/services/rate.service";
 import { Subscriber, Subscription } from "rxjs";
-
 @Component({
   selector: "app-cell",
   templateUrl: "./cell.component.html",
@@ -25,6 +24,39 @@ export class CellComponent implements OnInit, OnDestroy {
     this.sub = this.service
       .getRate(this.bank, this.period)
       .subscribe(res => (this.rates = res));
+    let canvas = this.createCanvas([
+      { value: 6 },
+      { value: 6.5 },
+      { value: 7 }
+    ]);
+    let icon = document.querySelector(".up-icon");
+    let holder = document.querySelector(".canvas");
+    (<HTMLElement>holder).style.display = "none";
+    if (icon) {
+      holder.append(canvas);
+      icon.addEventListener("mouseenter", event => {
+        (<HTMLElement>holder).style.display = "block";
+      });
+    }
+  }
+
+  createCanvas(data) {
+    var canvas = document.createElement("canvas");
+    canvas.width = 300;
+    canvas.height = 150;
+    var ctx = canvas.getContext("2d");
+    ctx.beginPath();
+    for (let i = 0; i < data.length; i++) {
+      const rate = data[i];
+      if (i === 0) {
+        ctx.lineTo(75, rate.value * 25);
+      } else {
+        ctx.moveTo(75 * (i + 1), rate.value * 25);
+      }
+    }
+    ctx.stroke();
+    ctx.closePath();
+    return canvas;
   }
 
   isMax = (val, period) => {

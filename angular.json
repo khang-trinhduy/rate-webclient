@@ -32,7 +32,7 @@
               "src/styles.sass"
             ],
             "scripts": [
-              "src/assets/js/chart.js"
+              "src/chart.js"
             ]
           },
           "configurations": {
