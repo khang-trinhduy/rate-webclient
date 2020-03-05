@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, OnDestroy } from "@angular/core";
 import { Interest } from "src/app/models/rate";
 import { RateService } from "src/app/services/rate.service";
+import { Subscriber, Subscription } from "rxjs";
 
 @Component({
   selector: "app-cell",
@@ -10,6 +11,7 @@ import { RateService } from "src/app/services/rate.service";
 export class CellComponent implements OnInit, OnDestroy {
   @Input() period;
   @Input() bank;
+  sub: Subscription;
 
   rate: Interest;
   d = new Date();
@@ -20,7 +22,7 @@ export class CellComponent implements OnInit, OnDestroy {
   constructor(private service: RateService) {}
 
   ngOnInit() {
-    this.service
+    this.sub = this.service
       .getRate(this.bank, this.period)
       .subscribe(res => (this.rate = res));
   }
@@ -50,24 +52,6 @@ export class CellComponent implements OnInit, OnDestroy {
     }
   }
 
-  getThreshold = threshold => {
-    //TODO update threshold
-    return "Tối thiểu 1.000.000 VNĐ";
-  };
-
-  getLoc = loc => {
-    //TODO update location
-    let rd = this.getRandomInt(3);
-    switch (rd) {
-      case 0:
-        return "Cả nước";
-      case 1:
-        return "TP.HCM, Hà Nội";
-      case 2:
-        return "TP.HCM, Hà Nội, Hải Phòng, Đà Nẵng";
-    }
-  };
-  //2020-02-01T17:00:00Z
   toDate = date => {
     if (date) {
       return date
@@ -86,9 +70,8 @@ export class CellComponent implements OnInit, OnDestroy {
     }
   };
 
-  getRandomInt = max => {
-    return Math.floor(Math.random() * Math.floor(max));
-  };
   //TODO unsubcribe
-  ngOnDestroy() {}
+  ngOnDestroy() {
+    this.sub.unsubscribe();
+  }
 }

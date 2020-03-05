@@ -12,8 +12,6 @@ import { Observable } from 'rxjs';
 export class RowComponent implements OnInit {
   @Input() $banks: Observable<Bank[]>;
 
-  stats: Stat[];
-
   constructor(private service: RateService) {}
 
   periods = [
@@ -32,7 +30,6 @@ export class RowComponent implements OnInit {
   ];
 
   ngOnInit() {
-    this.service.getStats().subscribe(res => (this.stats = res));
   }
 
   getLogo(code: string) {
@@ -59,19 +56,6 @@ export class RowComponent implements OnInit {
     }
   }
 
-  isMax = (type, val) => {
-    if (this.stats) {
-      let temp = this.stats.find(e => e.type === type);
-      if (temp) {
-        if (val === temp.maximum) {
-          return true;
-        }
-        return false;
-      }
-      return false;
-    }
-  };
-
   getLink(code, period = "") {
     if (period) {
       return "/detail?b=" + code + "&t=" + period;
@@ -79,24 +63,6 @@ export class RowComponent implements OnInit {
       return "/detail?b=" + code;
     }
   }
-
-  getThreshold = threshold => {
-    //TODO update threshold
-    return "Tối thiểu 1.000.000 VNĐ";
-  };
-
-  getLoc = loc => {
-    //TODO update location
-    let rd = this.getRandomInt(3);
-    switch (rd) {
-      case 0:
-        return "Cả nước";
-      case 1:
-        return "TP.HCM, Hà Nội";
-      case 2:
-        return "TP.HCM, Hà Nội, Hải Phòng, Đà Nẵng";
-    }
-  };
 
   getRandomInt = max => {
     return Math.floor(Math.random() * Math.floor(max));

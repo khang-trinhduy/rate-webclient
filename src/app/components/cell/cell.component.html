@@ -9,15 +9,17 @@
       ></span
     >
     <span
-      ><mat-icon class="gift-box" *ngIf="rate.loc">location_on</mat-icon></span
+      ><mat-icon class="gift-box" *ngIf="rate.loc" title="HCM"
+        >location_on</mat-icon
+      ></span
     >
     <span
-      ><mat-icon class="gift-box" [title]="getThreshold(rate.threshold)"
+      ><mat-icon class="gift-box" [title]="rate.threshold"
         >attach_money</mat-icon
       ></span
     >
   </div>
-  <div class="footer" [ngClass]="{ today: isToday(rate.lastUpdate) }">
+  <div class="footer">
     <i>{{ toDate(rate.lastUpdate) }}</i>
   </div>
 </div>
