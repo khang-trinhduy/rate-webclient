@@ -23,12 +23,9 @@
     <i>{{ toDate(rates[0].lastUpdate) }}</i>
   </div>
   <span *ngIf="goUp(rates)" class="up-icon"
-    ><mat-icon>expand_less</mat-icon></span
+    ><mat-icon [title]="getUp(rates)">expand_less</mat-icon></span
   >
   <span *ngIf="goDown(rates)" class="down-icon"
-    ><mat-icon>expand_more</mat-icon></span
+    ><mat-icon [title]="getDown(rates)">expand_more</mat-icon></span
   >
-</div>
-<div class="canvas">
-
 </div>

@@ -12,7 +12,6 @@ import { TableComponent } from "./components/table/table.component";
 import { ChartComponent } from "./components/chart/chart.component";
 import { FilterComponent } from "./components/filter/filter.component";
 import { ProfileComponent } from "./user/profile/profile.component";
-import { RateComponent } from "./user/rate/rate.component";
 import { FormComponent } from "./components/form/form.component";
 import { InterestComponent } from "./layout/interest/interest.component";
 import { LoanComponent } from "./layout/loan/loan.component";
@@ -61,7 +60,6 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     ChartComponent,
     FilterComponent,
     ProfileComponent,
-    RateComponent,
     FormComponent,
     InterestComponent,
     LoanComponent,
