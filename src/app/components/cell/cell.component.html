@@ -1,4 +1,8 @@
-<div class="cell-content" *ngIf="rates">
+<div
+  class="cell-content"
+  [ngClass]="{ max: isMax(rates[0].value) }"
+  *ngIf="rates"
+>
   <a class="cell-text" [href]="getLink(bank, rates[0].period)"
     >{{ toDecimal(rates[0].value) }}%</a
   >

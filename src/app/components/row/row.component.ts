@@ -11,6 +11,7 @@ import { Observable, merge, combineLatest } from "rxjs";
 })
 export class RowComponent implements OnInit {
   $banks: Observable<Bank[]>;
+  maxs: Stat[];
 
   constructor(private service: RateService) {}
 
@@ -31,6 +32,7 @@ export class RowComponent implements OnInit {
 
   ngOnInit() {
     this.$banks = this.service.getBanks(50, 1);
+    this.service.getStats().subscribe(res => (this.maxs = res));
   }
 
   getLogo(code: string) {
@@ -48,6 +50,10 @@ export class RowComponent implements OnInit {
       return "0.00";
     }
   };
+
+  max(period) {
+    return this.maxs.find(e => e.period == period.toString()).maximum
+  }
 
   getColor(code: string) {
     if (code) {
