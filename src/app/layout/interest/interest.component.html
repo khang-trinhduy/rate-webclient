@@ -10,6 +10,7 @@
     <div class="data-container">
       <div class="data-header">
         <h2 class="header-line">Lãi suất tiền gửi</h2>
+        <p class="update">Ngày cập nhật: {{ toDate(date) }}</p>
       </div>
       <mat-tab-group class="tabs-area">
         <mat-tab label="Tại quầy">
@@ -18,20 +19,21 @@
               *ngIf="tableStyle === 'box'"
               [$banks]="$banks"
             ></app-table>
-            
+
             <app-row *ngIf="tableStyle === 'row'"></app-row>
             <app-line
               *ngIf="tableStyle === 'line'"
               [$banks]="$banks"
             ></app-line>
-            <app-chart [$banks]="$banks" period="12m"></app-chart>
+            <!-- <app-chart [$banks]="$banks" period="12m"></app-chart> -->
           </div>
         </mat-tab>
         <mat-tab label="Online">
-          <div class="flex-data" *ngIf="$banks">
+          <!-- <div class="flex-data" *ngIf="$banks">
             <app-table [$banks]="$banks"></app-table>
             <app-chart [$banks]="$banks"></app-chart>
-          </div>
+          </div> -->
+          <i>Đang cập nhật</i>
         </mat-tab>
       </mat-tab-group>
     </div>

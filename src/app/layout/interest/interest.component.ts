@@ -13,10 +13,20 @@ export class InterestComponent implements OnInit {
   tableStyle: string = "row";
   pageSize = 10;
   pageIndex = 1;
+  date;
   constructor(private service: RateService) {}
 
   ngOnInit() {
     this.$banks = this.service.getBanks(this.pageSize, this.pageIndex);
+    this.service.getDate().subscribe(res => (this.date = res.date));
+  }
+
+  toDate(date) {
+    return date
+      .split("T")[0]
+      .split("-")
+      .reverse()
+      .join("/");
   }
 
   tableStyleHandler = event => {
@@ -45,5 +55,4 @@ export class InterestComponent implements OnInit {
       }
     }
   };
-
 }
