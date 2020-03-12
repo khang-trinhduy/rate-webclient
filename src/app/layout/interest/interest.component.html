@@ -10,7 +10,7 @@
     <div class="data-container">
       <div class="data-header">
         <h2 class="header-line">Lãi suất tiền gửi</h2>
-        <p class="update">Ngày cập nhật: {{ toDate(date) }}</p>
+        <p *ngIf="date" class="update">Ngày cập nhật: {{ toDate(date) }}</p>
       </div>
       <mat-tab-group class="tabs-area">
         <mat-tab label="Tại quầy">

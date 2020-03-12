@@ -45,14 +45,14 @@
                 />
               </a>
             </div>
-            <app-cell [period]="0" [bank]="bank?.normalized"></app-cell>
-            <app-cell [period]="3" [bank]="bank?.normalized"></app-cell>
-            <app-cell [period]="6" [bank]="bank?.normalized"></app-cell>
-            <app-cell [period]="9" [bank]="bank?.normalized"></app-cell>
-            <app-cell [period]="12" [bank]="bank?.normalized"></app-cell>
-            <app-cell [period]="18" [bank]="bank?.normalized"></app-cell>
-            <app-cell [period]="24" [bank]="bank?.normalized"></app-cell>
-            <app-cell [period]="36" [bank]="bank?.normalized"></app-cell>
+            <app-cell [period]="0" [max]="max(0)" [bank]="bank?.normalized"></app-cell>
+            <app-cell [period]="3" [max]="max(3)" [bank]="bank?.normalized"></app-cell>
+            <app-cell [period]="6" [max]="max(6)" [bank]="bank?.normalized"></app-cell>
+            <app-cell [period]="9" [max]="max(9)" [bank]="bank?.normalized"></app-cell>
+            <app-cell [period]="12" [max]="max(12)" [bank]="bank?.normalized"></app-cell>
+            <app-cell [period]="18" [max]="max(18)" [bank]="bank?.normalized"></app-cell>
+            <app-cell [period]="24" [max]="max(24)" [bank]="bank?.normalized"></app-cell>
+            <app-cell [period]="36" [max]="max(36)" [bank]="bank?.normalized"></app-cell>
           </div>
         </div>
       </div>

@@ -73,7 +73,7 @@ export interface Row {
 }
 
 export interface Stat {
-  type: string;
+  period: string;
   maximum: number;
   minimum: number;
   count: number;

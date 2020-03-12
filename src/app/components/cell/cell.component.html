@@ -1,31 +1,11 @@
-<div class="cell-content" *ngIf="rates">
+<div
+  class="cell-content"
+  [ngClass]="{ max: isMax(rates[0].value) }"
+  *ngIf="rates"
+>
   <a class="cell-text" [href]="getLink(bank, rates[0].period)"
     >{{ toDecimal(rates[0].value) }}%</a
   >
-  <div class="icon-container">
-    <span
-      ><mat-icon class="gift-box" *ngIf="rates[0].gift"
-        >card_giftcard</mat-icon
-      ></span
-    >
-    <span
-      ><mat-icon class="gift-box" *ngIf="rates[0].loc" title="HCM"
-        >location_on</mat-icon
-      ></span
-    >
-    <span
-      ><mat-icon class="gift-box" [title]="rates[0].threshold"
-        >attach_money</mat-icon
-      ></span
-    >
-  </div>
-  <div class="footer">
-    <i>{{ toDate(rates[0].lastUpdate) }}</i>
-  </div>
-  <span *ngIf="goUp(rates)" class="up-icon"
-    ><mat-icon [title]="getUp(rates)">expand_less</mat-icon></span
-  >
-  <span *ngIf="goDown(rates)" class="down-icon"
-    ><mat-icon [title]="getDown(rates)">expand_more</mat-icon></span
-  >
+  <span *ngIf="goUp(rates)" class="up-icon">{{ getUp(rates) }}</span>
+  <span *ngIf="goDown(rates)" class="down-icon">{{ getDown(rates) }}</span>
 </div>

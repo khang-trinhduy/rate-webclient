@@ -11,6 +11,7 @@ export class CellComponent implements OnInit, OnDestroy {
   @Input() period;
   @Input() bank;
   sub: Subscription;
+  @Input() max;
 
   rates: Interest[];
   d = new Date();
@@ -42,13 +43,8 @@ export class CellComponent implements OnInit, OnDestroy {
     }
   }
 
-  isMax = (val, period) => {
-    this.service.getStat(period).subscribe(res => {
-      if (val == res.maximum) {
-        return true;
-      }
-      return false;
-    });
+  isMax = val => {
+    return this.max == val;
   };
 
   isToday = date => {
