@@ -51,6 +51,7 @@ import { AddRequireComponent } from './layout/add-require/add-require.component'
 import { AddDocumentComponent } from './layout/add-document/add-document.component';
 import { CellComponent } from './components/cell/cell.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { SubscribeComponent } from './layout/subscribe/subscribe.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -86,7 +87,8 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     AddUtilityComponent,
     AddRequireComponent,
     AddDocumentComponent,
-    CellComponent
+    CellComponent,
+    SubscribeComponent
   ],
   imports: [
     BrowserModule,

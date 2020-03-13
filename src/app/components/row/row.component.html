@@ -37,7 +37,7 @@
         <div class="cell-area" *ngFor="let bank of $banks | async">
           <div class="row-line">
             <div class="cell-content head">
-              <a [routerLink]="['/detail']" [queryParams]="{ b: bank.code }">
+              <a [routerLink]="['/detail']" [queryParams]="{ c: bank._id }">
                 <img
                   class="head-logo"
                   [src]="getLogo(bank?.normalized)"
