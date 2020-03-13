@@ -1,23 +1,8 @@
 <div class="detail-container">
   <div class="flex-container">
-    <div class="left-area">
-      <app-info [info$]="info$"></app-info>
-      <app-review
-        [bankid]="bankid"
-        [reviews]="reviews"
-        [summary]="summary"
-      ></app-review>
-      <app-new></app-new>
-    </div>
     <div class="right-area">
-      <div class="content-area">
-        <app-search></app-search>
-        <app-content [rate]="rate" [utility]="utility"></app-content>
-      </div>
-      <div class="chart-area">
-        <app-chart [period]="period" [top]="top"></app-chart>
-        <app-change></app-change>
-      </div>
+      <div class="content-area"></div>
+      <div class="chart-area"></div>
     </div>
   </div>
 </div>

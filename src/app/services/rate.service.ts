@@ -77,6 +77,12 @@ export class RateService {
       .pipe(catchError(this.handleError<any>("GET BANK")));
   }
 
+  getBankById(code, type = ""): Observable<any> {
+    return this.http
+      .get(`${environment.api}/banks/${code}`)
+      .pipe(catchError(this.handleError<any>("GET BANK BY ID")));
+  }
+
   getInfo(type): Observable<any> {
     return this.http
       .get(`${environment.api}/informations?type=${type}`)
@@ -91,11 +97,14 @@ export class RateService {
       .pipe(catchError(this.handleError<any>("GET UTILITY")));
   }
 
-  getTop(period): Observable<any> {
+  getTop(size, period = NaN, code = NaN): Observable<any> {
     return this.http
-      .get(`${environment.api}/rates?type=interest&sort=des&period=${period}`, {
-        headers: this.httpHeaderOptions
-      })
+      .get(
+        `${environment.api}/rates/top?size=${size}&period=${period}&code=${code}`,
+        {
+          headers: this.httpHeaderOptions
+        }
+      )
       .pipe(catchError(this.handleError<any>("GET TOP RATE")));
   }
 

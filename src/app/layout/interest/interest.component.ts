@@ -14,11 +14,13 @@ export class InterestComponent implements OnInit {
   pageSize = 10;
   pageIndex = 1;
   date;
+  best;
   constructor(private service: RateService) {}
 
   ngOnInit() {
     this.$banks = this.service.getBanks(this.pageSize, this.pageIndex);
     this.service.getDate().subscribe(res => (this.date = res.date));
+    this.best = this.service.getTop(1);
   }
 
   toDate(date) {

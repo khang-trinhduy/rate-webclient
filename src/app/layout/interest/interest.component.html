@@ -4,7 +4,29 @@
       <app-filter></app-filter>
     </div>
     <div class="data-container">
-      <div class="data-header">
+      <div class="data-header" style="height: 250px;">
+        <img class="img-header" src="assets/images/bg.png" alt="" />
+        <div class="post-ck" *ngIf="best | async as item">
+          <h2>
+            Lãi suất cao nhất thị trường <br /><span
+              >{{ item[0]?.value }}/năm</span
+            ><br />
+            kỳ hạn {{ item[0]?.period }} tháng
+          </h2>
+          <div class="ck-pr">
+            <button
+              class="rglr"
+              [routerLink]="['/detail']"
+              [queryParams]="{ c: item[0]?.bank, t: item[0]?.period }"
+            >
+              Xem chi tiết
+            </button>
+            <button class="rglr">
+              Đăng ký
+            </button>
+          </div>
+        </div>
+
         <h2 class="header-line">Lãi suất tiền gửi</h2>
         <p *ngIf="date" class="update">Ngày cập nhật: {{ toDate(date) }}</p>
       </div>

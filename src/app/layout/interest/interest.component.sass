@@ -14,6 +14,10 @@ p.update
   color: #9b9b9bd9
   width: 169px
   margin-left: auto
+  position: relative
+  right: 0
+  bottom: 0
+  z-index: 1000
 .data-container
   border-left: 1px solid rgba(0,0,0,0.14)
   display: block 
@@ -24,6 +28,10 @@ app-table, app-row
   border-right: 1px solid #00000024
 app-row,app-line
   width: 100%
+.img-header
+  width: 100%
+  object-fit: cover
+  height: 100%
 .flex-data
   display: flex
   flex-flow: row nowrap
@@ -33,6 +41,33 @@ app-row,app-line
   border-bottom: 1px solid rgba(0,0,0,0.14)
 .header-line
   margin-left: 1.8vh
+  position: absolute
+  top: 0
+  left: 0
+.post-ck
+  position: absolute
+  top: 70px
+  left: 232.7px
+  color: white
+  & h2
+    margin-bottom: 5.5px
+    line-height: 31px
+    text-align: right
+    & span
+      margin-left: 50%
+      left: -104px
+      color: #59ff59
+      position: relative
+.rglr
+  color: coral
+  font-size: 14px
+  padding: 0.3vh 2.7vh
+  font-weight: 700
+  cursor: pointer
+  &:first-child
+    margin: 0.4vh 2.3vh
+    
+
 $breakpoint: "1500px"
 @media all and ( max-width: $breakpoint )
   app-row,app-table,app-line
