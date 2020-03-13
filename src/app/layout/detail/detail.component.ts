@@ -3,7 +3,6 @@ import { RateService } from "src/app/services/rate.service";
 import { ActivatedRoute } from "@angular/router";
 import { Bank, Information, Utility, Interest } from "src/app/models/rate";
 import { Observable } from "rxjs";
-import { on } from "cluster";
 
 @Component({
   selector: "app-detail",
