@@ -21,7 +21,7 @@
             >
               Xem chi tiết
             </button>
-            <button class="rglr">
+            <button class="rglr" [routerLink]="['/register']" [queryParams]="{c: item[0]?.bank, t: item[0]?.period}">
               Đăng ký
             </button>
           </div>
