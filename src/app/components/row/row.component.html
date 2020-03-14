@@ -33,6 +33,9 @@
           <div class="cell-content 36m">
             <a class="cell-text">36 tháng</a>
           </div>
+          <div class="cell-content">
+            <a class="cell-text"></a>
+          </div>
         </div>
         <div class="cell-area" *ngFor="let bank of $banks | async">
           <div class="row-line">
@@ -53,6 +56,9 @@
             <app-cell [period]="18" [max]="max(18)" [bank]="bank?.normalized"></app-cell>
             <app-cell [period]="24" [max]="max(24)" [bank]="bank?.normalized"></app-cell>
             <app-cell [period]="36" [max]="max(36)" [bank]="bank?.normalized"></app-cell>
+            <div class="asxiRR">
+              <a [routerLink]="['/detail']" [queryParams]="{ c: bank._id }">Chi tiết</a>
+            </div>
           </div>
         </div>
       </div>

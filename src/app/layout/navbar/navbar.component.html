@@ -3,7 +3,9 @@
     <div class="header-left">
       <ul class="horizon-list">
         <li>
-          <button (click)="toggleTool()" mat-button><mat-icon>menu</mat-icon></button>
+          <button (click)="toggleTool()" mat-button>
+            <mat-icon>menu</mat-icon>
+          </button>
         </li>
         <li>
           <a mat-button [routerLink]="['/']">Trang chính</a>
@@ -41,5 +43,26 @@
         </li>
       </ul>
     </div>
+    <div class="mbBirs">
+      <button mat-icon-button [matMenuTriggerFor]="appMenu">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+    <div class="lIcra">
+      <a href="#">
+        <img src="assets/images/logo.png" alt="BankExpress" />
+      </a>
+    </div>
+    <div class="bIfdd">
+      <a routerLink=".">Đăng nhập</a>
+    </div>
   </div>
 </header>
+
+<div class="mIccO">
+  <mat-menu #appMenu="matMenu"> 
+    <a href="#" class="bsAlo">Lãi suất</a>
+    <a href="#" class="bsAlo">Vay</a>
+    <a href="#" class="bsAlo">Tin tức</a>
+  </mat-menu>
+</div>

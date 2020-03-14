@@ -44,28 +44,30 @@ app-row,app-line
   position: absolute
   top: 0
   left: 0
+.ck-pr
+  display: flex
+  flex-flow: row nowrap
+  justify-content: space-around
+  align-items: center
 .post-ck
   position: absolute
   top: 70px
-  left: 232.7px
+  left: 50%
+  margin-left: -199px
   color: white
   & h2
     margin-bottom: 5.5px
     line-height: 31px
-    text-align: right
+    text-align: center
+    font-size: 23px
     & span
-      margin-left: 50%
-      left: -104px
       color: #59ff59
-      position: relative
 .rglr
   color: coral
-  font-size: 14px
+  font-size: 18px
   padding: 0.3vh 2.7vh
   font-weight: 700
   cursor: pointer
-  &:first-child
-    margin: 0.4vh 2.3vh
     
 
 $breakpoint: "1500px"
@@ -81,3 +83,12 @@ $breakpoint: "1500px"
         margin-bottom: 1em
   .flex-data
     flex-wrap: wrap
+  .post-ck
+    margin-left: -165px
+    & h2
+      font-size: 19.5px
+  .rglr
+    font-size: 14px
+@media all and ( max-width: 1024px )
+  .tool-container
+    display: none

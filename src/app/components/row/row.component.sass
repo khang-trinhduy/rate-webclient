@@ -14,6 +14,14 @@
   text-align: center
   padding-bottom: 1vh
   justify-content: space-evenly
+  .cell-content
+    display: flex
+    flex-flow: row nowrap
+    justify-content: center
+    align-items: center
+    & a
+      top: 0
+      margin-top: unset
   &.top
     position: sticky
     z-index: 101
@@ -29,6 +37,18 @@
   background-color: #797979
   width: 10%
   height: 90px
+.asxiRR
+  width: 85.8px
+  height: 90px
+  display: flex
+  flex-flow: row nowrap
+  align-items: center
+  justify-content: center
+  color: #6464ff
+  background: rgb(225, 245, 254)
+  a
+    color: #1a7fb4
+    text-decoration: unset
 .header-line
   margin-left: 1.8vh
 .cell-text
@@ -46,7 +66,7 @@
 .head
   background-size: cover
   color: #fefefe
-  width: 200px
+  width: 120px
   height: 90px
   border: 1px solid rgba(0,0,0,0.125)
   background-color: unset
@@ -56,17 +76,15 @@
 .head-logo
   object-fit: scale-down
   height: 90px
-  width: 200px
+  width: 120px
 .head.top
   background-color: #797979
-.row-line.top div a
-  line-height: 6.5vh
 .row-line.top div
   background-color: #0055ad
 @media all and ( max-width: 1500px )
   app-cell
     width: 9.5%!important
-  .cell-content
+  .cell-content,.asxiRR
     width: 9.5%!important
     &.head
-      width: 200px!important
+      width: 120px!important

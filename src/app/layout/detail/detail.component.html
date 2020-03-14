@@ -1,6 +1,6 @@
 <div class="detail-container" *ngIf="bank">
   <div class="hmLsd">
-    <h2>{{bank.name}}</h2>
+    <h2>{{ bank.name }}</h2>
   </div>
   <div class="tbhd">
     <table>
@@ -21,10 +21,30 @@
         </tr>
         <tr *ngFor="let item of main">
           <td>{{ item.period }} tháng</td>
-          <td>{{ toDecimal(item.value) }}%</td>
-          <td>{{ toDecimal(item.value) }}%</td>
-          <td>{{ toDecimal(item.value) }}%</td>
-          <td>{{ toDecimal(item.value) }}%</td>
+          <td>
+            <div class="mnOpd">
+              <a [routerLink]="['/register']" [queryParams]="{type: item.period, value: item.value}" class="eMbsD">Đăng ký</a>
+              <p>{{ toDecimal(item.value) }}%</p>
+            </div>
+          </td>
+          <td>
+            <div class="mnOpd">
+              <a [routerLink]="['/register']" [queryParams]="{type: item.period, value: item.value}" class="eMbsD">Đăng ký</a>
+              <p>{{ toDecimal(item.value) }}%</p>
+            </div>
+          </td>
+          <td>
+            <div class="mnOpd">
+              <a [routerLink]="['/register']" [queryParams]="{type: item.period, value: item.value}" class="eMbsD">Đăng ký</a>
+              <p>{{ toDecimal(item.value) }}%</p>
+            </div>
+          </td>
+          <td>
+            <div class="mnOpd">
+              <a [routerLink]="['/register']" [queryParams]="{type: item.period, value: item.value}" class="eMbsD">Đăng ký</a>
+              <p>{{ toDecimal(item.value) }}%</p>
+            </div>
+          </td>
         </tr>
         <tr>
           <td colspan="5" class="medTdr">
@@ -33,10 +53,30 @@
         </tr>
         <tr *ngFor="let item of others">
           <td>{{ item.period }} tháng</td>
-          <td>{{ toDecimal(item.value) }}%</td>
-          <td>{{ toDecimal(item.value) }}%</td>
-          <td>{{ toDecimal(item.value) }}%</td>
-          <td>{{ toDecimal(item.value) }}%</td>
+          <td>
+            <div class="mnOpd">
+              <a [routerLink]="['/register']" [queryParams]="{type: item.period, value: item.value}" class="eMbsD">Đăng ký</a>
+              <p>{{ toDecimal(item.value) }}%</p>
+            </div>
+          </td>
+          <td>
+            <div class="mnOpd">
+              <a [routerLink]="['/register']" [queryParams]="{type: item.period, value: item.value}" class="eMbsD">Đăng ký</a>
+              <p>{{ toDecimal(item.value) }}%</p>
+            </div>
+          </td>
+          <td>
+            <div class="mnOpd">
+              <a [routerLink]="['/register']" [queryParams]="{type: item.period, value: item.value}" class="eMbsD">Đăng ký</a>
+              <p>{{ toDecimal(item.value) }}%</p>
+            </div>
+          </td>
+          <td>
+            <div class="mnOpd">
+              <a [routerLink]="['/register']" [queryParams]="{type: item.period, value: item.value}" class="eMbsD">Đăng ký</a>
+              <p>{{ toDecimal(item.value) }}%</p>
+            </div>
+          </td>
         </tr>
       </tbody>
     </table>

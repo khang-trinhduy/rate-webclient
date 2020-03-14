@@ -54,6 +54,22 @@ export class DetailComponent implements OnInit, OnDestroy {
         }
       }
     );
+    window.addEventListener("load", () => {
+      let elems = document.querySelectorAll(".mnOpd");
+      for (let i = 0; i < elems.length; i++) {
+        const element = elems[i];
+        element.addEventListener("mouseenter", () => {
+          let show = element.querySelector("a");
+          (<HTMLElement>show).style.right = "5px";
+          (<HTMLElement>show).style.opacity = "1";
+        });
+        element.addEventListener("mouseleave", () => {
+          let show = element.querySelector("a");
+          (<HTMLElement>show).style.right = "-97.5px";
+          (<HTMLElement>show).style.opacity = "0";
+        });
+      }
+    });
   }
 
   toDecimal = number => {

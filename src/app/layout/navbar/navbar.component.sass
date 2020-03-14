@@ -20,8 +20,27 @@ li
   display: flex
   flex-flow: row nowrap
   justify-content: space-between
-  background-color: #0055ad
+  background-color: white
   padding: 0 1vh
-  color: white
+  color: rgba(0, 0, 0, 0.879)
 .horizon-list
   padding-left: 10px
+.mbBirs, .lIcra, .bIfdd
+  display: none
+.lIcra img
+  height: 50px
+.bIfdd a, .bsAlo
+  color: rgba(0, 0, 0, 0.615)
+  font-weight: 555
+  text-decoration: unset
+.bsAlo
+  display: block
+.mbBirs
+  margin-right: 23px
+@media all and ( max-width: 724px )
+  .header-left, .header-right
+    display: none
+  .mbBirs,.bIfdd, .lIcra
+    display: block
+  .flex-header
+    align-items: center
