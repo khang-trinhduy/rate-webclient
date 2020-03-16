@@ -1,40 +1,62 @@
 <div class="rgmsEd">
-  <div class="kjlCTt">
-    <div class="tIbs">
-      <h2>Đăng ký gửi tiết kiệm</h2>
-      <img src="assets/images/cents.png" alt="Gửi tiết kiệm">
-    </div>
-    <div class="iFcof">
-      <h2>Thông tin liên lạc</h2>
-      <div class="rBcoK">
-        <mat-radio-group>
-          <mat-radio-button class="mrbSdd" value="male">Anh</mat-radio-button>
-          <mat-radio-button value="femail">Chị</mat-radio-button>
-        </mat-radio-group>
+  <form [formGroup]="subscribeForm" #form (ngSubmit)="subscribe()">
+    <div class="kjlCTt">
+      <div class="tIbs">
+        <h2>Đăng ký gửi tiết kiệm</h2>
+        <img src="assets/images/cents.png" alt="Gửi tiết kiệm" />
       </div>
-      <div class="nIhsX">
-        <mat-form-field>
-          <input matInput placeholder="Họ và tên" value="" />
-        </mat-form-field>
-        <div class="mkdEE">
-          <mat-form-field>
-            <input matInput placeholder="Số ĐTDĐ" value="" type="tel" />
-          </mat-form-field>
-          <mat-form-field>
-            <input matInput placeholder="Email" value="" type="email" />
-          </mat-form-field>
+      <div class="iFcof">
+        <h2>Thông tin liên lạc</h2>
+        <div class="rBcoK">
+          <mat-radio-group formControlName="gender">
+            <mat-radio-button class="mrbSdd" value="male">Anh</mat-radio-button>
+            <mat-radio-button value="female">Chị</mat-radio-button>
+          </mat-radio-group>
         </div>
+        <div class="nIhsX">
+          <mat-form-field>
+            <input
+              formControlName="name"
+              matInput
+              placeholder="Họ và tên"
+              value=""
+            />
+          </mat-form-field>
+          <div class="mkdEE">
+            <mat-form-field>
+              <input
+                matInput
+                formControlName="phone"
+                placeholder="Số ĐTDĐ"
+                value=""
+                type="tel"
+              />
+            </mat-form-field>
+            <mat-form-field>
+              <input
+                matInput
+                formControlName="email"
+                placeholder="Email"
+                value=""
+                type="email"
+                [email]="true"
+              />
+            </mat-form-field>
+          </div>
+        </div>
+        <p>
+          Bằng cách nhập các thông tin ở trên và chọn Tiếp tục, tôi đồng ý với
+          Điều khoản và Điều kiện của BankExpress
+        </p>
       </div>
-      <p>
-        Bằng cách nhập các thông tin ở trên và chọn Tiếp tục, tôi đồng ý với
-        Điều khoản và Điều kiện của BankExpress
-      </p>
+      <div class="bBnxD">
+        <p>
+          Cam kết bảo mật thông tin cá nhân
+        </p>
+        <button [disabled]="!subscribeForm.valid" type="submit" mat-raised-button color="accent">
+          Tiếp tục
+        </button>
+      </div>
     </div>
-    <div class="bBnxD">
-      <p>
-        Cam kết bảo mật thông tin cá nhân
-      </p>
-      <button mat-raised-button color="accent">Tiếp tục</button>
-    </div>
-  </div>
+  </form>
 </div>

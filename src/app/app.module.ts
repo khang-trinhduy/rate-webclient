@@ -33,7 +33,6 @@ import { InfoComponent } from "./components/info/info.component";
 import { SearchComponent } from "./components/search/search.component";
 import { CardComponent } from "./components/card/card.component";
 import { ContentComponent } from "./components/content/content.component";
-import { NewComponent } from "./components/new/new.component";
 import { MatSelectModule } from "@angular/material/select";
 import { ChartsModule } from "ng2-charts";
 import { LoginComponent } from "./layout/login/login.component";
@@ -45,10 +44,6 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { AddInterestComponent } from "./layout/add-interest/add-interest.component";
 import { AddLoanComponent } from "./layout/add-loan/add-loan.component";
 import { AddBankComponent } from "./layout/add-bank/add-bank.component";
-import { AddGiftComponent } from "./layout/add-gift/add-gift.component";
-import { AddUtilityComponent } from "./layout/add-utility/add-utility.component";
-import { AddRequireComponent } from "./layout/add-require/add-require.component";
-import { AddDocumentComponent } from "./layout/add-document/add-document.component";
 import { CellComponent } from "./components/cell/cell.component";
 import { InfiniteScrollModule } from "ngx-infinite-scroll";
 import { SubscribeComponent } from "./layout/subscribe/subscribe.component";
@@ -75,7 +70,6 @@ import { MatMenuModule } from "@angular/material/menu";
     SearchComponent,
     CardComponent,
     ContentComponent,
-    NewComponent,
     LoginComponent,
     RegisterComponent,
     LineComponent,
@@ -84,10 +78,6 @@ import { MatMenuModule } from "@angular/material/menu";
     AddInterestComponent,
     AddLoanComponent,
     AddBankComponent,
-    AddGiftComponent,
-    AddUtilityComponent,
-    AddRequireComponent,
-    AddDocumentComponent,
     CellComponent,
     SubscribeComponent
   ],
