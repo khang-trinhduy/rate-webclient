@@ -49,6 +49,7 @@ import { InfiniteScrollModule } from "ngx-infinite-scroll";
 import { SubscribeComponent } from "./layout/subscribe/subscribe.component";
 import { MatMenuModule } from "@angular/material/menu";
 import { HighestComponent } from './layout/highest/highest.component';
+import { CriteriaComponent } from './layout/criteria/criteria.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -81,7 +82,8 @@ import { HighestComponent } from './layout/highest/highest.component';
     AddBankComponent,
     CellComponent,
     SubscribeComponent,
-    HighestComponent
+    HighestComponent,
+    CriteriaComponent
   ],
   imports: [
     BrowserModule,

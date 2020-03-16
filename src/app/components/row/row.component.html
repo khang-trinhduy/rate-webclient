@@ -1,6 +1,10 @@
 <div class="row-container">
   <div class="row-header">
     <h3 class="header-line">Danh sách lãi suất</h3>
+    <div class="ErmGg">
+      <a class="active" target="_blank" [routerLink]="['/criteria']" [queryParams]="{bank: 'vib'}">Gói ưu đãi riêng từ ngân hàng VIB</a>
+      <a target="_blank" [routerLink]="['/criteria']" [queryParams]="{bank: 'scb'}">SCB cập nhật chính sách lãi suất</a>
+    </div>
     <input style="height: 34.2px;margin-right: 16px;" class="kjdFF" type="search" placeholder="Tìm kiếm">
   </div>
   <div class="row-content">

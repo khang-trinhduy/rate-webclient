@@ -57,9 +57,28 @@ export class RowComponent implements OnInit, OnDestroy {
             this.banks = res;
           }
         });
+        this.slideShow();
       }
     };
   }
+
+  slideShow = async () => {
+    let tag = document.querySelector(".ErmGg a.active");
+    tag.classList.remove("active");
+    let next = tag.nextElementSibling;
+    if (next) {
+      next.classList.add("active");
+    } else {
+      let firstTag = document.querySelector(".ErmGg a");
+      firstTag.classList.add("active");
+    }
+    await this.wait(3000);
+    this.slideShow();
+  };
+
+  wait = async ms => {
+    return new Promise(r => setTimeout(r, ms));
+  };
 
   getLogo(code: string) {
     if (code) {
