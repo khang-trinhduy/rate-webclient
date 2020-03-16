@@ -1,6 +1,7 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Inject } from "@angular/core";
 import { FormBuilder, Validators, FormGroup } from "@angular/forms";
 import { UserService } from "src/app/services/user.service";
+import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 
 @Component({
   selector: "app-subscribe",
@@ -9,7 +10,11 @@ import { UserService } from "src/app/services/user.service";
 })
 export class SubscribeComponent implements OnInit {
   subscribeForm: FormGroup;
-  constructor(private fb: FormBuilder, private service: UserService) {}
+  constructor(
+    private fb: FormBuilder,
+    public dialogRef: MatDialogRef<SubscribeComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) {}
 
   ngOnInit() {
     this.subscribeForm = this.fb.group({
@@ -21,13 +26,6 @@ export class SubscribeComponent implements OnInit {
   }
 
   subscribe() {
-    this.service.subscribe(this.subscribeForm.value)
-    .subscribe(
-      res => console.log(res),
-      error => console.log(error),
-      () => {
-        // show completed and close dialog
-      }
-    );
+    this.dialogRef.close(this.subscribeForm.value);
   }
 }

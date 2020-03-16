@@ -13,6 +13,13 @@ export class RateService {
   });
   constructor(private http: HttpClient) {}
 
+  searchRates(value): Observable<any> {
+    return this.http
+      .get(`${environment.api}/rates/search?value=${value}`, {
+        headers: this.httpHeaderOptions
+      })
+      .pipe(catchError(this.handleError<any>("SEARCH RATES")));
+  }
   addReview(id, form): Observable<any> {
     return this.http
       .post(`${environment.api}/users/${id}/reviews`, form, {
@@ -63,6 +70,14 @@ export class RateService {
         headers: this.httpHeaderOptions
       })
       .pipe(catchError(this.handleError<any>("GET BANKS")));
+  }
+
+  searchBanks(keywords): Observable<any> {
+    return this.http
+      .get(`${environment.api}/banks/search?keywords=${keywords}`, {
+        headers: this.httpHeaderOptions
+      })
+      .pipe(catchError(this.handleError<any>("SEARCH BANKS")));
   }
 
   getDate(): Observable<any> {

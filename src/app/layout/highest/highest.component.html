@@ -1,0 +1,34 @@
+<div class="detail-container" *ngIf="$rates | async as rates">
+  <div class="hmLsd">
+    <h2>Các gói lãi suất {{ toDecimal(rates[0]?.value) }}%</h2>
+  </div>
+  <div class="tbhd">
+    <table>
+      <thead>
+        <tr>
+          <th>Lãi suất</th>
+          <th>Kỳ hạn</th>
+          <th>Ngân hàng</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of rates">
+          <td>{{ toDecimal(item?.value) }}%</td>
+          <td>
+            <p>{{ item?.period }} tháng</p>
+          </td>
+          <td>
+            <p>{{ item?.bank }}</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <h3>
+    <span><mat-icon color="accent">double_arrow</mat-icon></span>
+    Nhận thông tin mới nhất về lãi suất, chính sách và ưu đãi của các ngân hàng
+  </h3>
+  <button color="accent" mat-raised-button (click)="subscribe(rates[0]?.bank)">
+    Đăng ký
+  </button>
+</div>

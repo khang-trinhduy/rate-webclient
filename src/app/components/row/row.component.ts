@@ -1,38 +1,64 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, OnDestroy } from "@angular/core";
 import { Bank, Stat } from "src/app/models/rate";
 import { RateService } from "src/app/services/rate.service";
 import { Banks, Logos } from "src/app/models/banks";
-import { Observable, merge, combineLatest } from "rxjs";
+import {
+  Observable,
+  merge,
+  combineLatest,
+  fromEvent,
+  Subscription
+} from "rxjs";
+import {
+  map,
+  filter,
+  debounceTime,
+  distinctUntilChanged,
+  switchMap
+} from "rxjs/operators";
 
 @Component({
   selector: "app-row",
   templateUrl: "./row.component.html",
   styleUrls: ["./row.component.sass"]
 })
-export class RowComponent implements OnInit {
-  $banks: Observable<Bank[]>;
+export class RowComponent implements OnInit, OnDestroy {
+  banks: Bank[];
   maxs: Stat[];
+  observer: Subscription;
+  typeahead;
+  typeObserver: Subscription;
 
   constructor(private service: RateService) {}
-
-  periods = [
-    "0w",
-    "1w",
-    "2w",
-    "3w",
-    "1m",
-    "18m",
-    "3m",
-    "6m",
-    "9m",
-    "12m",
-    "24m",
-    "36m"
-  ];
+  ngOnDestroy(): void {
+    this.observer.unsubscribe();
+    this.typeObserver.unsubscribe();
+  }
 
   ngOnInit() {
-    this.$banks = this.service.getBanks(50, 1);
+    this.observer = this.service
+      .getBanks(50, 1)
+      .subscribe(res => (this.banks = res));
     this.service.getStats().subscribe(res => (this.maxs = res));
+
+    document.onreadystatechange = () => {
+      if (document.readyState === "complete") {
+        let searchBox = document.querySelector(".kjdFF");
+
+        this.typeahead = fromEvent(searchBox, "input").pipe(
+          map((e: KeyboardEvent) => (e.target as HTMLInputElement).value),
+          filter(text => text.length >= 2),
+          debounceTime(750),
+          distinctUntilChanged(),
+          switchMap(keywords => this.service.searchBanks(keywords))
+        );
+        this.typeObserver = this.typeahead.subscribe(res => {
+          if (res.length > 0) {
+            this.banks = res;
+          }
+        });
+      }
+    };
   }
 
   getLogo(code: string) {
@@ -52,7 +78,7 @@ export class RowComponent implements OnInit {
   };
 
   max(period) {
-    return this.maxs.find(e => e.period == period.toString()).maximum
+    return this.maxs.find(e => e.period == period.toString()).maximum;
   }
 
   getColor(code: string) {

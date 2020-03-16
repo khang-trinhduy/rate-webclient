@@ -1,8 +1,5 @@
 <div class="interest-container">
   <div class="flex-container">
-    <div class="tool-container">
-      <app-filter></app-filter>
-    </div>
     <div class="data-container">
       <div class="data-header" style="height: 250px;">
         <img class="img-header" src="assets/images/bg.png" alt="" />
@@ -16,12 +13,15 @@
           <div class="ck-pr">
             <button
               class="rglr"
-              [routerLink]="['/detail']"
-              [queryParams]="{ c: item[0]?.bank, t: item[0]?.period }"
+              [routerLink]="['/highest']"
+              [queryParams]="{ value: item[0]?.value }"
             >
               Xem chi tiết
             </button>
-            <button class="rglr" [routerLink]="['/register']" [queryParams]="{c: item[0]?.bank, t: item[0]?.period}">
+            <button
+              class="rglr"
+              (click)="openDialog(item[0]?.bank, item[0]?.period)"
+            >
               Đăng ký
             </button>
           </div>
@@ -31,25 +31,8 @@
       <mat-tab-group class="tabs-area">
         <mat-tab label="Tại quầy">
           <div class="flex-data" *ngIf="$banks">
-            <app-table
-              *ngIf="tableStyle === 'box'"
-              [$banks]="$banks"
-            ></app-table>
-
             <app-row *ngIf="tableStyle === 'row'"></app-row>
-            <app-line
-              *ngIf="tableStyle === 'line'"
-              [$banks]="$banks"
-            ></app-line>
-            <!-- <app-chart [$banks]="$banks" period="12m"></app-chart> -->
           </div>
-        </mat-tab>
-        <mat-tab label="Online">
-          <!-- <div class="flex-data" *ngIf="$banks">
-            <app-table [$banks]="$banks"></app-table>
-            <app-chart [$banks]="$banks"></app-chart>
-          </div> -->
-          <i>Đang cập nhật</i>
         </mat-tab>
       </mat-tab-group>
     </div>

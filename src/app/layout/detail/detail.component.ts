@@ -3,6 +3,9 @@ import { RateService } from "src/app/services/rate.service";
 import { ActivatedRoute } from "@angular/router";
 import { Bank, Information, Utility, Interest } from "src/app/models/rate";
 import { Observable } from "rxjs";
+import { MatDialog } from "@angular/material/dialog";
+import { SubscribeComponent } from "../subscribe/subscribe.component";
+import { UserService } from "src/app/services/user.service";
 
 @Component({
   selector: "app-detail",
@@ -21,10 +24,38 @@ export class DetailComponent implements OnInit, OnDestroy {
   others: Interest[];
   main: Interest[];
   toBeDestroyed;
-  constructor(private service: RateService, private route: ActivatedRoute) {}
+  constructor(
+    private userService: UserService,
+    private dialogRef: MatDialog,
+    private service: RateService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnDestroy() {
     this.toBeDestroyed.unsubscribe();
+  }
+
+  subscribe(bank) {
+    const dialog = this.dialogRef.open(SubscribeComponent, {
+      width: "auto"
+    });
+
+    dialog.afterClosed().subscribe(result => {
+      if (result) {
+        result.bank = bank;
+        this.userService.subscribe(result).subscribe(
+          res => {
+            console.log(res);
+          },
+          error => {
+            console.log(error);
+          },
+          () => {
+            // show tooltip
+          }
+        );
+      }
+    });
   }
 
   ngOnInit() {
@@ -54,22 +85,6 @@ export class DetailComponent implements OnInit, OnDestroy {
         }
       }
     );
-    window.addEventListener("load", () => {
-      let elems = document.querySelectorAll(".mnOpd");
-      for (let i = 0; i < elems.length; i++) {
-        const element = elems[i];
-        element.addEventListener("mouseenter", () => {
-          let show = element.querySelector("a");
-          (<HTMLElement>show).style.right = "5px";
-          (<HTMLElement>show).style.opacity = "1";
-        });
-        element.addEventListener("mouseleave", () => {
-          let show = element.querySelector("a");
-          (<HTMLElement>show).style.right = "-97.5px";
-          (<HTMLElement>show).style.opacity = "0";
-        });
-      }
-    });
   }
 
   toDecimal = number => {
