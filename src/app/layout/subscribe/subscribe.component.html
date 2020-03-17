@@ -2,7 +2,7 @@
   <form [formGroup]="subscribeForm" #form (ngSubmit)="subscribe()">
     <div class="kjlCTt">
       <div class="tIbs">
-        <h2>Đăng ký</h2>
+        <h2>Đăng ký gửi tiết kiệm</h2>
         <img src="assets/images/cents.png" alt="Gửi tiết kiệm" />
       </div>
       <div class="iFcof">
@@ -50,13 +50,30 @@
         </p>
       </div>
       <div class="bBnxD">
-        <p>
-          Cam kết bảo mật thông tin cá nhân
-        </p>
-        <button [disabled]="!subscribeForm.valid" type="submit" mat-raised-button color="accent">
-          Tiếp tục
-        </button>
+        <ul style="font-size: 14px;">
+          <li>
+            Sau khi đăng ký sẽ được chuyên viên Bankexpress tư vấn ngân hàng có
+            mức lãi suất tốt nhất với số tiền và kỳ hạn mong muốn gửi phù hợp
+            nhất.
+          </li>
+          <li>
+            Được gặp trực tiếp Ngân hàng khi chấp nhận gửi tiền tiết kiệm.
+          </li>
+          <li>
+            Mọi thủ tục sẽ đơn giản và thực hiện nhanh chóng ở địa điểm mà Khách
+            hàng yêu cầu (Tại nhà, tại nơi làm việc hoặc khách lên trực tiếp tại
+            ngân hàng).
+          </li>
+        </ul>
       </div>
+      <button
+        [disabled]="!subscribeForm.valid"
+        type="submit"
+        mat-raised-button
+        color="accent"
+      >
+        Tiếp tục
+      </button>
     </div>
   </form>
 </div>

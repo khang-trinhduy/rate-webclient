@@ -20,8 +20,7 @@ export class SubscribeComponent implements OnInit {
     this.subscribeForm = this.fb.group({
       gender: ["female", Validators.required],
       name: ["", Validators.required],
-      phone: ["", Validators.required],
-      email: ["", Validators.required]
+      phone: ["", Validators.required]
     });
   }
 

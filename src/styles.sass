@@ -104,6 +104,33 @@ mat-dialog-container
   100%
     margin-right: 5px
     opacity: 1
+@keyframes rotate
+  0%
+    transform: rotateZ(-30deg)
+    opacity: 0
+  100%
+    opacity: 1
+    transform: rotateZ(0deg)
+@keyframes slideup
+  0%
+    margin-top: 50%
+    opacity: 0
+  50%
+    margin-top: 25%
+    opacity: 1
+  100%
+    margin-top: 0
+    opacity: 1
+@keyframes slidedown
+  0%
+    margin-top: 0%
+    opacity: 1
+  50%
+    margin-top: 25%
+    opacity: 1
+  100%
+    margin-top: 50%
+    opacity: 0
 @media all and ( max-width: 1500px )
   @keyframes pullup
     0%

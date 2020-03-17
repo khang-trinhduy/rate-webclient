@@ -2,10 +2,29 @@
   <div class="row-header">
     <h3 class="header-line">Danh sách lãi suất</h3>
     <div class="ErmGg">
-      <a class="active" target="_blank" [routerLink]="['/criteria']" [queryParams]="{bank: 'vib'}">Gói ưu đãi riêng từ ngân hàng VIB</a>
-      <a target="_blank" [routerLink]="['/criteria']" [queryParams]="{bank: 'scb'}">SCB cập nhật chính sách lãi suất</a>
+      <a
+        #tag
+        class="active"
+        target="_blank"
+        [routerLink]="['/criteria']"
+        [queryParams]="{ bank: 'vib' }"
+        >Gói ưu đãi riêng từ ngân hàng VIB</a
+      >
+      <a
+        #tag
+        target="_blank"
+        [routerLink]="['/criteria']"
+        [queryParams]="{ bank: 'scb' }"
+        >SCB cập nhật chính sách lãi suất</a
+      >
     </div>
-    <input style="height: 34.2px;margin-right: 16px;" class="kjdFF" type="search" placeholder="Tìm kiếm">
+    <input
+      #search
+      style="height: 34.2px;margin-right: 16px;"
+      class="kjdFF"
+      type="search"
+      placeholder="Tìm kiếm"
+    />
   </div>
   <div class="row-content">
     <div class="line-area">
@@ -101,6 +120,51 @@
           </div>
         </div>
       </div>
+    </div>
+    <div class="jjfSD" #holder>
+      <mat-icon #icon class="jjDDx active">close</mat-icon>
+      <mat-icon #icon class="SmTpE">email</mat-icon>
+    </div>
+    <div class="EmsFF active" #popup>
+      <form [formGroup]="downloadForm" (ngSubmit)="download()">
+        <h2>Đăng ký tài khoản</h2>
+        <mat-form-field>
+          <input
+            formControlName="name"
+            matInput
+            placeholder="Họ và tên"
+            value=""
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            formControlName="email"
+            matInput
+            placeholder="Email"
+            value=""
+            type="email"
+            [email]="true"
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <input formControlName="phone" matInput placeholder="SĐT" value="" />
+        </mat-form-field>
+        <ul style="font-size: 14px;padding: 14px 12.5px;">
+          <li>
+            Nhận file tổng hợp lãi suất tiền gửi các ngân hàng
+          </li>
+          <li>
+            Nhận thông báo cập nhật lãi suất nhanh chóng và chính xác
+          </li>
+          <li>
+            Các gói ưu đãi tối ưu, tiết kiệm nhất
+          </li>
+        </ul>
+        <hr />
+        <button mat-raised-button [disabled]="!downloadForm.valid">
+          Tải tài liệu ngay
+        </button>
+      </form>
     </div>
   </div>
 </div>

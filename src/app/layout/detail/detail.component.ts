@@ -14,16 +14,10 @@ import { UserService } from "src/app/services/user.service";
 })
 export class DetailComponent implements OnInit, OnDestroy {
   bank: Bank;
-  rate: Interest;
-  period;
-  top = true;
-  code;
-  reviews;
-  summary;
-  bankid;
   others: Interest[];
   main: Interest[];
   toBeDestroyed;
+  code
   constructor(
     private userService: UserService,
     private dialogRef: MatDialog,
@@ -35,36 +29,8 @@ export class DetailComponent implements OnInit, OnDestroy {
     this.toBeDestroyed.unsubscribe();
   }
 
-  subscribe(bank) {
-    const dialog = this.dialogRef.open(SubscribeComponent, {
-      width: "auto"
-    });
-
-    dialog.afterClosed().subscribe(result => {
-      if (result) {
-        result.bank = bank;
-        this.userService.subscribe(result).subscribe(
-          res => {
-            console.log(res);
-          },
-          error => {
-            console.log(error);
-          },
-          () => {
-            // show tooltip
-          }
-        );
-      }
-    });
-  }
-
   ngOnInit() {
-    this.code = this.route.snapshot.queryParams["b"]
-      ? this.route.snapshot.queryParams["b"]
-      : this.route.snapshot.queryParams["c"];
-    let type = this.route.snapshot.queryParams["t"] || "";
-    this.period = type;
-    this.toBeDestroyed = this.service.getBankById(this.code, type).subscribe(
+    this.toBeDestroyed = this.service.getBankById(this.code).subscribe(
       res => (this.bank = res),
       error => {},
       () => {

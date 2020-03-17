@@ -88,7 +88,7 @@ export class RateService {
 
   getBank(code, type = ""): Observable<any> {
     return this.http
-      .get(`${environment.api}/banks?code=${code}&type=${type}`)
+      .get(`${environment.api}/banks/detail?code=${code}&type=${type}`)
       .pipe(catchError(this.handleError<any>("GET BANK")));
   }
 

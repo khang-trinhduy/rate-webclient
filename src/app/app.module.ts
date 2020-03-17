@@ -48,8 +48,9 @@ import { CellComponent } from "./components/cell/cell.component";
 import { InfiniteScrollModule } from "ngx-infinite-scroll";
 import { SubscribeComponent } from "./layout/subscribe/subscribe.component";
 import { MatMenuModule } from "@angular/material/menu";
-import { HighestComponent } from './layout/highest/highest.component';
-import { CriteriaComponent } from './layout/criteria/criteria.component';
+import { HighestComponent } from "./layout/highest/highest.component";
+import { CriteriaComponent } from "./layout/criteria/criteria.component";
+import { SdetailComponent } from "./sdetail/sdetail.component";
 @NgModule({
   declarations: [
     AppComponent,
@@ -83,7 +84,8 @@ import { CriteriaComponent } from './layout/criteria/criteria.component';
     CellComponent,
     SubscribeComponent,
     HighestComponent,
-    CriteriaComponent
+    CriteriaComponent,
+    SdetailComponent
   ],
   imports: [
     BrowserModule,
@@ -106,7 +108,7 @@ import { CriteriaComponent } from './layout/criteria/criteria.component';
     InfiniteScrollModule,
     MatMenuModule
   ],
-  entryComponents: [AddReviewComponent],
+  entryComponents: [AddReviewComponent, SdetailComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

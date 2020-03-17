@@ -1,4 +1,14 @@
-import { Component, OnInit, Input, OnDestroy } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  Input,
+  OnDestroy,
+  AfterViewInit,
+  ViewChild,
+  ElementRef,
+  ViewChildren,
+  QueryList
+} from "@angular/core";
 import { Bank, Stat } from "src/app/models/rate";
 import { RateService } from "src/app/services/rate.service";
 import { Banks, Logos } from "src/app/models/banks";
@@ -16,60 +26,113 @@ import {
   distinctUntilChanged,
   switchMap
 } from "rxjs/operators";
+import { FormBuilder, Validators, FormGroup } from "@angular/forms";
+import { UserService } from "src/app/services/user.service";
 
 @Component({
   selector: "app-row",
   templateUrl: "./row.component.html",
   styleUrls: ["./row.component.sass"]
 })
-export class RowComponent implements OnInit, OnDestroy {
+export class RowComponent implements OnInit, OnDestroy, AfterViewInit {
   banks: Bank[];
   maxs: Stat[];
-  observer: Subscription;
+  observers: Subscription[] = [];
   typeahead;
-  typeObserver: Subscription;
+  downloadForm: FormGroup;
+  @ViewChild("search", { static: false }) search: ElementRef;
+  @ViewChild("holder", { static: false }) holder: ElementRef;
+  @ViewChild("popup", { static: false }) popup: ElementRef;
+  @ViewChildren("icon") icons: QueryList<any>;
+  @ViewChildren("tag") tags: QueryList<any>;
 
-  constructor(private service: RateService) {}
+  constructor(
+    private userService: UserService,
+    private service: RateService,
+    private fb: FormBuilder
+  ) {}
+  ngAfterViewInit(): void {
+    let searchBox = this.search.nativeElement;
+
+    this.typeahead = fromEvent(searchBox, "input").pipe(
+      map((e: KeyboardEvent) => (e.target as HTMLInputElement).value),
+      filter(text => text.length >= 2),
+      debounceTime(750),
+      distinctUntilChanged(),
+      switchMap(keywords => this.service.searchBanks(keywords))
+    );
+    this.observers.push(
+      this.typeahead.subscribe(res => {
+        if (res.length > 0) {
+          this.banks = res;
+        }
+      })
+    );
+
+    this.slideShow();
+    let iHolder = this.holder.nativeElement;
+    let popUpForm = this.popup.nativeElement;
+    iHolder.addEventListener("click", () => {
+      let temp = this.icons.toArray();
+      console.log(temp[0]._elementRef.nativeElement);
+
+      let active = temp.find(e =>
+        e._elementRef.nativeElement.classList.contains("active")
+      )._elementRef.nativeElement;
+      let next = active.nextElementSibling;
+      active.classList.remove("active");
+      active.classList.remove("animate");
+      if (next) {
+        next.classList.add("active");
+        next.classList.add("animate");
+        popUpForm.classList.remove("animate");
+        popUpForm.classList.add("deactive");
+      } else {
+        let xIcon = this.icons.toArray()[0]._elementRef.nativeElement;
+        xIcon.classList.add("active");
+        xIcon.classList.add("animate");
+        popUpForm.classList.remove("deactive");
+        popUpForm.classList.add("animate");
+      }
+    });
+  }
   ngOnDestroy(): void {
-    this.observer.unsubscribe();
-    this.typeObserver.unsubscribe();
+    this.observers.forEach(obs => {
+      obs.unsubscribe();
+    });
   }
 
   ngOnInit() {
-    this.observer = this.service
-      .getBanks(50, 1)
-      .subscribe(res => (this.banks = res));
+    this.downloadForm = this.fb.group({
+      name: ["", Validators.required],
+      email: ["", Validators.required],
+      phone: [""],
+      require: [true]
+    });
+    this.observers.push(
+      this.service.getBanks(50, 1).subscribe(res => (this.banks = res))
+    );
     this.service.getStats().subscribe(res => (this.maxs = res));
+  }
 
-    document.onreadystatechange = () => {
-      if (document.readyState === "complete") {
-        let searchBox = document.querySelector(".kjdFF");
-
-        this.typeahead = fromEvent(searchBox, "input").pipe(
-          map((e: KeyboardEvent) => (e.target as HTMLInputElement).value),
-          filter(text => text.length >= 2),
-          debounceTime(750),
-          distinctUntilChanged(),
-          switchMap(keywords => this.service.searchBanks(keywords))
-        );
-        this.typeObserver = this.typeahead.subscribe(res => {
-          if (res.length > 0) {
-            this.banks = res;
-          }
-        });
-        this.slideShow();
-      }
-    };
+  download() {
+    this.observers.push(
+      this.userService
+        .subscribe(this.downloadForm.value)
+        .subscribe(res => console.log(res))
+    );
   }
 
   slideShow = async () => {
-    let tag = document.querySelector(".ErmGg a.active");
+    let tag = this.tags
+      .toArray()
+      .find(e => e.nativeElement.classList.contains("active")).nativeElement;
     tag.classList.remove("active");
     let next = tag.nextElementSibling;
     if (next) {
       next.classList.add("active");
     } else {
-      let firstTag = document.querySelector(".ErmGg a");
+      let firstTag = this.tags.toArray()[0].nativeElement;
       firstTag.classList.add("active");
     }
     await this.wait(3000);
