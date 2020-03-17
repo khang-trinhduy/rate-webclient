@@ -51,7 +51,7 @@ export class RowComponent implements OnInit, OnDestroy, AfterViewInit {
     private service: RateService,
     private fb: FormBuilder
   ) {}
-  ngAfterViewInit(): void {
+  async ngAfterViewInit() {
     let searchBox = this.search.nativeElement;
 
     this.typeahead = fromEvent(searchBox, "input").pipe(
@@ -69,10 +69,10 @@ export class RowComponent implements OnInit, OnDestroy, AfterViewInit {
       })
     );
 
-    this.slideShow();
+    // this.slideShow();
     let iHolder = this.holder.nativeElement;
     let popUpForm = this.popup.nativeElement;
-    iHolder.addEventListener("click", () => {
+    iHolder.addEventListener("click", async () => {
       let temp = this.icons.toArray();
       console.log(temp[0]._elementRef.nativeElement);
 
@@ -87,12 +87,16 @@ export class RowComponent implements OnInit, OnDestroy, AfterViewInit {
         next.classList.add("animate");
         popUpForm.classList.remove("animate");
         popUpForm.classList.add("deactive");
+        await this.wait(350);
+        popUpForm.classList.remove("active");
       } else {
         let xIcon = this.icons.toArray()[0]._elementRef.nativeElement;
         xIcon.classList.add("active");
         xIcon.classList.add("animate");
-        popUpForm.classList.remove("deactive");
         popUpForm.classList.add("animate");
+        popUpForm.classList.remove("deactive");
+        await this.wait(350);
+        popUpForm.classList.add("active");
       }
     });
   }
@@ -123,21 +127,6 @@ export class RowComponent implements OnInit, OnDestroy, AfterViewInit {
     );
   }
 
-  slideShow = async () => {
-    let tag = this.tags
-      .toArray()
-      .find(e => e.nativeElement.classList.contains("active")).nativeElement;
-    tag.classList.remove("active");
-    let next = tag.nextElementSibling;
-    if (next) {
-      next.classList.add("active");
-    } else {
-      let firstTag = this.tags.toArray()[0].nativeElement;
-      firstTag.classList.add("active");
-    }
-    await this.wait(3000);
-    this.slideShow();
-  };
 
   wait = async ms => {
     return new Promise(r => setTimeout(r, ms));

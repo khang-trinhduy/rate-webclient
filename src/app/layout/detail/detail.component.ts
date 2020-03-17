@@ -14,10 +14,16 @@ import { UserService } from "src/app/services/user.service";
 })
 export class DetailComponent implements OnInit, OnDestroy {
   bank: Bank;
+  rate: Interest;
+  period;
+  top = true;
+  code;
+  reviews;
+  summary;
+  bankid;
   others: Interest[];
   main: Interest[];
   toBeDestroyed;
-  code
   constructor(
     private userService: UserService,
     private dialogRef: MatDialog,
@@ -30,7 +36,12 @@ export class DetailComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.toBeDestroyed = this.service.getBankById(this.code).subscribe(
+    this.code = this.route.snapshot.queryParams["b"]
+      ? this.route.snapshot.queryParams["b"]
+      : this.route.snapshot.queryParams["c"];
+    let type = this.route.snapshot.queryParams["t"] || "";
+    this.period = type;
+    this.toBeDestroyed = this.service.getBankById(this.code, type).subscribe(
       res => (this.bank = res),
       error => {},
       () => {
@@ -51,6 +62,22 @@ export class DetailComponent implements OnInit, OnDestroy {
         }
       }
     );
+    window.addEventListener("load", () => {
+      let elems = document.querySelectorAll(".mnOpd");
+      for (let i = 0; i < elems.length; i++) {
+        const element = elems[i];
+        element.addEventListener("mouseenter", () => {
+          let show = element.querySelector("a");
+          (<HTMLElement>show).style.right = "5px";
+          (<HTMLElement>show).style.opacity = "1";
+        });
+        element.addEventListener("mouseleave", () => {
+          let show = element.querySelector("a");
+          (<HTMLElement>show).style.right = "-97.5px";
+          (<HTMLElement>show).style.opacity = "0";
+        });
+      }
+    });
   }
 
   toDecimal = number => {

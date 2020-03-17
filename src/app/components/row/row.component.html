@@ -3,8 +3,22 @@
     <h3 class="header-line">Danh sách lãi suất</h3>
     <div class="ErmGg">
       <a
+        class="first"
         #tag
-        class="active"
+        target="_blank"
+        [routerLink]="['/criteria']"
+        [queryParams]="{ bank: 'vib' }"
+        >Gói ưu đãi riêng từ ngân hàng VIB</a
+      >
+      <a
+        #tag
+        target="_blank"
+        [routerLink]="['/criteria']"
+        [queryParams]="{ bank: 'scb' }"
+        >SCB cập nhật chính sách lãi suất</a
+      >
+      <a
+        #tag
         target="_blank"
         [routerLink]="['/criteria']"
         [queryParams]="{ bank: 'vib' }"

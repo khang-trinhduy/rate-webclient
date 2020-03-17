@@ -51,6 +51,7 @@ export class HighestComponent implements OnInit, OnDestroy {
         let others = interests;
         this.dialogRef.open(SdetailComponent, {
           width: "auto",
+          height: "100%",
           data: {
             bank: res,
             main: main,

@@ -12,22 +12,22 @@
   justify-content: space-between
   align-items: center
 .ErmGg
-  max-width: 545px
-  width: 265px
+  width: 500px
   height: 40px
   position: relative
-  background-color: #01af96
+  overflow: hidden
+  background-size: cover
+  background-image: url('~/assets/images/bg.png')
   & a
-    position: absolute
+    position: relative
     left: 0
     top: 13.6px
     font-weight: 600
     display: inline
     text-decoration: unset
+    white-space: nowrap
     color: #ffb326
-    visibility: hidden
-    &.active
-      visibility: visible
+    padding: 0 16px
 .row-line
   display: flex
   flex-flow: row nowrap
@@ -115,9 +115,9 @@
   right: 12px
   background: white
   z-index: 102
-  visibility: hidden
+  display: none
   &.active
-    visibility: visible
+    display: block
 form
   text-align: right
   & h2
@@ -169,6 +169,12 @@ form
     animation: slideup 0.25s linear 0s 1 alternate forwards
 .deactive
   animation: slidedown 0.25s linear 0s 1 alternate forwards
+.first
+  -webkit-animation: bannermove 10s linear infinite
+  -moz-animation: bannermove 10s linear infinite
+  -ms-animation: bannermove 10s linear infinite
+  -o-animation: bannermove 10s linear infinite
+  animation: bannermove 10s linear infinite
 @media all and ( max-width: 1500px )
   app-cell
     width: 9.5%!important
