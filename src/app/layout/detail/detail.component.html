@@ -57,4 +57,12 @@
       </tbody>
     </table>
   </div>
+  <h3>
+    <span><mat-icon color="accent">double_arrow</mat-icon></span>
+    Nhận thông tin mới nhất về lãi suất, chính sách và ưu đãi của ngân hàng
+    {{ bank.name }}
+  </h3>
+  <button color="accent" mat-raised-button (click)="subscribe(bank.name)">
+    Đăng ký
+  </button>
 </div>

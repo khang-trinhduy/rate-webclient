@@ -80,6 +80,29 @@ export class DetailComponent implements OnInit, OnDestroy {
     });
   }
 
+  subscribe(bank) {
+    const dialog = this.dialogRef.open(SubscribeComponent, {
+      width: "auto"
+    });
+
+    dialog.afterClosed().subscribe(result => {
+      if (result) {
+        result.bank = bank;
+        this.userService.subscribe(result).subscribe(
+          res => {
+            console.log(res);
+          },
+          error => {
+            console.log(error);
+          },
+          () => {
+            // show tooltip
+          }
+        );
+      }
+    });
+  }
+
   toDecimal = number => {
     if (number > 0) {
       return (Math.round(number * 100) / 100).toFixed(2);
