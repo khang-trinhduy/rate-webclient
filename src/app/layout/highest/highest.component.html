@@ -9,6 +9,7 @@
           <th>Lãi suất</th>
           <th>Kỳ hạn</th>
           <th>Ngân hàng</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -21,6 +22,9 @@
             <a (click)="showBank(item?.bank)">
               <p>{{ item?.bank }}</p></a
             >
+          </td>
+          <td>
+            <a class="pnITA" (click)="showBank(item?.bank)">Chi tiết</a>
           </td>
         </tr>
       </tbody>
