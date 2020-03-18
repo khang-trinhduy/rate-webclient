@@ -8,7 +8,7 @@
   <span *ngIf="goDown()" class="down-icon"
     ><mat-icon>trending_down</mat-icon>{{ getTrendingText() }}</span
   >
-  <span *ngIf="!goDown(rates) && !goUp(rates)" class="flat-icon"
+  <span *ngIf="!goDown() && !goUp()" class="flat-icon"
     ><mat-icon>trending_flat</mat-icon></span
   >
 </div>
