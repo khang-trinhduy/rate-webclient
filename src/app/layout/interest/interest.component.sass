@@ -14,9 +14,9 @@ p.update
   color: #9b9b9bd9
   width: 169px
   margin-left: auto
-  position: relative
-  right: 0
-  bottom: 0
+  position: absolute
+  right: 2.5vw
+  top: 16vh
   z-index: 1000
 .data-container
   border-left: 1px solid rgba(0,0,0,0.14)
@@ -39,6 +39,14 @@ app-row,app-line
   align-items: flex-start
 .data-header
   border-bottom: 1px solid rgba(0,0,0,0.14)
+  height: 16vh
+  max-height: 250px
+  display: flex
+  flex-flow: row
+  justify-content: center
+  align-items: center
+  background: url('~/assets/images/bg.png')
+  background-size: cover
 .header-line
   margin-left: 1.8vh
   position: absolute
@@ -51,9 +59,6 @@ app-row,app-line
   align-items: center
 .post-ck
   position: absolute
-  top: 70px
-  left: 50%
-  margin-left: -199px
   color: white
   & h2
     margin-bottom: 5.5px
@@ -83,10 +88,8 @@ $breakpoint: "1500px"
         margin-bottom: 1em
   .flex-data
     flex-wrap: wrap
-  .post-ck
-    margin-left: -165px
-    & h2
-      font-size: 19.5px
+  .post-ck h2
+    font-size: 19.5px
   .rglr
     font-size: 14px
 @media all and ( max-width: 1024px )

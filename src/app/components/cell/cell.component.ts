@@ -7,9 +7,11 @@ import { Subscriber, Subscription } from "rxjs";
   templateUrl: "./cell.component.html",
   styleUrls: ["./cell.component.sass"]
 })
-export class CellComponent implements OnInit, OnDestroy {
+export class CellComponent implements OnInit {
   @Input() period;
   @Input() bank;
+  @Input() rate;
+  @Input() change;
   sub: Subscription;
   @Input() max;
 
@@ -21,25 +23,13 @@ export class CellComponent implements OnInit, OnDestroy {
 
   constructor(private service: RateService) {}
 
-  ngOnInit() {
-    this.sub = this.service
-      .getRate(this.bank, this.period)
-      .subscribe(res => (this.rates = res));
-  }
+  ngOnInit() {}
 
-  getUp(rates) {
-    if (rates && rates.length >= 0) {
-      return "+" + this.toDecimal(rates[0].value - rates[1].value) + "%";
-    } else {
-      return "+...%";
-    }
-  }
-
-  getDown(rates) {
-    if (rates && rates.length >= 0) {
-      return "-" + this.toDecimal(rates[1].value - rates[0].value) + "%";
-    } else {
-      return "+...%";
+  getTrendingText() {
+    if (this.change.value === "inc") {
+      return "+" + this.toDecimal(this.change.diff) + "%";
+    } else if (this.change.value === "dec") {
+      return "-" + this.toDecimal(Math.abs(this.change.diff)) + "%";
     }
   }
 
@@ -55,25 +45,19 @@ export class CellComponent implements OnInit, OnDestroy {
     return false;
   };
 
-  goUp(rates: Interest[]) {
-    if (rates && rates.length >= 2) {
-      return rates[0].value > rates[1].value;
-    }
-    return false;
+  goUp() {
+    return this.change.value === "inc";
   }
 
-  goDown(rates: Interest[]) {
-    if (rates && rates.length >= 2) {
-      return rates[0].value < rates[1].value;
-    }
-    return false;
+  goDown() {
+    return this.change.value === "dec";
   }
 
-  getLink(code, period = 0) {
+  getLink(period = 0) {
     if (period) {
-      return "/detail?b=" + code + "&t=" + period;
+      return "/detail?b=" + this.bank + "&t=" + period;
     } else {
-      return "/detail?b=" + code;
+      return "/detail?b=" + this.bank;
     }
   }
 
@@ -94,9 +78,4 @@ export class CellComponent implements OnInit, OnDestroy {
       return "0.00";
     }
   };
-
-  //TODO unsubcribe
-  ngOnDestroy() {
-    this.sub.unsubscribe();
-  }
 }

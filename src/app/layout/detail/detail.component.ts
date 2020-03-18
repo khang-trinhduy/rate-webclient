@@ -80,6 +80,14 @@ export class DetailComponent implements OnInit, OnDestroy {
     });
   }
 
+  max = value => {
+    let rates = this.bank.interests.sort((a, b) => {
+      return b.value - a.value;
+    });
+    let maximum = rates[0].value;
+    return value === maximum;
+  };
+
   subscribe(bank) {
     const dialog = this.dialogRef.open(SubscribeComponent, {
       width: "auto"

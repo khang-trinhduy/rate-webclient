@@ -9,7 +9,7 @@ import {
   ViewChildren,
   QueryList
 } from "@angular/core";
-import { Bank, Stat } from "src/app/models/rate";
+import { Bank, Stat, Interest } from "src/app/models/rate";
 import { RateService } from "src/app/services/rate.service";
 import { Banks, Logos } from "src/app/models/banks";
 import {
@@ -106,6 +106,56 @@ export class RowComponent implements OnInit, OnDestroy, AfterViewInit {
     });
   }
 
+  rate(code, period) {
+    let bank = this.banks.find(e => e.normalized === code);
+    let rates = bank.interests.sort((a, b) => {
+      if (a.period !== b.period) {
+        return b.period - a.period;
+      } else {
+        let x = new Date(b.lastUpdate);
+        let y = new Date(a.lastUpdate);
+
+        return x.getTime() - y.getTime();
+      }
+    });
+    return rates.find(e => e.period === period);
+  }
+
+  change = (code, period) => {
+    let bank = this.banks.find(e => e.normalized === code);
+    let rates = bank.interests.sort((a, b) => {
+      if (a.period !== b.period) {
+        return b.period - a.period;
+      } else {
+        let x = new Date(b.lastUpdate);
+        let y = new Date(a.lastUpdate);
+
+        return x.getTime() - y.getTime();
+      }
+    });
+    let results = [];
+    for (let i = 0; i < rates.length; i++) {
+      const rate = rates[i];
+      if (rate.period === period) {
+        results.push(rate);
+      }
+    }
+    if (results.length <= 0) {
+      console.log("error rate not found");
+    } else if (results.length === 1) {
+      return "flat";
+    } else {
+      let diff = parseFloat(results[0].value) - parseFloat(results[1].value);
+      if (diff > 0) {
+        return { value: "inc", diff: diff };
+      } else if (diff === 0) {
+        return "flat";
+      } else {
+        return { value: "dec", diff: diff };
+      }
+    }
+  };
+
   ngOnInit() {
     this.downloadForm = this.fb.group({
       name: ["", Validators.required],
@@ -127,7 +177,6 @@ export class RowComponent implements OnInit, OnDestroy, AfterViewInit {
     );
   }
 
-
   wait = async ms => {
     return new Promise(r => setTimeout(r, ms));
   };
@@ -148,8 +197,20 @@ export class RowComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   };
 
-  max(period) {
-    return this.maxs.find(e => e.period == period.toString()).maximum;
+  max(period, code) {
+    let bank = this.banks.find(e => e.normalized === code);
+    let rates = bank.interests.sort((a, b) => {
+      if (a.value !== b.value) {
+        return b.value - a.value;
+      } else {
+        let x = new Date(b.lastUpdate);
+        let y = new Date(a.lastUpdate);
+
+        return x.getTime() - y.getTime();
+      }
+    });
+    let maximum = rates[0].value;
+    return rates.findIndex(e => e.value === maximum && e.period === period) >= 0;
   }
 
   getColor(code: string) {

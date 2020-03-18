@@ -12,7 +12,9 @@ export class SdetailComponent implements OnInit {
   others;
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.bank = this.data.bank;
+  }
 
   toDecimal = number => {
     if (number > 0) {
@@ -20,5 +22,13 @@ export class SdetailComponent implements OnInit {
     } else {
       return "0.00";
     }
+  };
+
+  max = value => {
+    let rates = this.bank.interests.sort((a, b) => {
+      return b.value - a.value;
+    });
+    let maximum = rates[0].value;
+    return value === maximum;
   };
 }

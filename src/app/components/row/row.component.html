@@ -88,42 +88,58 @@
             </div>
             <app-cell
               [period]="0"
-              [max]="max(0)"
+              [max]="max(0,bank.normalized)"
+              [rate]="rate(bank.normalized, 0)"
+              [change]="change(bank.normalized, 0)"
               [bank]="bank.normalized"
             ></app-cell>
             <app-cell
               [period]="3"
-              [max]="max(3)"
+              [max]="max(3,bank.normalized)"
+              [rate]="rate(bank.normalized, 3)"
+              [change]="change(bank.normalized, 3)"
               [bank]="bank.normalized"
             ></app-cell>
             <app-cell
               [period]="6"
-              [max]="max(6)"
+              [max]="max(6,bank.normalized)"
+              [rate]="rate(bank.normalized, 6)"
+              [change]="change(bank.normalized, 6)"
               [bank]="bank.normalized"
             ></app-cell>
             <app-cell
               [period]="9"
-              [max]="max(9)"
+              [max]="max(9,bank.normalized)"
+              [rate]="rate(bank.normalized, 9)"
+              [change]="change(bank.normalized, 9)"
               [bank]="bank.normalized"
             ></app-cell>
             <app-cell
               [period]="12"
-              [max]="max(12)"
+              [max]="max(12,bank.normalized)"
+              [rate]="rate(bank.normalized, 12)"
+              [change]="change(bank.normalized, 12)"
               [bank]="bank.normalized"
             ></app-cell>
             <app-cell
               [period]="18"
-              [max]="max(18)"
+              [max]="max(18,bank.normalized)"
+              [rate]="rate(bank.normalized, 18)"
+              [change]="change(bank.normalized, 18)"
               [bank]="bank.normalized"
             ></app-cell>
             <app-cell
               [period]="24"
-              [max]="max(24)"
+              [max]="max(24,bank.normalized)"
+              [rate]="rate(bank.normalized, 24)"
+              [change]="change(bank.normalized, 24)"
               [bank]="bank.normalized"
             ></app-cell>
             <app-cell
               [period]="36"
-              [max]="max(36)"
+              [max]="max(36,bank.normalized)"
+              [rate]="rate(bank.normalized, 36)"
+              [change]="change(bank.normalized, 36)"
               [bank]="bank.normalized"
             ></app-cell>
             <div class="asxiRR">

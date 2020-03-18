@@ -22,16 +22,24 @@
         <tr *ngFor="let item of main">
           <td>{{ item.period }} tháng</td>
           <td>
-            <p>{{ toDecimal(item.value) }}%</p>
+            <p [ngClass]="{ max: max(item.value) }">
+              {{ toDecimal(item.value) }}%
+            </p>
           </td>
           <td>
-            <p>{{ toDecimal(item.value) }}%</p>
+            <p [ngClass]="{ max: max(item.value) }">
+              {{ toDecimal(item.value) }}%
+            </p>
           </td>
           <td>
-            <p>{{ toDecimal(item.value) }}%</p>
+            <p [ngClass]="{ max: max(item.value) }">
+              {{ toDecimal(item.value) }}%
+            </p>
           </td>
           <td>
-            <p>{{ toDecimal(item.value) }}%</p>
+            <p [ngClass]="{ max: max(item.value) }">
+              {{ toDecimal(item.value) }}%
+            </p>
           </td>
         </tr>
         <tr>
@@ -42,16 +50,24 @@
         <tr *ngFor="let item of others">
           <td>{{ item.period }} tháng</td>
           <td>
-            <p>{{ toDecimal(item.value) }}%</p>
+            <p [ngClass]="{ max: max(item.value) }">
+              {{ toDecimal(item.value) }}%
+            </p>
           </td>
           <td>
-            <p>{{ toDecimal(item.value) }}%</p>
+            <p [ngClass]="{ max: max(item.value) }">
+              {{ toDecimal(item.value) }}%
+            </p>
           </td>
           <td>
-            <p>{{ toDecimal(item.value) }}%</p>
+            <p [ngClass]="{ max: max(item.value) }">
+              {{ toDecimal(item.value) }}%
+            </p>
           </td>
           <td>
-            <p>{{ toDecimal(item.value) }}%</p>
+            <p [ngClass]="{ max: max(item.value) }">
+              {{ toDecimal(item.value) }}%
+            </p>
           </td>
         </tr>
       </tbody>

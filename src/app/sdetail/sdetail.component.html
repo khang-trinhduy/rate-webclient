@@ -1,4 +1,4 @@
-<div class="detail-container">
+<div class="detail-container" *ngIf="bank">
     <div class="hmLsd">
       <h2>{{ data.bank.name }}</h2>
     </div>
@@ -22,16 +22,16 @@
           <tr *ngFor="let item of data.main">
             <td>{{ item.period }} tháng</td>
             <td>
-              <p>{{ toDecimal(item.value) }}%</p>
+              <p [ngClass]="{'max': max(item.value)}">{{ toDecimal(item.value) }}%</p>
             </td>
             <td>
-              <p>{{ toDecimal(item.value) }}%</p>
+              <p [ngClass]="{'max': max(item.value)}">{{ toDecimal(item.value) }}%</p>
             </td>
             <td>
-              <p>{{ toDecimal(item.value) }}%</p>
+              <p [ngClass]="{'max': max(item.value)}">{{ toDecimal(item.value) }}%</p>
             </td>
             <td>
-              <p>{{ toDecimal(item.value) }}%</p>
+              <p [ngClass]="{'max': max(item.value)}">{{ toDecimal(item.value) }}%</p>
             </td>
           </tr>
           <tr>
@@ -42,16 +42,16 @@
           <tr *ngFor="let item of data.others">
             <td>{{ item.period }} tháng</td>
             <td>
-              <p>{{ toDecimal(item.value) }}%</p>
+              <p [ngClass]="{'max': max(item.value)}">{{ toDecimal(item.value) }}%</p>
             </td>
             <td>
-              <p>{{ toDecimal(item.value) }}%</p>
+              <p [ngClass]="{'max': max(item.value)}">{{ toDecimal(item.value) }}%</p>
             </td>
             <td>
-              <p>{{ toDecimal(item.value) }}%</p>
+              <p [ngClass]="{'max': max(item.value)}">{{ toDecimal(item.value) }}%</p>
             </td>
             <td>
-              <p>{{ toDecimal(item.value) }}%</p>
+              <p [ngClass]="{'max': max(item.value)}">{{ toDecimal(item.value) }}%</p>
             </td>
           </tr>
         </tbody>

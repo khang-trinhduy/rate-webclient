@@ -1,8 +1,7 @@
 <div class="interest-container">
   <div class="flex-container">
     <div class="data-container">
-      <div class="data-header" style="height: 250px;">
-        <img class="img-header" src="assets/images/bg.png" alt="" />
+      <div class="data-header">
         <div class="post-ck" *ngIf="best | async as item">
           <h2>
             Lãi suất tiền gửi cao nhất thị trường <br /><span
@@ -25,7 +24,6 @@
             </button>
           </div>
         </div>
-        <p *ngIf="date" class="update">Ngày cập nhật: {{ toDate(date) }}</p>
       </div>
       <mat-tab-group class="tabs-area">
         <mat-tab label="Tại quầy">
@@ -34,6 +32,7 @@
           </div>
         </mat-tab>
       </mat-tab-group>
+      <p *ngIf="date" class="update">Ngày cập nhật: {{ toDate(date) }}</p>
     </div>
   </div>
 </div>
