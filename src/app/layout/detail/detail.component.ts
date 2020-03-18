@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from "@angular/core";
 import { RateService } from "src/app/services/rate.service";
 import { ActivatedRoute } from "@angular/router";
 import { Bank, Information, Utility, Interest } from "src/app/models/rate";
-import { Observable } from "rxjs";
+import { Observable, of } from "rxjs";
 import { MatDialog } from "@angular/material/dialog";
 import { SubscribeComponent } from "../subscribe/subscribe.component";
 import { UserService } from "src/app/services/user.service";
@@ -102,11 +102,13 @@ export class DetailComponent implements OnInit, OnDestroy {
   }
 
   max = value => {
-    let rates = this.bank.interests.sort((a, b) => {
-      return b.value - a.value;
+    let maximum;
+    of(this.main, this.others).subscribe(res => {
+      maximum = res.sort((a, b) => {
+        return b.value - a.value;
+      });
     });
-    let maximum = rates[0].value;
-    return value === maximum;
+    return value === maximum[0].value;
   };
 
   subscribe(bank) {

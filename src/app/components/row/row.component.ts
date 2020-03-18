@@ -35,8 +35,7 @@ import { UserService } from "src/app/services/user.service";
   templateUrl: "./row.component.html",
   styleUrls: ["./row.component.sass"]
 })
-export class RowComponent
-  implements OnInit, OnDestroy, AfterViewInit {
+export class RowComponent implements OnInit, OnDestroy, AfterViewInit {
   banks: Bank[];
   maxs: Stat[];
   observers: Subscription[] = [];
@@ -76,8 +75,6 @@ export class RowComponent
     let popUpForm = this.popup.nativeElement;
     iHolder.addEventListener("click", async () => {
       let temp = this.icons.toArray();
-      console.log(temp[0]._elementRef.nativeElement);
-
       let active = temp.find(e =>
         e._elementRef.nativeElement.classList.contains("active")
       )._elementRef.nativeElement;
@@ -143,7 +140,6 @@ export class RowComponent
       }
     }
     if (results.length <= 0) {
-      console.log("error rate not found");
     } else if (results.length === 1) {
       return "flat";
     } else {
@@ -166,7 +162,15 @@ export class RowComponent
       require: [true]
     });
     this.observers.push(
-      this.service.getBanks(50, 1).subscribe(res => (this.banks = res))
+      this.service.getBanks(50, 1).subscribe(res => {
+        this.banks = res.sort((a, b) => {
+          if (b.name > a.name) {
+            return -1;
+          } else if (a.name < b.name) {
+            return 1;
+          } else return 0;
+        });
+      })
     );
     this.service.getStats().subscribe(res => (this.maxs = res));
   }
@@ -207,14 +211,24 @@ export class RowComponent
       } else {
         let x = new Date(b.lastUpdate);
         let y = new Date(a.lastUpdate);
-
         return x.getTime() - y.getTime();
       }
     });
+    let currents = rates
+      .filter(e => e.period === period)
+      .sort((a, b) => {
+        let x = new Date(b.lastUpdate);
+        let y = new Date(a.lastUpdate);
+        return x.getTime() - y.getTime();
+      });
+    rates = rates.slice(0, 10).sort((a, b) => {
+      //NOTE I DON'T KNOW WHY BUT IT HAVE TO BE 10
+      let x = new Date(b.lastUpdate);
+      let y = new Date(a.lastUpdate);
+      return x.getTime() - y.getTime();
+    });
     let maximum = rates[0].value;
-    return (
-      rates.findIndex(e => e.value === maximum && e.period === period) >= 0
-    );
+    return currents[0].value === maximum;
   }
 
   getColor(code: string) {
