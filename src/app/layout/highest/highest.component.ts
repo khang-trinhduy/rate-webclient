@@ -5,7 +5,7 @@ import { UserService } from "src/app/services/user.service";
 import { MatDialog } from "@angular/material/dialog";
 import { SubscribeComponent } from "../subscribe/subscribe.component";
 import { Subscription } from "rxjs";
-import { SdetailComponent } from 'src/app/sdetail/sdetail.component';
+import { SdetailComponent } from "src/app/sdetail/sdetail.component";
 
 @Component({
   selector: "app-highest",
@@ -35,11 +35,16 @@ export class HighestComponent implements OnInit, OnDestroy {
   }
 
   showBank(bank) {
-    console.log(bank);
     this.observables.push(
       this.service.getBank(bank).subscribe(res => {
         let interests = res.interests.sort((a, b) => {
-          return a.period - b.period;
+          if (a.period != b.period) {
+            return a.period - b.period;
+          } else {
+            let x = new Date(b.lastUpdate).getTime();
+            let y = new Date(a.lastUpdate).getTime();
+            return x - y;
+          }
         });
         let one = interests.find(e => e.period === 1);
         let six = interests.find(e => e.period === 6);

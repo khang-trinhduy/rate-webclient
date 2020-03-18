@@ -1,61 +1,76 @@
 <div class="detail-container" *ngIf="bank">
-    <div class="hmLsd">
-      <h2>{{ data.bank.name }}</h2>
-    </div>
-    <div class="tbhd">
-      <table>
-        <thead>
-          <tr>
-            <th></th>
-            <th>Từ 10 triệu đến 100 triệu</th>
-            <th>Từ 100 triệu đến dưới 1 tỷ</th>
-            <th>Từ 1 tỷ dến dưới 5 tỷ</th>
-            <th>Từ 5 tỷ trở lên</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td colspan="5" class="medTdr">
-              Kỳ hạn nổi bật
-            </td>
-          </tr>
-          <tr *ngFor="let item of data.main">
-            <td>{{ item.period }} tháng</td>
-            <td>
-              <p [ngClass]="{'max': max(item.value)}">{{ toDecimal(item.value) }}%</p>
-            </td>
-            <td>
-              <p [ngClass]="{'max': max(item.value)}">{{ toDecimal(item.value) }}%</p>
-            </td>
-            <td>
-              <p [ngClass]="{'max': max(item.value)}">{{ toDecimal(item.value) }}%</p>
-            </td>
-            <td>
-              <p [ngClass]="{'max': max(item.value)}">{{ toDecimal(item.value) }}%</p>
-            </td>
-          </tr>
-          <tr>
-            <td colspan="5" class="medTdr">
-              Kỳ hạn khác
-            </td>
-          </tr>
-          <tr *ngFor="let item of data.others">
-            <td>{{ item.period }} tháng</td>
-            <td>
-              <p [ngClass]="{'max': max(item.value)}">{{ toDecimal(item.value) }}%</p>
-            </td>
-            <td>
-              <p [ngClass]="{'max': max(item.value)}">{{ toDecimal(item.value) }}%</p>
-            </td>
-            <td>
-              <p [ngClass]="{'max': max(item.value)}">{{ toDecimal(item.value) }}%</p>
-            </td>
-            <td>
-              <p [ngClass]="{'max': max(item.value)}">{{ toDecimal(item.value) }}%</p>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+  <div class="hmLsd">
+    <h2>{{ bank.name }}</h2>
   </div>
-  
+  <div class="tbhd">
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Từ 10 triệu đến 100 triệu</th>
+          <th>Từ 100 triệu đến dưới 1 tỷ</th>
+          <th>Từ 1 tỷ dến dưới 5 tỷ</th>
+          <th>Từ 5 tỷ trở lên</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td colspan="5" class="medTdr">
+            Kỳ hạn nổi bật
+          </td>
+        </tr>
+        <tr *ngFor="let item of main">
+          <td>{{ item.period }} tháng</td>
+          <td>
+            <p [ngClass]="{ max: max(item.value) }">
+              {{ toDecimal(item.value) }}%
+            </p>
+          </td>
+          <td>
+            <p [ngClass]="{ max: max(item.value) }">
+              {{ toDecimal(item.value) }}%
+            </p>
+          </td>
+          <td>
+            <p [ngClass]="{ max: max(item.value) }">
+              {{ toDecimal(item.value) }}%
+            </p>
+          </td>
+          <td>
+            <p [ngClass]="{ max: max(item.value) }">
+              {{ toDecimal(item.value) }}%
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="5" class="medTdr">
+            Kỳ hạn khác
+          </td>
+        </tr>
+        <tr *ngFor="let item of others">
+          <td>{{ item.period }} tháng</td>
+          <td>
+            <p [ngClass]="{ max: max(item.value) }">
+              {{ toDecimal(item.value) }}%
+            </p>
+          </td>
+          <td>
+            <p [ngClass]="{ max: max(item.value) }">
+              {{ toDecimal(item.value) }}%
+            </p>
+          </td>
+          <td>
+            <p [ngClass]="{ max: max(item.value) }">
+              {{ toDecimal(item.value) }}%
+            </p>
+          </td>
+          <td>
+            <p [ngClass]="{ max: max(item.value) }">
+              {{ toDecimal(item.value) }}%
+            </p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -14,6 +14,37 @@ export class SdetailComponent implements OnInit {
 
   ngOnInit() {
     this.bank = this.data.bank;
+    this.main = this.data.main;
+    this.others = this.data.others;
+    this.others = this.others.sort((a, b) => {
+      if (a.period != b.period) {
+        return a.period - b.period;
+      } else {
+        let x = new Date(b.lastUpdate).getTime();
+        let y = new Date(a.lastUpdate).getTime();
+        return x - y;
+      }
+    });
+    let zero = this.others.find(e => e.period === 0);
+    let two = this.others.find(e => e.period === 2);
+    let three = this.others.find(e => e.period === 3);
+    let nine = this.others.find(e => e.period === 9);
+    let twelve = this.others.find(e => e.period === 12);
+    let thirteen = this.others.find(e => e.period === 13);
+    let eighteen = this.others.find(e => e.period === 18);
+    let tf = this.others.find(e => e.period === 24);
+    let ts = this.others.find(e => e.period === 36);
+    this.others = [
+      zero,
+      two,
+      three,
+      nine,
+      twelve,
+      thirteen,
+      eighteen,
+      tf,
+      ts
+    ];
   }
 
   toDecimal = number => {

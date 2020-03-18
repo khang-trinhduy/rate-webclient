@@ -7,7 +7,8 @@ import {
   ViewChild,
   ElementRef,
   ViewChildren,
-  QueryList
+  QueryList,
+  AfterContentChecked
 } from "@angular/core";
 import { Bank, Stat, Interest } from "src/app/models/rate";
 import { RateService } from "src/app/services/rate.service";
@@ -34,7 +35,8 @@ import { UserService } from "src/app/services/user.service";
   templateUrl: "./row.component.html",
   styleUrls: ["./row.component.sass"]
 })
-export class RowComponent implements OnInit, OnDestroy, AfterViewInit {
+export class RowComponent
+  implements OnInit, OnDestroy, AfterViewInit {
   banks: Bank[];
   maxs: Stat[];
   observers: Subscription[] = [];
@@ -210,7 +212,9 @@ export class RowComponent implements OnInit, OnDestroy, AfterViewInit {
       }
     });
     let maximum = rates[0].value;
-    return rates.findIndex(e => e.value === maximum && e.period === period) >= 0;
+    return (
+      rates.findIndex(e => e.value === maximum && e.period === period) >= 0
+    );
   }
 
   getColor(code: string) {

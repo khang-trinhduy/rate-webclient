@@ -49,16 +49,37 @@ export class DetailComponent implements OnInit, OnDestroy {
 
         if (this.bank) {
           let interests = this.bank.interests.sort((a, b) => {
-            return a.period - b.period;
+            if (a.period != b.period) {
+              return a.period - b.period;
+            } else {
+              let x = new Date(b.lastUpdate).getTime();
+              let y = new Date(a.lastUpdate).getTime();
+              return x - y;
+            }
           });
+          let zero = interests.find(e => e.period === 0);
+          let two = interests.find(e => e.period === 2);
+          let three = interests.find(e => e.period === 3);
+          let nine = interests.find(e => e.period === 9);
+          let twelve = interests.find(e => e.period === 12);
+          let thirteen = interests.find(e => e.period === 13);
+          let eighteen = interests.find(e => e.period === 18);
+          let tf = interests.find(e => e.period === 24);
+          let ts = interests.find(e => e.period === 36);
+          this.others = [
+            zero,
+            two,
+            three,
+            nine,
+            twelve,
+            thirteen,
+            eighteen,
+            tf,
+            ts
+          ];
           let one = interests.find(e => e.period === 1);
           let six = interests.find(e => e.period === 6);
-          let oIndex = interests.indexOf(one);
-          let sIndex = interests.indexOf(six);
-          interests.slice(oIndex, 1);
-          interests.slice(sIndex, 1);
           this.main = [one, six];
-          this.others = interests;
         }
       }
     );
