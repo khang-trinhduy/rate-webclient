@@ -1,5 +1,5 @@
 <div class="cell-content" *ngIf="rate" [ngClass]="{'max': max}">
-  <a class="cell-text" [href]="getLink(rate.period)"
+  <a class="cell-text"
     >{{ toDecimal(rate.value) }}%</a
   >
   <span *ngIf="goUp()" class="up-icon"

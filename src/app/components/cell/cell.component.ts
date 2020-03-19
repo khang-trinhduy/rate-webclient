@@ -53,14 +53,6 @@ export class CellComponent implements OnInit {
     return this.change.value === "dec";
   }
 
-  getLink(period = 0) {
-    if (period) {
-      return "/detail?b=" + this.bank + "&t=" + period;
-    } else {
-      return "/detail?b=" + this.bank;
-    }
-  }
-
   toDate = date => {
     if (date) {
       return date
