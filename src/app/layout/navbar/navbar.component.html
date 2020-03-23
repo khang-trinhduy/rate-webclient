@@ -65,8 +65,11 @@
 
 <div class="mIccO">
   <mat-menu #appMenu="matMenu">
-    <a href="#" class="bsAlo">Lãi suất</a>
-    <a href="#" class="bsAlo">Vay</a>
-    <a href="#" class="bsAlo">Tin tức</a>
+    <a [routerLink]="['/recommend']" class="bsAlo">Tốt nhất</a>
+    <a [routerLink]="['/compare']" class="bsAlo">So sánh</a>
+    <a [routerLink]="['/policy']" class="bsAlo">Chính sách</a>
+    <a [routerLink]="['/service']" class="bsAlo">Dịch vụ</a>
+    <a [routerLink]="['/signin']" class="bsAlo">Đăng nhập</a>
+    <a [routerLink]="['/signup']" class="bsAlo">Đăng ký</a>
   </mat-menu>
 </div>

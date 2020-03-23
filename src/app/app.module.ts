@@ -52,6 +52,10 @@ import { HighestComponent } from "./layout/highest/highest.component";
 import { CriteriaComponent } from "./layout/criteria/criteria.component";
 import { SdetailComponent } from "./sdetail/sdetail.component";
 import { UpdateComponent } from './components/update/update.component';
+import { MRecommendComponent } from './mobile/m-recommend/m-recommend.component';
+import { MCompareComponent } from './mobile/m-compare/m-compare.component';
+import { MServiceComponent } from './mobile/m-service/m-service.component';
+import { MPolicyComponent } from './mobile/m-policy/m-policy.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -87,7 +91,11 @@ import { UpdateComponent } from './components/update/update.component';
     HighestComponent,
     CriteriaComponent,
     SdetailComponent,
-    UpdateComponent
+    UpdateComponent,
+    MRecommendComponent,
+    MCompareComponent,
+    MServiceComponent,
+    MPolicyComponent
   ],
   imports: [
     BrowserModule,

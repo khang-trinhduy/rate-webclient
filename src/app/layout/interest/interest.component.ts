@@ -5,6 +5,7 @@ import { Bank } from "src/app/models/rate";
 import { MatDialog } from "@angular/material/dialog";
 import { SubscribeComponent } from "../subscribe/subscribe.component";
 import { UserService } from "src/app/services/user.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-interest",
@@ -21,13 +22,14 @@ export class InterestComponent implements OnInit {
   constructor(
     private userService: UserService,
     public dialog: MatDialog,
-    private service: RateService
+    private rateService: RateService,
+    private router: Router
   ) {}
 
   ngOnInit() {
-    this.$banks = this.service.getBanks(this.pageSize, this.pageIndex);
-    this.service.getDate().subscribe(res => (this.date = res.date));
-    this.best = this.service.getTop(1);
+    this.$banks = this.rateService.getBanks(this.pageSize, this.pageIndex);
+    this.rateService.getDate().subscribe(res => (this.date = res.date));
+    this.best = this.rateService.getTop(1);
   }
 
   openDialog(bank, period): void {
@@ -88,4 +90,11 @@ export class InterestComponent implements OnInit {
       }
     }
   };
+
+  //mobile section
+
+  recommend = () => this.router.navigateByUrl("recommend");
+  service = () => this.router.navigateByUrl("service");
+  compare = () => this.router.navigateByUrl("compare");
+  policy = () => this.router.navigateByUrl("policy");
 }

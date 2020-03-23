@@ -8,6 +8,10 @@ import { SubscribeComponent } from "./layout/subscribe/subscribe.component";
 import { HighestComponent } from "./layout/highest/highest.component";
 import { CriteriaComponent } from "./layout/criteria/criteria.component";
 import { UpdateComponent } from "./components/update/update.component";
+import { MCompareComponent } from './mobile/m-compare/m-compare.component';
+import { MPolicyComponent } from './mobile/m-policy/m-policy.component';
+import { MServiceComponent } from './mobile/m-service/m-service.component';
+import { MRecommendComponent } from './mobile/m-recommend/m-recommend.component';
 
 const routes: Routes = [
   { path: "", component: InterestComponent },
@@ -17,7 +21,12 @@ const routes: Routes = [
   { path: "register", component: SubscribeComponent },
   { path: "highest", component: HighestComponent },
   { path: "criteria", component: CriteriaComponent },
-  { path: "update", component: UpdateComponent }
+  { path: "update", component: UpdateComponent },
+  { path: "recommend", component: MRecommendComponent },
+  { path: "service", component: MServiceComponent },
+  { path: "policy", component: MPolicyComponent },
+  { path: "compare", component: MCompareComponent }
+  
 ];
 
 @NgModule({
