@@ -21,6 +21,13 @@
         #tag
         target="_blank"
         [routerLink]="['/criteria']"
+        [queryParams]="{ bank: 'abb' }"
+        >Lãi suất ngân hàng ABBank</a
+      >
+      <a
+        #tag
+        target="_blank"
+        [routerLink]="['/criteria']"
         [queryParams]="{ bank: 'vib' }"
         >Gói ưu đãi riêng từ ngân hàng VIB</a
       >
@@ -30,6 +37,13 @@
         [routerLink]="['/criteria']"
         [queryParams]="{ bank: 'scb' }"
         >SCB cập nhật chính sách lãi suất</a
+      >
+      <a
+        #tag
+        target="_blank"
+        [routerLink]="['/criteria']"
+        [queryParams]="{ bank: 'abb' }"
+        >Lãi suất ngân hàng ABBank</a
       >
     </div>
     <input
@@ -108,11 +122,11 @@
               [bank]="bank.normalized"
             ></app-cell>
             <app-cell
-            [period]="12"
-            [max]="max(12, bank.normalized)"
-            [rate]="rate(bank.normalized, 12)"
-            [change]="change(bank.normalized, 12)"
-            [bank]="bank.normalized"
+              [period]="12"
+              [max]="max(12, bank.normalized)"
+              [rate]="rate(bank.normalized, 12)"
+              [change]="change(bank.normalized, 12)"
+              [bank]="bank.normalized"
             ></app-cell>
             <app-cell
               [period]="13"

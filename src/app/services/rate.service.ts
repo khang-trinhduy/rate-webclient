@@ -28,6 +28,14 @@ export class RateService {
       .pipe(catchError(this.handleError<any>("CREATE REVIEW")));
   }
 
+  addInterest(form): Observable<any> {
+    return this.http
+      .post(`${environment.api}/rates`, form, {
+        headers: this.httpHeaderOptions
+      })
+      .pipe(catchError(this.handleError<any>("CREATE INTEREST")));
+  }
+
   getRates(): Observable<any> {
     return this.http
       .get(`${environment.api}`)

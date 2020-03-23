@@ -1,6 +1,5 @@
 import { Component, OnInit, Inject } from "@angular/core";
 import { FormBuilder, Validators, FormGroup } from "@angular/forms";
-import { UserService } from "src/app/services/user.service";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 
 @Component({

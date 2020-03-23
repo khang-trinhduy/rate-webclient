@@ -51,6 +51,7 @@ import { MatMenuModule } from "@angular/material/menu";
 import { HighestComponent } from "./layout/highest/highest.component";
 import { CriteriaComponent } from "./layout/criteria/criteria.component";
 import { SdetailComponent } from "./sdetail/sdetail.component";
+import { UpdateComponent } from './components/update/update.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -85,7 +86,8 @@ import { SdetailComponent } from "./sdetail/sdetail.component";
     SubscribeComponent,
     HighestComponent,
     CriteriaComponent,
-    SdetailComponent
+    SdetailComponent,
+    UpdateComponent
   ],
   imports: [
     BrowserModule,
@@ -108,7 +110,7 @@ import { SdetailComponent } from "./sdetail/sdetail.component";
     InfiniteScrollModule,
     MatMenuModule
   ],
-  entryComponents: [AddReviewComponent, SdetailComponent],
+  entryComponents: [AddReviewComponent, SdetailComponent, AddInterestComponent],
   providers: [],
   bootstrap: [AppComponent]
 })
