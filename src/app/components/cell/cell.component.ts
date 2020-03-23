@@ -65,9 +65,11 @@ export class CellComponent implements OnInit {
 
   toDecimal = number => {
     if (number > 0) {
-      return (Math.round(number * 100) / 100).toFixed(2);
+      return (Math.round(number * 100) / 100).toFixed(2) + "%";
+    } else if (number == -100) {
+      return "Thỏa thuận";
     } else {
-      return "0.00";
+      return "0.00%";
     }
   };
 }

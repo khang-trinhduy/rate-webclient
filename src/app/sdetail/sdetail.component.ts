@@ -34,24 +34,16 @@ export class SdetailComponent implements OnInit {
     let eighteen = this.others.find(e => e.period === 18);
     let tf = this.others.find(e => e.period === 24);
     let ts = this.others.find(e => e.period === 36);
-    this.others = [
-      zero,
-      two,
-      three,
-      nine,
-      twelve,
-      thirteen,
-      eighteen,
-      tf,
-      ts
-    ];
+    this.others = [zero, two, three, nine, twelve, thirteen, eighteen, tf, ts];
   }
 
   toDecimal = number => {
     if (number > 0) {
-      return (Math.round(number * 100) / 100).toFixed(2);
+      return (Math.round(number * 100) / 100).toFixed(2) + "%";
+    } else if (number == -100) {
+      return "Thỏa thuận";
     } else {
-      return "0.00";
+      return "0.00%";
     }
   };
 
