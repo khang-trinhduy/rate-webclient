@@ -10,6 +10,7 @@ export class CriteriaComponent implements OnInit {
   vib = false;
   scb = false;
   abb = false;
+  tcb = false;
 
   constructor(private activeRoute: ActivatedRoute) {}
 
@@ -19,6 +20,8 @@ export class CriteriaComponent implements OnInit {
       this.vib = true;
     } else if (bank.toLowerCase() == "abb") {
       this.abb = true;
+    } else if (bank.toLowerCase() == "tcb") {
+      this.tcb = true;
     } else {
       this.scb = true;
     }

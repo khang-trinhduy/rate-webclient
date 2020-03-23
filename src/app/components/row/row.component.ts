@@ -221,7 +221,7 @@ export class RowComponent implements OnInit, OnDestroy, AfterViewInit {
         let y = new Date(a.lastUpdate);
         return x.getTime() - y.getTime();
       });
-    rates = rates.slice(0, 10).sort((a, b) => {
+    rates = rates.slice(0, 15).sort((a, b) => {
       //NOTE I DON'T KNOW WHY BUT IT HAVE TO BE 10
       let x = new Date(b.lastUpdate);
       let y = new Date(a.lastUpdate);

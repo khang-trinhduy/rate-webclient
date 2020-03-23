@@ -73,8 +73,38 @@ app-row,app-line
   padding: 0.3vh 2.7vh
   font-weight: 700
   cursor: pointer
-    
-
+.IpmmX
+  display: none
+.mmkKl
+  font-size: 21px
+  font-family: initial
+  text-align: center
+.fassE
+  padding: 1.5vh
+  padding-top: 3vh
+.klLie
+  display: flex
+  flex-flow: row
+  align-items: center
+  justify-content: flex-start
+  width: 80vw
+  padding: 1.5vh 0vw
+  margin-left: 10vw
+  -webkit-box-shadow: 0 4px 8px 0 rgba(108,127,135,.1), 0 1px 4px 0 rgba(108,127,135,.36)
+  box-shadow: 0 4px 8px 0 rgba(108,127,135,.1), 0 1px 4px 0 rgba(108,127,135,.36)
+  border: 1px solid rgba(0,0,0,0.125)
+  margin-block-end: 2.5vh
+  & img
+    width: 25vw
+    margin: 0.5vh 10.5vw
+  & p
+    font-size: 19.5px
+    font-style: normal
+    font-variant: normal
+    font-weight: 555
+    line-height: 20px
+    opacity: 0.65
+    font-family: initial
 $breakpoint: "1500px"
 @media all and ( max-width: $breakpoint )
   app-row,app-table,app-line
@@ -95,3 +125,8 @@ $breakpoint: "1500px"
 @media all and ( max-width: 1024px )
   .tool-container
     display: none
+@media all and ( max-width: 724px )
+  .flex-container
+    display: none
+  .IpmmX
+    display: block
