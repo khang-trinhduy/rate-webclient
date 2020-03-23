@@ -13,11 +13,26 @@ export class UpdateComponent implements OnInit {
 
   ngOnInit() {}
 
-  add() {
-    let dialogRef = this.dialog.open(AddInterestComponent, {
-      width: "auto",
-      height: "auto"
+  addRate() {
+    let dialogRef = this.dialog.open(AddInterestComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      this.service.addInterest(result).subscribe(res => console.log(res));
     });
+  }
+  addBank() {
+    let dialogRef = this.dialog.open(AddInterestComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      this.service.addInterest(result).subscribe(res => console.log(res));
+    });
+  }
+  updateRate() {
+    let dialogRef = this.dialog.open(AddInterestComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      this.service.addInterest(result).subscribe(res => console.log(res));
+    });
+  }
+  updateBank() {
+    let dialogRef = this.dialog.open(AddInterestComponent);
     dialogRef.afterClosed().subscribe(result => {
       this.service.addInterest(result).subscribe(res => console.log(res));
     });

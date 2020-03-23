@@ -62,4 +62,5 @@ export class Logos {
   hsbc: string = environment.static + "/public/images/hsbc.png";
   standard: string = environment.static + "/public/images/standard.jpg";
   pgbank: string = environment.static + "/public/images/pgb.png";
+  seabank: string = environment.static + "/public/images/seabank.png";
 }

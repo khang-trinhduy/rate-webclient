@@ -1,32 +1,35 @@
-<form [formGroup]="form" (ngSubmit)="save()">
-  <mat-select
-    formControlName="bank"
-    placeholder="Ngân hàng"
-    name="bank"
-  >
-    <mat-option *ngFor="let bank of $banks | async" [value]="bank.normalized">
-      {{ bank.name }}
-    </mat-option>
-  </mat-select>
-  <mat-form-field>
-    <input matInput placeholder="Lãi suất" formControlName="value" value="" />
-  </mat-form-field>
-  <mat-select
-    placeholder="Kỳ hạn"
-    formControlName="period"
-    name="period"
-  >
-    <mat-option *ngFor="let period of periods" [value]="period.value">
-      {{ period.viewValue }}
-    </mat-option>
-  </mat-select>
-  <mat-form-field>
-    <input
-      matInput
-      formControlName="threshold"
-      placeholder="Số tiền tối thiểu"
-      value=""
-    />
-  </mat-form-field>
-  <button mat-raised-button [disabled]="!form.valid">Tạo</button>
-</form>
+<div
+  style="width: 33vw;max-width: 400px;min-width: 340px;padding: 1.5vh 1.5vw;"
+>
+  <form [formGroup]="form" (ngSubmit)="save()">
+    <mat-select formControlName="bank" placeholder="Ngân hàng" name="bank">
+      <mat-option *ngFor="let bank of $banks | async" [value]="bank.normalized">
+        {{ bank.name }}
+      </mat-option>
+    </mat-select>
+    <mat-form-field style="width: 100%;">
+      <input
+        matInput
+        type="number"
+        placeholder="Lãi suất"
+        formControlName="value"
+        value=""
+      />
+    </mat-form-field>
+    <mat-select placeholder="Kỳ hạn" formControlName="period" name="period">
+      <mat-option *ngFor="let period of periods" [value]="period.value">
+        {{ period.viewValue }}
+      </mat-option>
+    </mat-select>
+    <mat-form-field style="width: 100%;">
+      <input
+        type="number"
+        matInput
+        formControlName="threshold"
+        placeholder="Số tiền tối thiểu"
+        value=""
+      />
+    </mat-form-field>
+    <button mat-raised-button [disabled]="!form.valid">Tạo</button>
+  </form>
+</div>
