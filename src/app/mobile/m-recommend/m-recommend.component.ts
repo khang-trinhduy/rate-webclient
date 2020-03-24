@@ -26,4 +26,8 @@ export class MRecommendComponent implements OnInit {
     this.$rates = this.rateService.searchRates(this.best.value);
     this.$others = this.rateService.getRecommends(5, this.best.value);
   }
+
+  redirect = id => {};
+  toDecimal = rate => {};
+  max = () => {};
 }
