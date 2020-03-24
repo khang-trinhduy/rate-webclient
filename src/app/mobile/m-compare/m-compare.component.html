@@ -1,1 +1,53 @@
-<p>m-compare works!</p>
+<div class="mjIjj">
+  <div class="mmWdd">
+    <input type="number" placeholder="tìm lãi suất (%)" />
+  </div>
+  <div class="mmXij">
+    <h2>So sánh lãi suất</h2>
+    <div class="bMbjm">
+      <div class="mjfEE">
+        <p>Ký hiệu</p>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th rowspan="2">Ngân hàng</th>
+            <th colspan="2">
+              Kỳ hạn
+            </th>
+          </tr>
+          <tr>
+            <th>
+              Không kỳ hạn
+            </th>
+            <th>
+              3 tháng
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let bank of banks">
+            <td>
+              <img [src]="getLogo(bank?.normalized)" [alt]="bank?.name" />
+            </td>
+            <td>
+              {{ toDecimal(getRate(bank.normalized, 0).value) }}
+              <span> </span>
+            </td>
+            <td>
+              {{ toDecimal(getRate(bank.normalized, 3).value) }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="iiOOe">
+    <div class="luiLj">
+      <img src="/assets/images/left.png" alt="left" />
+    </div>
+    <div class="mnMbv">
+      <img src="/assets/images/right.png" alt="right" />
+    </div>
+  </div>
+</div>
