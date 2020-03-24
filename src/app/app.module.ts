@@ -56,6 +56,7 @@ import { MRecommendComponent } from './mobile/m-recommend/m-recommend.component'
 import { MCompareComponent } from './mobile/m-compare/m-compare.component';
 import { MServiceComponent } from './mobile/m-service/m-service.component';
 import { MPolicyComponent } from './mobile/m-policy/m-policy.component';
+import { MDetailComponent } from './mobile/m-detail/m-detail.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -95,7 +96,8 @@ import { MPolicyComponent } from './mobile/m-policy/m-policy.component';
     MRecommendComponent,
     MCompareComponent,
     MServiceComponent,
-    MPolicyComponent
+    MPolicyComponent,
+    MDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -118,7 +120,7 @@ import { MPolicyComponent } from './mobile/m-policy/m-policy.component';
     InfiniteScrollModule,
     MatMenuModule
   ],
-  entryComponents: [AddReviewComponent, SdetailComponent, AddInterestComponent],
+  entryComponents: [MDetailComponent, AddReviewComponent, SdetailComponent, AddInterestComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

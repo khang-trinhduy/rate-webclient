@@ -1,5 +1,5 @@
 <div class="mjIjj">
-  <div class="mmWđ">
+  <div class="mmWdd">
     <input type="number" placeholder="tìm lãi suất (%)" />
   </div>
   <div class="mmXij">
@@ -11,6 +11,9 @@
     </div>
   </div>
   <div class="bmknE">
+    <h2>
+      Những ngân hàng sau đây có mức lãi suất trên:
+    </h2>
     <table>
       <thead>
         <tr>
@@ -30,7 +33,7 @@
           </td>
           <td>{{ rate.period }} tháng</td>
           <td>
-            <div class="mkiEE">
+            <div class="mkiEE" (click)="detail(rate.bank)">
               <mat-icon>add</mat-icon>
             </div>
           </td>
@@ -39,9 +42,16 @@
     </table>
   </div>
   <div class="hhUej">
-    <h3>Các gói nổi bật</h3>
-    <div *ngFor="let rate of ($others | async)" (click)="redirect(rate._id)">
-      Lãi {{ rate.value }} kỳ hạn {{ rate.period }} tháng
+    <h3>Các gói nổi bật khác</h3>
+    <div
+      class="abcCa"
+      *ngFor="let rate of $others | async"
+      (click)="redirect(rate._id)"
+    >
+      <img class="miijE" src="/assets/images/sk.png" alt="" />
+      <div class="mXjjd">
+        Lãi {{ rate.value }} kỳ hạn {{ rate.period }} tháng
+      </div>
     </div>
   </div>
 </div>
