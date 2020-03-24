@@ -27,9 +27,9 @@ export class CellComponent implements OnInit {
 
   getTrendingText() {
     if (this.change.value === "inc") {
-      return "+" + this.toDecimal(this.change.diff) + "%";
+      return "+" + this.toDecimal(this.change.diff);
     } else if (this.change.value === "dec") {
-      return "-" + this.toDecimal(Math.abs(this.change.diff)) + "%";
+      return "-" + this.toDecimal(Math.abs(this.change.diff));
     }
   }
 

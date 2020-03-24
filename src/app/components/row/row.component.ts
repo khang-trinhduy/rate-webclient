@@ -133,17 +133,22 @@ export class RowComponent implements OnInit, OnDestroy, AfterViewInit {
       }
     });
     let results = [];
+    let current = rates.find(e => e.period === period);
     for (let i = 0; i < rates.length; i++) {
       const rate = rates[i];
-      if (rate.period === period) {
+      if (rate.period === period && rate.value != current.value) {
         results.push(rate);
       }
     }
     if (results.length <= 0) {
-    } else if (results.length === 1) {
       return "flat";
     } else {
-      let diff = parseFloat(results[0].value) - parseFloat(results[1].value);
+      if (results[0].value === 0) {
+        // get rid of new rates
+        return "flat";
+      }
+      let diff =
+        parseFloat(current.value.toString()) - parseFloat(results[0].value);
       if (diff > 0) {
         return { value: "inc", diff: diff };
       } else if (diff === 0) {

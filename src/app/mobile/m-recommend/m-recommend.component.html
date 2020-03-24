@@ -1,1 +1,47 @@
-<p>m-recommend works!</p>
+<div class="mjIjj">
+  <div class="mmWđ">
+    <input type="number" placeholder="tìm lãi suất (%)" />
+  </div>
+  <div class="mmXij">
+    <h2>Lãi suất tốt nhất hiện nay</h2>
+    <div class="bMbjm">
+      <p>
+        {{ toDecimal(max()) }}
+      </p>
+    </div>
+  </div>
+  <div class="bmknE">
+    <table>
+      <thead>
+        <tr>
+          <th>Ngân hàng</th>
+          <th>Lãi suất</th>
+          <th>Kỳ hạn</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let rate of $rates | async">
+          <td>
+            {{ rate.bank }}
+          </td>
+          <td>
+            {{ rate.value }}
+          </td>
+          <td>{{ rate.period }} tháng</td>
+          <td>
+            <div class="mkiEE">
+              <mat-icon>add</mat-icon>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="hhUej">
+    <h3>Các gói nổi bật</h3>
+    <div *ngFor="let rate of ($others | async)" (click)="redirect(rate._id)">
+      Lãi {{ rate.value }} kỳ hạn {{ rate.period }} tháng
+    </div>
+  </div>
+</div>

@@ -13,6 +13,11 @@ export class RateService {
   });
   constructor(private http: HttpClient) {}
 
+  getRecommends(size: number, except: number = 0): Observable<any> {
+    return this.http
+      .get(`${environment.api}/rates/recommend?size=${size}&exp=${except}`)
+      .pipe(catchError(this.handleError<any>("GET RECOMMENDS")));
+  }
   searchRates(value): Observable<any> {
     return this.http
       .get(`${environment.api}/rates/search?value=${value}`, {
