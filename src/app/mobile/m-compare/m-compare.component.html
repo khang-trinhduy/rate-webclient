@@ -17,11 +17,11 @@
             </th>
           </tr>
           <tr>
-            <th>
-              Không kỳ hạn
+            <th style="width: 100px;">
+              {{ getPeriodLabel(first) }}
             </th>
-            <th>
-              3 tháng
+            <th style="width: 100px;">
+              {{ getPeriodLabel(second) }}
             </th>
           </tr>
         </thead>
@@ -31,11 +31,11 @@
               <img [src]="getLogo(bank?.normalized)" [alt]="bank?.name" />
             </td>
             <td>
-              {{ toDecimal(getRate(bank.normalized, 0).value) }}
+              {{ toDecimal(getRate(bank.normalized, first).value) }}
               <span> </span>
             </td>
             <td>
-              {{ toDecimal(getRate(bank.normalized, 3).value) }}
+              {{ toDecimal(getRate(bank.normalized, second).value) }}
             </td>
           </tr>
         </tbody>
@@ -43,10 +43,10 @@
     </div>
   </div>
   <div class="iiOOe">
-    <div class="luiLj">
+    <div class="luiLj" #left>
       <img src="/assets/images/left.png" alt="left" />
     </div>
-    <div class="mnMbv">
+    <div class="mnMbv" #right>
       <img src="/assets/images/right.png" alt="right" />
     </div>
   </div>
