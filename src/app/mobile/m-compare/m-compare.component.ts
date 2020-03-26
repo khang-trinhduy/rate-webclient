@@ -94,6 +94,7 @@ export class MCompareComponent
       (<HTMLElement>left).style.visibility = "visible";
     });
 
+    //TODO show result mobile version
     // experimenting scroll event for mobile and tablet
     let scrollUp = false;
     document.addEventListener("scroll", () => {
