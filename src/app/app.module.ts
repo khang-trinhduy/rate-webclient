@@ -18,7 +18,7 @@ import { BasicModule } from "./shared/basic/basic.module";
     NavbarComponent,
     LoginComponent,
     RegisterComponent,
-    SubscribeComponent,
+    SubscribeComponent
   ],
   imports: [
     BrowserModule,

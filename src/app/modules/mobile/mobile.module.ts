@@ -13,6 +13,8 @@ import { LoginComponent } from "src/app/layout/login/login.component";
 import { RegisterComponent } from "src/app/layout/register/register.component";
 import { SubscribeComponent } from "src/app/layout/subscribe/subscribe.component";
 import { MPolicyDetailComponent } from "src/app/mobile/m-policy-detail/m-policy-detail.component";
+import { MConsultComponent } from "src/app/mobile/m-consult/m-consult.component";
+import { MDownloadComponent } from "src/app/mobile/m-download/m-download.component";
 const routes: Routes = [
   {
     path: "mobile",
@@ -34,10 +36,17 @@ const routes: Routes = [
     MPolicyComponent,
     MCompareComponent,
     MDetailComponent,
-    MPolicyDetailComponent
+    MPolicyDetailComponent,
+    MDownloadComponent,
+    MConsultComponent
   ],
   imports: [BasicModule, RouterModule.forChild(routes), MaterialsModule],
   exports: [MInterestComponent],
-  entryComponents: [MDetailComponent, MPolicyDetailComponent]
+  entryComponents: [
+    MDetailComponent,
+    MPolicyDetailComponent,
+    MDownloadComponent,
+    MConsultComponent
+  ]
 })
 export class MobileModule {}

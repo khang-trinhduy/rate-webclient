@@ -1,0 +1,36 @@
+<div class="rgmsEd">
+  <form [formGroup]="downloadForm" (ngSubmit)="download()">
+    <h2>Đăng ký tài khoản</h2>
+    <mat-form-field>
+      <input formControlName="name" matInput placeholder="Họ và tên" value="" />
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        formControlName="email"
+        matInput
+        placeholder="Email"
+        value=""
+        type="email"
+        [email]="true"
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <input formControlName="phone" matInput placeholder="SĐT" value="" />
+    </mat-form-field>
+    <ul style="font-size: 14px;padding: 14px 12.5px;">
+      <li>
+        Nhận file tổng hợp lãi suất tiền gửi các ngân hàng
+      </li>
+      <li>
+        Nhận thông báo cập nhật lãi suất nhanh chóng và chính xác
+      </li>
+      <li>
+        Các gói ưu đãi tối ưu, tiết kiệm nhất
+      </li>
+    </ul>
+    <hr />
+    <button mat-raised-button [disabled]="!downloadForm.valid">
+      Tải tài liệu ngay
+    </button>
+  </form>
+</div>

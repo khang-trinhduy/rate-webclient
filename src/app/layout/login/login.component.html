@@ -1,4 +1,5 @@
 <div class="login-container">
+  <div>
   <form [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
     <mat-form-field>
       <input matInput placeholder="Username" formControlName="username" />
@@ -32,4 +33,5 @@
       <a href="#" class="forgot-link">Forgot password</a>
     </div>
   </form>
+  </div>
 </div>
