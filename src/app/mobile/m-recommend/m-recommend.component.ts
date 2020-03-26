@@ -57,25 +57,27 @@ export class MRecommendComponent implements OnInit {
         }
       })
     );
-
-    let scrollUp = false;
-    document.addEventListener("scroll", () => {
-      scrollUp = true;
-    });
-    document.addEventListener("wheel", evt => {
-      let body = document.querySelector("body");
-      let bounding = (<HTMLBodyElement>body).getBoundingClientRect();
-      if (!scrollUp && bounding.top === 0) {
-        (<HTMLElement>search).classList.remove("mieee");
-        (<HTMLElement>search).classList.add("mmkii");
-        (<HTMLElement>main).classList.add("kkjjy");
-      } else {
-        (<HTMLElement>search).classList.remove("mmkii");
-        (<HTMLElement>main).classList.remove("kkjjy");
-        (<HTMLElement>search).classList.add("mieee");
-      }
-      scrollUp = false;
-    });
+      
+    //TODO search recommend rate
+    
+    // let scrollUp = false;
+    // document.addEventListener("scroll", () => {
+    //   scrollUp = true;
+    // });
+    // document.addEventListener("wheel", evt => {
+    //   let body = document.querySelector("body");
+    //   let bounding = (<HTMLBodyElement>body).getBoundingClientRect();
+    //   if (!scrollUp && bounding.top === 0) {
+    //     (<HTMLElement>search).classList.remove("mieee");
+    //     (<HTMLElement>search).classList.add("mmkii");
+    //     (<HTMLElement>main).classList.add("kkjjy");
+    //   } else {
+    //     (<HTMLElement>search).classList.remove("mmkii");
+    //     (<HTMLElement>main).classList.remove("kkjjy");
+    //     (<HTMLElement>search).classList.add("mieee");
+    //   }
+    //   scrollUp = false;
+    // });
     let loader = this.loader.nativeElement;
     (<HTMLElement>loader).classList.add("mkdih");
   }
