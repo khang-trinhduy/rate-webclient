@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,9 +8,16 @@ import { Router } from '@angular/router';
 })
 export class MInterestComponent implements OnInit {
 
+  @ViewChild("loader", { static: false }) loader: ElementRef;
+
   constructor(private router: Router) { }
 
   ngOnInit() {
+  }
+
+  ngAfterViewInit() {
+    let loader = this.loader.nativeElement;
+    (<HTMLElement>loader).classList.add('mkdih');
   }
 
   recommend = () => this.router.navigateByUrl("recommend");
