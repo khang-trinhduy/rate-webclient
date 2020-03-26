@@ -1,9 +1,16 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ElementRef, ViewChild } from "@angular/core";
 import { RateService } from "src/app/services/rate.service";
-import { Subscription } from "rxjs";
+import { Subscription, fromEvent } from "rxjs";
 import { ActivatedRoute, Router } from "@angular/router";
 import { MatDialog } from "@angular/material/dialog";
 import { MDetailComponent } from "../m-detail/m-detail.component";
+import {
+  map,
+  filter,
+  debounceTime,
+  distinctUntilChanged,
+  switchMap
+} from "rxjs/operators";
 
 @Component({
   selector: "app-m-recommend",
@@ -13,17 +20,66 @@ import { MDetailComponent } from "../m-detail/m-detail.component";
 export class MRecommendComponent implements OnInit {
   $rates;
   $others;
+  searchResults;
   best;
+  typeahead;
   observables: Subscription[] = [];
-  constructor(
-    private rateService: RateService,
-    private dialogRef: MatDialog
-  ) {}
+
+  @ViewChild("searchBar", { static: false }) searchBar: ElementRef;
+  @ViewChild("search", { static: false }) search: ElementRef;
+  @ViewChild("main", { static: false }) main: ElementRef;
+  @ViewChild("loader", { static: false }) loader: ElementRef;
+
+  constructor(private rateService: RateService, private dialogRef: MatDialog) {}
+
   ngOnDestroy(): void {
     this.observables.forEach(element => {
       element.unsubscribe();
     });
   }
+
+  ngAfterViewInit(): void {
+    let searchBar = this.searchBar.nativeElement;
+    let search = this.search.nativeElement;
+    let main = this.main.nativeElement;
+
+    this.typeahead = fromEvent(searchBar, "input").pipe(
+      map((e: KeyboardEvent) => (e.target as HTMLInputElement).value),
+      filter(text => text.length >= 2),
+      debounceTime(750),
+      distinctUntilChanged(),
+      switchMap(keywords => this.rateService.searchBanks(keywords))
+    );
+    this.observables.push(
+      this.typeahead.subscribe(res => {
+        if (res.length > 0) {
+          this.searchResults = res;
+        }
+      })
+    );
+
+    let scrollUp = false;
+    document.addEventListener("scroll", () => {
+      scrollUp = true;
+    });
+    document.addEventListener("wheel", evt => {
+      let body = document.querySelector("body");
+      let bounding = (<HTMLBodyElement>body).getBoundingClientRect();
+      if (!scrollUp && bounding.top === 0) {
+        (<HTMLElement>search).classList.remove("mieee");
+        (<HTMLElement>search).classList.add("mmkii");
+        (<HTMLElement>main).classList.add("kkjjy");
+      } else {
+        (<HTMLElement>search).classList.remove("mmkii");
+        (<HTMLElement>main).classList.remove("kkjjy");
+        (<HTMLElement>search).classList.add("mieee");
+      }
+      scrollUp = false;
+    });
+    let loader = this.loader.nativeElement;
+    (<HTMLElement>loader).classList.add("mkdih");
+  }
+
   ngOnInit() {
     this.observables.push(
       this.rateService.getTop(1).subscribe(

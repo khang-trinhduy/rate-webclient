@@ -74,7 +74,6 @@ pre
 
 mat-dialog-container
   padding: unset!important
-
 @keyframes push
   0%
     margin-right: 0
@@ -172,6 +171,97 @@ mat-dialog-container
    margin-left: 0px
  100%
    margin-left: -1390px
+
+@keyframes "wipedown"
+ 0%
+    margin-top: 2vh
+    opacity: 0
+ 100%
+    opacity: 1
+    margin-top: 2.45vh
+
+@-moz-keyframes wipedown
+ 0%
+    opacity: 0
+    margin-top: 2vh
+ 100%
+    opacity: 1
+    margin-top: 2.45vh
+
+@-webkit-keyframes "wipedown"
+ 0%
+    opacity: 0
+    margin-top: 2vh
+ 100%
+    opacity: 1
+    margin-top: 2.45vh
+
+@-ms-keyframes "wipedown"
+ 0%
+    opacity: 0
+    margin-top: 2vh
+ 100%
+    opacity: 1
+    margin-top: 2.45vh
+
+@-o-keyframes "wipedown"
+ 0%
+    opacity: 0
+    margin-top: 2vh
+ 100%
+    opacity: 1
+    margin-top: 2.45vh
+
+@keyframes "moveaway"
+ 0%
+    height: 100vh
+    opacity: 1
+ 90%
+    height: 20vh
+ 100%
+    opacity: 1
+    height: 0vh
+
+@-moz-keyframes moveaway
+ 0%
+    height: 100vh
+    opacity: 1
+ 90%
+    height: 20vh
+ 100%
+    opacity: 0.5
+    height: 0vh
+
+@-webkit-keyframes "moveaway"
+ 0%
+    height: 100vh
+    opacity: 1
+ 90%
+    height: 20vh
+ 100%
+    opacity: 0.5
+    height: 0vh
+
+@-ms-keyframes "moveaway"
+ 0%
+    height: 100vh
+    opacity: 1
+ 90%
+    height: 20vh
+ 100%
+    opacity: 0.5
+    height: 0vh
+
+@-o-keyframes "moveaway"
+ 0%
+    height: 100vh
+    opacity: 1
+ 90%
+    height: 20vh
+ 100%
+    opacity: 0.5
+    height: 0vh
+
 @media all and ( max-width: 724px )
   body
     margin: unset

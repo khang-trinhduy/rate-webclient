@@ -1,13 +1,13 @@
 <div class="mjIjj">
-  <div class="mmWdd">
-    <input type="number" placeholder="tìm lãi suất (%)" />
+  <div class="mSpjf" #loader>
+    <img src="/assets/images/logo.png" alt="">
   </div>
-  <div class="mmXij">
-    <h2>So sánh lãi suất</h2>
+  <div class="mmWdd mieee" #search>
+    <input type="text" #searchBar placeholder="tìm ngân hàng" />
+  </div>
+  <div #main class="mmXij">
+    <h2 #header>So sánh lãi suất</h2>
     <div class="bMbjm">
-      <div class="mjfEE">
-        <p>Ký hiệu</p>
-      </div>
       <table>
         <thead>
           <tr>
@@ -49,5 +49,13 @@
     <div class="mnMbv" #right>
       <img src="/assets/images/right.png" alt="right" />
     </div>
+  </div>
+  <div class="refmm">
+    <a [routerLink]="['/recommend']">
+      So sánh lãi suất
+    </a>
+    <a [routerLink]="['/policy']">
+      Chính sách riêng
+    </a>
   </div>
 </div>

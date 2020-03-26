@@ -1,1 +1,21 @@
-<p>m-policy works!</p>
+<div class="miuPo">
+  <div class="mSpjf" #loader>
+    <img src="/assets/images/logo.png" alt="" />
+  </div>
+  <div class="uuiue">
+    <div
+      (click)="detail(policy.bank)"
+      class="yyuyu"
+      *ngFor="let policy of policys"
+    >
+      <img class="yskjs" src="/assets/images/sk.png" alt="" />
+      <div class="mmwwe">
+        <img class="jjuee" [src]="getLogo(policy.bank)" alt="" />
+        <p>
+          {{ policy.title }}
+        </p>
+      </div>
+      <i class="mmmii">{{ policy.date }}</i>
+    </div>
+  </div>
+</div>

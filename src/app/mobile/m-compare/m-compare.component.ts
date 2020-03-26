@@ -3,21 +3,31 @@ import {
   OnInit,
   ViewChild,
   ElementRef,
-  AfterViewInit
+  AfterViewInit,
+  AfterViewChecked
 } from "@angular/core";
-import { Subscription } from "rxjs";
+import { Subscription, fromEvent } from "rxjs";
 import { RateService } from "src/app/services/rate.service";
 import { Logos } from "src/app/models/banks";
+import {
+  map,
+  filter,
+  debounceTime,
+  distinctUntilChanged,
+  switchMap
+} from "rxjs/operators";
 
 @Component({
   selector: "app-m-compare",
   templateUrl: "./m-compare.component.html",
   styleUrls: ["./m-compare.component.sass"]
 })
-export class MCompareComponent implements OnInit, AfterViewInit {
+export class MCompareComponent
+  implements OnInit, AfterViewInit, AfterViewChecked {
   banks;
   first: number = 0;
   second: number = 1;
+  typeahead;
   periods: any[] = [
     { value: 0, label: "Không kỳ hạn" },
     { value: 3, label: "3 tháng" },
@@ -32,11 +42,43 @@ export class MCompareComponent implements OnInit, AfterViewInit {
   observables: Subscription[] = [];
   @ViewChild("left", { static: false }) left: ElementRef;
   @ViewChild("right", { static: false }) right: ElementRef;
+  @ViewChild("search", { static: false }) search: ElementRef;
+  @ViewChild("searchBar", { static: false }) searchBar: ElementRef;
+  @ViewChild("main", { static: false }) main: ElementRef;
+  @ViewChild("loader", { static: false }) loader: ElementRef;
 
   constructor(private rateService: RateService) {}
+  ngAfterViewChecked(): void {
+    console.log("after view checked");
+  }
+  ngAfterContentChecked(): void {
+    console.log("after content checked");
+  }
+  ngAfterContentInit(): void {
+    console.log("after content init");
+  }
   ngAfterViewInit(): void {
+    console.log("afterview init");
+    let searchBar = this.searchBar.nativeElement;
     let left = this.left.nativeElement;
     let right = this.right.nativeElement;
+    let search = this.search.nativeElement;
+    let main = this.main.nativeElement;
+
+    this.typeahead = fromEvent(searchBar, "input").pipe(
+      map((e: KeyboardEvent) => (e.target as HTMLInputElement).value),
+      filter(text => text.length >= 2),
+      debounceTime(750),
+      distinctUntilChanged(),
+      switchMap(keywords => this.rateService.searchBanks(keywords))
+    );
+    this.observables.push(
+      this.typeahead.subscribe(res => {
+        if (res.length > 0) {
+          this.banks = res;
+        }
+      })
+    );
     (<HTMLElement>left).addEventListener("click", () => {
       this.wipe("left");
       if (this.first === 0) {
@@ -50,6 +92,26 @@ export class MCompareComponent implements OnInit, AfterViewInit {
         (<HTMLElement>right).style.visibility = "hidden";
       }
       (<HTMLElement>left).style.visibility = "visible";
+    });
+
+    // experimenting scroll event for mobile and tablet
+    let scrollUp = false;
+    document.addEventListener("scroll", () => {
+      scrollUp = true;
+    });
+    document.addEventListener("wheel", evt => {
+      let body = document.querySelector("body");
+      let bounding = (<HTMLBodyElement>body).getBoundingClientRect();
+      if (!scrollUp && bounding.top === 0) {
+        (<HTMLElement>search).classList.remove("mieee");
+        (<HTMLElement>search).classList.add("mmkii");
+        (<HTMLElement>main).classList.add("kkjjy");
+      } else {
+        (<HTMLElement>search).classList.remove("mmkii");
+        (<HTMLElement>main).classList.remove("kkjjy");
+        (<HTMLElement>search).classList.add("mieee");
+      }
+      scrollUp = false;
     });
   }
 
@@ -76,8 +138,14 @@ export class MCompareComponent implements OnInit, AfterViewInit {
   };
 
   ngOnInit() {
+    console.log("on init");
+
     this.observables.push(
-      this.rateService.getBanks(50, 1).subscribe(res => (this.banks = res))
+      this.rateService.getBanks(50, 1).subscribe(res => {
+        this.banks = res;
+        let loader = this.loader.nativeElement;
+        (<HTMLElement>loader).classList.add('mkdih');
+      })
     );
   }
 
@@ -95,7 +163,7 @@ export class MCompareComponent implements OnInit, AfterViewInit {
     } else if (number == -100) {
       return "Thỏa thuận";
     } else {
-      return "0.00%";
+      return "không hỗ trợ";
     }
   };
 

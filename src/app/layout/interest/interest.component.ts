@@ -27,6 +27,9 @@ export class InterestComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    if (window.innerWidth <= 1024) {
+      this.router.navigateByUrl("/mobile", { replaceUrl: true });
+    }
     this.$banks = this.rateService.getBanks(this.pageSize, this.pageIndex);
     this.rateService.getDate().subscribe(res => (this.date = res.date));
     this.best = this.rateService.getTop(1);
@@ -91,10 +94,4 @@ export class InterestComponent implements OnInit {
     }
   };
 
-  //mobile section
-
-  recommend = () => this.router.navigateByUrl("recommend");
-  service = () => this.router.navigateByUrl("service");
-  compare = () => this.router.navigateByUrl("compare");
-  policy = () => this.router.navigateByUrl("policy");
 }

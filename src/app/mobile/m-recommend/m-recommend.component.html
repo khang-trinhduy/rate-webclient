@@ -1,8 +1,11 @@
 <div class="mjIjj">
-  <div class="mmWdd">
-    <input type="number" placeholder="tìm lãi suất (%)" />
+  <div class="mSpjf" #loader>
+    <img src="/assets/images/logo.png" alt="" />
   </div>
-  <div class="mmXij">
+  <div class="mmWdd mieee" #search>
+    <input type="number" #searchBar placeholder="tìm lãi suất (%)" />
+  </div>
+  <div #main class="mmXij">
     <h2>Lãi suất tốt nhất hiện nay</h2>
     <div class="bMbjm" *ngIf="best">
       <p>
@@ -43,15 +46,16 @@
   </div>
   <div class="hhUej">
     <h3>Các gói nổi bật khác</h3>
-    <div
-      class="abcCa"
-      *ngFor="let rate of $others | async"
-      (click)="redirect(rate._id)"
-    >
+    <div class="abcCa" *ngFor="let rate of $others | async">
       <img class="miijE" src="/assets/images/sk.png" alt="" />
-      <div class="mXjjd">
+      <div class="mXjjd" (click)="redirect(rate._id)">
         Lãi {{ rate.value }} kỳ hạn {{ rate.period }} tháng
       </div>
     </div>
+  </div>
+  <div class="refmm">
+    <a [routerLink]="['/compare']">
+      So sánh lãi suất
+    </a>
   </div>
 </div>
