@@ -9,7 +9,6 @@ import { HighestComponent } from "src/app/layout/highest/highest.component";
 import { SdetailComponent } from "src/app/sdetail/sdetail.component";
 import { DetailComponent } from "src/app/layout/detail/detail.component";
 import { CriteriaComponent } from "src/app/layout/criteria/criteria.component";
-import { UpdateComponent } from "src/app/components/update/update.component";
 import { LoginComponent } from "src/app/layout/login/login.component";
 import { RegisterComponent } from "src/app/layout/register/register.component";
 import { SubscribeComponent } from "src/app/layout/subscribe/subscribe.component";
@@ -20,7 +19,6 @@ const routes: Routes = [
   },
   { path: "highest", component: HighestComponent },
   { path: "criteria", component: CriteriaComponent },
-  { path: "update", component: UpdateComponent },
   { path: "signin", component: LoginComponent },
   { path: "signup", component: RegisterComponent },
   { path: "register", component: SubscribeComponent }
@@ -33,8 +31,7 @@ const routes: Routes = [
     HighestComponent,
     DetailComponent,
     SdetailComponent,
-    CriteriaComponent,
-    UpdateComponent
+    CriteriaComponent
   ],
   imports: [BasicModule, MaterialsModule, RouterModule.forChild(routes)],
   exports: [InterestComponent],
