@@ -13,7 +13,6 @@ import { UpdateComponent } from "src/app/components/update/update.component";
 import { LoginComponent } from "src/app/layout/login/login.component";
 import { RegisterComponent } from "src/app/layout/register/register.component";
 import { SubscribeComponent } from "src/app/layout/subscribe/subscribe.component";
-import { MInterestComponent } from "src/app/mobile/m-interest/m-interest.component";
 const routes: Routes = [
   {
     path: "",
