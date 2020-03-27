@@ -1,6 +1,6 @@
 <div class="mjIjj">
   <div class="mSpjf" #loader>
-    <img src="/assets/images/logo.png" alt="">
+    <img src="/assets/images/logo.png" alt="" />
   </div>
   <div class="mmWdd mieee" #search>
     <input type="text" #searchBar placeholder="tìm ngân hàng" />
@@ -30,12 +30,23 @@
             <td>
               <img [src]="getLogo(bank?.normalized)" [alt]="bank?.name" />
             </td>
-            <td>
-              {{ toDecimal(getRate(bank.normalized, first).value) }}
-              <span> </span>
+            <td *ngIf="getRate(bank.normalized, first) as rate">
+              {{ toDecimal(rate.value) }}
+              <mat-icon *ngIf="rate.inc" class="up">trending_up</mat-icon>
+              <mat-icon *ngIf="rate.dec" class="down">trending_down</mat-icon>
+              <mat-icon *ngIf="rate.flat && rate.value > 0" class="flat"
+                >trending_flat</mat-icon
+              >
+              <span>{{ rate.text }}</span>
             </td>
-            <td>
-              {{ toDecimal(getRate(bank.normalized, second).value) }}
+            <td *ngIf="getRate(bank.normalized, second) as rate">
+              {{ toDecimal(rate.value) }}
+              <mat-icon *ngIf="rate.inc" class="up">trending_up</mat-icon>
+              <mat-icon *ngIf="rate.dec" class="down">trending_down</mat-icon>
+              <mat-icon *ngIf="rate.flat && rate.value > 0" class="flat"
+                >trending_flat</mat-icon
+              >
+              <span *ngIf="rate.inc || rate.dec">{{ rate.text }}</span>
             </td>
           </tr>
         </tbody>

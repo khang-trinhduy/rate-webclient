@@ -99,3 +99,28 @@ table
         font-weight: 555
         display: block
         line-height: 24px
+tbody
+    & tr
+        & td
+            position: relative
+            & mat-icon
+                position: absolute
+                top: 0
+                right: 24px
+                &.down
+                    color: red
+                &.up
+                    color: green
+                &.flat
+                    color: yellow
+            & span
+                position: absolute
+                top: 0
+                right: 0
+                font-size: 10px
+                &.down
+                    color: red
+                &.up
+                    color: green
+                &.flat
+                    color: yellow

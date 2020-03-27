@@ -27,6 +27,8 @@ export class MCompareComponent
   banks;
   first: number = 0;
   second: number = 1;
+  up = NaN;
+  down = NaN;
   typeahead;
   periods: any[] = [
     { value: 0, label: "Không kỳ hạn" },
@@ -116,6 +118,9 @@ export class MCompareComponent
     });
   }
 
+  increase = (code, period) => {};
+  decrease = (code, period) => {};
+
   getPeriodLabel = idx => this.periods[idx].label;
 
   wipe = direction => {
@@ -145,7 +150,7 @@ export class MCompareComponent
       this.rateService.getBanks(50, 1).subscribe(res => {
         this.banks = res;
         let loader = this.loader.nativeElement;
-        (<HTMLElement>loader).classList.add('mkdih');
+        (<HTMLElement>loader).classList.add("mkdih");
       })
     );
   }
@@ -168,6 +173,14 @@ export class MCompareComponent
     }
   };
 
+  getTrendingText = number => {
+    if (number > 0) {
+      return "+" + (Math.round(number * 100) / 100).toFixed(2) + "%";
+    } else {
+      return (Math.round(number * 100) / 100).toFixed(2) + "%";
+    }
+  };
+
   getRate(code, idx) {
     let bank = this.banks.find(e => e.normalized === code);
     let rates = bank.interests.sort((a, b) => {
@@ -180,7 +193,33 @@ export class MCompareComponent
         return x.getTime() - y.getTime();
       }
     });
-    return rates.find(e => e.period === this.periods[idx].value);
+    let results = [];
+    let current = rates.find(e => e.period === this.periods[idx].value);
+    for (let i = 0; i < rates.length; i++) {
+      const rate = rates[i];
+      if (
+        rate.period === this.periods[idx].value &&
+        rate.value != current.value
+      ) {
+        results.push(rate);
+      }
+    }
+    if (results.length <= 0) {
+      current.flat = true;
+    } else {
+      let diff =
+        parseFloat(current.value.toString()) - parseFloat(results[0].value);
+      if (diff > 0) {
+        current.inc = true;
+        current.text = this.getTrendingText(diff);
+      } else if (diff === 0) {
+        current.flat = true;
+      } else {
+        current.dec = true;
+        current.text = this.getTrendingText(diff);
+      }
+    }
+    return current;
   }
 
   change = (code, idx) => {
