@@ -12,6 +12,8 @@ import { InterestModule } from "./modules/interest/interest.module";
 import { MobileModule } from "./modules/mobile/mobile.module";
 import { MaterialsModule } from "./modules/materials/materials.module";
 import { BasicModule } from "./shared/basic/basic.module";
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +29,8 @@ import { BasicModule } from "./shared/basic/basic.module";
     InterestModule,
     MobileModule,
     MaterialsModule,
-    BasicModule
+    BasicModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   entryComponents: [],
   providers: [],
