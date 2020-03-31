@@ -115,6 +115,20 @@ export class MCompareComponent
       }
       scrollUp = false;
     });
+    document.addEventListener("onscroll", evt => {
+      let body = document.querySelector("body");
+      let bounding = (<HTMLBodyElement>body).getBoundingClientRect();
+      if (!scrollUp && bounding.top === 0) {
+        (<HTMLElement>search).classList.remove("mieee");
+        (<HTMLElement>search).classList.add("mmkii");
+        (<HTMLElement>main).classList.add("kkjjy");
+      } else {
+        (<HTMLElement>search).classList.remove("mmkii");
+        (<HTMLElement>main).classList.remove("kkjjy");
+        (<HTMLElement>search).classList.add("mieee");
+      }
+      scrollUp = false;
+    });
   }
 
   increase = (code, period) => {};
