@@ -1,6 +1,9 @@
 {
   "$schema": "./node_modules/@angular/service-worker/config/schema.json",
   "index": "/index.html",
+  "navigationUrls": [
+    "/**"
+  ],
   "assetGroups": [
     {
       "name": "app",
@@ -17,13 +20,12 @@
     },
     {
       "name": "assets",
-      "installMode": "lazy",
+      "installMode": "prefetch",
       "updateMode": "prefetch",
       "resources": {
         "files": [
           "/assets/**",
-          "/*.(eot|svg|cur|jpg|png|webp|gif|otf|ttf|woff|woff2|ani)",
-          "/assets/images/**"
+          "/*.(eot|svg|cur|jpg|png|webp|gif|otf|ttf|woff|woff2|ani)"
         ]
       }
     }
@@ -42,7 +44,7 @@
         "strategy": "freshness",
         "maxSize": 100,
         "maxAge": "3d",
-        "timeout": "30s"
+        "timeout": "10s"
       }
     }
   ]

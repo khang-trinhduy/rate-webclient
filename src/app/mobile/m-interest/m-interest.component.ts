@@ -19,11 +19,9 @@ export class MInterestComponent implements OnInit {
   }
 
   ngAfterViewChecked(): void {
-    console.log("after view checked");
   }
 
   ngAfterContentInit(): void {
-    console.log("after content init");
   }
 
   recommend = () => this.router.navigateByUrl("recommend");

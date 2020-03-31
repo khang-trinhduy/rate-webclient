@@ -21,7 +21,8 @@ const routes: Routes = [
   { path: "criteria", component: CriteriaComponent },
   { path: "signin", component: LoginComponent },
   { path: "signup", component: RegisterComponent },
-  { path: "register", component: SubscribeComponent }
+  { path: "register", component: SubscribeComponent },
+  { path: "detail", component: DetailComponent }
 ];
 @NgModule({
   declarations: [

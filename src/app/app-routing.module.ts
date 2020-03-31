@@ -5,12 +5,17 @@ import { MobileModule } from "./modules/mobile/mobile.module";
 
 const routes: Routes = [
   {
-    path: "interest",
-    loadChildren: () => import("./modules/interest/interest.module")
+    path: "mobile",
+    loadChildren: "./modules/mobile/mobile.module#MobileModule"
   },
   {
-    path: "mobile",
-    loadChildren: () => import("./modules/mobile/mobile.module")
+    path: "",
+    loadChildren: "./modules/interest/interest.module#InterestModule"
+  },
+  {
+    path: "",
+    redirectTo: "",
+    pathMatch: "full"
   }
 ];
 

@@ -51,16 +51,12 @@ export class MCompareComponent
 
   constructor(private rateService: RateService) {}
   ngAfterViewChecked(): void {
-    console.log("after view checked");
   }
   ngAfterContentChecked(): void {
-    console.log("after content checked");
   }
   ngAfterContentInit(): void {
-    console.log("after content init");
   }
   ngAfterViewInit(): void {
-    console.log("afterview init");
     let searchBar = this.searchBar.nativeElement;
     let left = this.left.nativeElement;
     let right = this.right.nativeElement;
