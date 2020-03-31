@@ -50,12 +50,9 @@ export class MCompareComponent
   @ViewChild("loader", { static: false }) loader: ElementRef;
 
   constructor(private rateService: RateService) {}
-  ngAfterViewChecked(): void {
-  }
-  ngAfterContentChecked(): void {
-  }
-  ngAfterContentInit(): void {
-  }
+  ngAfterViewChecked(): void {}
+  ngAfterContentChecked(): void {}
+  ngAfterContentInit(): void {}
   ngAfterViewInit(): void {
     let searchBar = this.searchBar.nativeElement;
     let left = this.left.nativeElement;
@@ -73,7 +70,13 @@ export class MCompareComponent
     this.observables.push(
       this.typeahead.subscribe(res => {
         if (res.length > 0) {
-          this.banks = res;
+          this.banks = res.sort((a, b) => {
+            if (b.name > a.name) {
+              return -1;
+            } else if (a.name < b.name) {
+              return 1;
+            } else return 0;
+          });
         }
       })
     );
@@ -144,7 +147,13 @@ export class MCompareComponent
 
     this.observables.push(
       this.rateService.getBanks(50, 1).subscribe(res => {
-        this.banks = res;
+        this.banks = res.sort((a, b) => {
+          if (b.name > a.name) {
+            return -1;
+          } else if (a.name < b.name) {
+            return 1;
+          } else return 0;
+        });
         let loader = this.loader.nativeElement;
         (<HTMLElement>loader).classList.add("mkdih");
       })
