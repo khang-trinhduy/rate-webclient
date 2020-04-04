@@ -122,40 +122,44 @@ export class RowComponent implements OnInit, OnDestroy, AfterViewInit {
 
   change = (code, period) => {
     let bank = this.banks.find((e) => e.normalized === code);
-    let rates = bank.interests.sort((a, b) => {
-      if (a.period !== b.period) {
-        return b.period - a.period;
-      } else {
-        let x = new Date(b.lastUpdate);
-        let y = new Date(a.lastUpdate);
+    if (bank) {
+      let rates = bank.interests.sort((a, b) => {
+        if (a.period !== b.period) {
+          return b.period - a.period;
+        } else {
+          let x = new Date(b.lastUpdate);
+          let y = new Date(a.lastUpdate);
 
-        return x.getTime() - y.getTime();
+          return x.getTime() - y.getTime();
+        }
+      });
+      let results = [];
+      let current = rates.find((e) => e.period === period);
+      for (let i = 0; i < rates.length; i++) {
+        const rate = rates[i];
+        if (rate.period === period && rate.value != current.value) {
+          results.push(rate);
+        }
       }
-    });
-    let results = [];
-    let current = rates.find((e) => e.period === period);
-    for (let i = 0; i < rates.length; i++) {
-      const rate = rates[i];
-      if (rate.period === period && rate.value != current.value) {
-        results.push(rate);
-      }
-    }
-    if (results.length <= 0) {
-      return "flat";
-    } else {
-      if (results[0].value === 0) {
-        // get rid of new rates
-        return "flat";
-      }
-      let diff =
-        parseFloat(current.value.toString()) - parseFloat(results[0].value);
-      if (diff > 0) {
-        return { value: "inc", diff: diff };
-      } else if (diff === 0) {
-        return "flat";
+      if (results.length <= 0) {
+        return { value: "flat", diff: undefined };
       } else {
-        return { value: "dec", diff: diff };
+        if (results[0].value === 0) {
+          // get rid of new rates
+          return { value: "flat", diff: undefined };
+        }
+        let diff =
+          parseFloat(current.value.toString()) - parseFloat(results[0].value);
+        if (diff > 0) {
+          return { value: "inc", diff: diff };
+        } else if (diff === 0) {
+          return { value: "flat", diff: undefined };
+        } else {
+          return { value: "dec", diff: diff };
+        }
       }
+    } else {
+      return { value: "flat", diff: undefined };
     }
   };
 

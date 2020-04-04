@@ -46,14 +46,14 @@ export class CellComponent implements OnInit {
   };
 
   goUp() {
-    return this.change.value === "inc";
+    return this.change.value === "inc" && this.rate.value > 0;
   }
 
   goDown() {
-    return this.change.value === "dec";
+    return this.change.value === "dec" && this.rate.value > 0;
   }
 
-  isFlat = () => this.rate.value >= 0;
+  isFlat = () => this.rate.value > 0;
 
   toDate = (date) => {
     if (date) {
