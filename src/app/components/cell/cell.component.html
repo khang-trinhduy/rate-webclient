@@ -1,14 +1,12 @@
-<div class="cell-content" *ngIf="rate" [ngClass]="{'max': max}">
-  <a class="cell-text"
-    >{{ toDecimal(rate.value) }}</a
-  >
+<div class="cell-content" *ngIf="rate" [ngClass]="{ max: max }">
+  <a class="cell-text">{{ toDecimal(rate.value) }}</a>
   <span *ngIf="goUp()" class="up-icon"
     ><mat-icon>trending_up</mat-icon>{{ getTrendingText() }}</span
   >
   <span *ngIf="goDown()" class="down-icon"
     ><mat-icon>trending_down</mat-icon>{{ getTrendingText() }}</span
   >
-  <span *ngIf="!goDown() && !goUp()" class="flat-icon"
+  <span *ngIf="!goDown() && !goUp() && isFlat()" class="flat-icon"
     ><mat-icon>trending_flat</mat-icon></span
   >
 </div>

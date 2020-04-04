@@ -140,7 +140,7 @@ export class DetailComponent implements OnInit, OnDestroy {
     } else if (number == -100) {
       return "Thỏa thuận";
     } else {
-      return "0.00%";
+      return "không hỗ trợ";
     }
   };
 }

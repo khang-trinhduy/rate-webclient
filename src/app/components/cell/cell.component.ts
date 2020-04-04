@@ -5,7 +5,7 @@ import { Subscriber, Subscription } from "rxjs";
 @Component({
   selector: "app-cell",
   templateUrl: "./cell.component.html",
-  styleUrls: ["./cell.component.sass"]
+  styleUrls: ["./cell.component.sass"],
 })
 export class CellComponent implements OnInit {
   @Input() period;
@@ -33,11 +33,11 @@ export class CellComponent implements OnInit {
     }
   }
 
-  isMax = val => {
+  isMax = (val) => {
     return this.max == val;
   };
 
-  isToday = date => {
+  isToday = (date) => {
     let arr = date.split("T")[0].split("-");
     if (arr[0] == this.year && arr[1] == this.month && arr[2] == this.day) {
       return true;
@@ -53,23 +53,21 @@ export class CellComponent implements OnInit {
     return this.change.value === "dec";
   }
 
-  toDate = date => {
+  isFlat = () => this.rate.value >= 0;
+
+  toDate = (date) => {
     if (date) {
-      return date
-        .split("T")[0]
-        .split("-")
-        .reverse()
-        .join("/");
+      return date.split("T")[0].split("-").reverse().join("/");
     }
   };
 
-  toDecimal = number => {
+  toDecimal = (number) => {
     if (number > 0) {
       return (Math.round(number * 100) / 100).toFixed(2) + "%";
     } else if (number == -100) {
       return "Thỏa thuận";
     } else {
-      return "0.00%";
+      return "không hỗ trợ";
     }
   };
 }

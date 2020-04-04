@@ -8,7 +8,7 @@ import {
   ElementRef,
   ViewChildren,
   QueryList,
-  AfterContentChecked
+  AfterContentChecked,
 } from "@angular/core";
 import { Bank, Stat, Interest } from "src/app/models/rate";
 import { RateService } from "src/app/services/rate.service";
@@ -18,14 +18,14 @@ import {
   merge,
   combineLatest,
   fromEvent,
-  Subscription
+  Subscription,
 } from "rxjs";
 import {
   map,
   filter,
   debounceTime,
   distinctUntilChanged,
-  switchMap
+  switchMap,
 } from "rxjs/operators";
 import { FormBuilder, Validators, FormGroup } from "@angular/forms";
 import { UserService } from "src/app/services/user.service";
@@ -33,7 +33,7 @@ import { UserService } from "src/app/services/user.service";
 @Component({
   selector: "app-row",
   templateUrl: "./row.component.html",
-  styleUrls: ["./row.component.sass"]
+  styleUrls: ["./row.component.sass"],
 })
 export class RowComponent implements OnInit, OnDestroy, AfterViewInit {
   banks: Bank[];
@@ -57,13 +57,13 @@ export class RowComponent implements OnInit, OnDestroy, AfterViewInit {
 
     this.typeahead = fromEvent(searchBox, "input").pipe(
       map((e: KeyboardEvent) => (e.target as HTMLInputElement).value),
-      filter(text => text.length >= 2),
+      filter((text) => text.length >= 2),
       debounceTime(750),
       distinctUntilChanged(),
-      switchMap(keywords => this.service.searchBanks(keywords))
+      switchMap((keywords) => this.service.searchBanks(keywords))
     );
     this.observers.push(
-      this.typeahead.subscribe(res => {
+      this.typeahead.subscribe((res) => {
         if (res.length > 0) {
           this.banks = res;
         }
@@ -75,7 +75,7 @@ export class RowComponent implements OnInit, OnDestroy, AfterViewInit {
     let popUpForm = this.popup.nativeElement;
     iHolder.addEventListener("click", async () => {
       let temp = this.icons.toArray();
-      let active = temp.find(e =>
+      let active = temp.find((e) =>
         e._elementRef.nativeElement.classList.contains("active")
       )._elementRef.nativeElement;
       let next = active.nextElementSibling;
@@ -100,13 +100,13 @@ export class RowComponent implements OnInit, OnDestroy, AfterViewInit {
     });
   }
   ngOnDestroy(): void {
-    this.observers.forEach(obs => {
+    this.observers.forEach((obs) => {
       obs.unsubscribe();
     });
   }
 
   rate(code, period) {
-    let bank = this.banks.find(e => e.normalized === code);
+    let bank = this.banks.find((e) => e.normalized === code);
     let rates = bank.interests.sort((a, b) => {
       if (a.period !== b.period) {
         return b.period - a.period;
@@ -117,11 +117,11 @@ export class RowComponent implements OnInit, OnDestroy, AfterViewInit {
         return x.getTime() - y.getTime();
       }
     });
-    return rates.find(e => e.period === period);
+    return rates.find((e) => e.period === period);
   }
 
   change = (code, period) => {
-    let bank = this.banks.find(e => e.normalized === code);
+    let bank = this.banks.find((e) => e.normalized === code);
     let rates = bank.interests.sort((a, b) => {
       if (a.period !== b.period) {
         return b.period - a.period;
@@ -133,7 +133,7 @@ export class RowComponent implements OnInit, OnDestroy, AfterViewInit {
       }
     });
     let results = [];
-    let current = rates.find(e => e.period === period);
+    let current = rates.find((e) => e.period === period);
     for (let i = 0; i < rates.length; i++) {
       const rate = rates[i];
       if (rate.period === period && rate.value != current.value) {
@@ -164,10 +164,10 @@ export class RowComponent implements OnInit, OnDestroy, AfterViewInit {
       name: ["", Validators.required],
       email: ["", Validators.required],
       phone: [""],
-      require: [true]
+      require: [true],
     });
     this.observers.push(
-      this.service.getBanks(50, 1).subscribe(res => {
+      this.service.getBanks(50, 1).subscribe((res) => {
         this.banks = res.sort((a, b) => {
           if (b.name > a.name) {
             return -1;
@@ -177,19 +177,19 @@ export class RowComponent implements OnInit, OnDestroy, AfterViewInit {
         });
       })
     );
-    this.service.getStats().subscribe(res => (this.maxs = res));
+    this.service.getStats().subscribe((res) => (this.maxs = res));
   }
 
   download() {
     this.observers.push(
       this.userService
         .subscribe(this.downloadForm.value)
-        .subscribe(res => console.log(res))
+        .subscribe((res) => console.log(res))
     );
   }
 
-  wait = async ms => {
-    return new Promise(r => setTimeout(r, ms));
+  wait = async (ms) => {
+    return new Promise((r) => setTimeout(r, ms));
   };
 
   getLogo(code: string) {
@@ -200,41 +200,73 @@ export class RowComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
-  toDecimal = (number: number) => {
+  toDecimal = (number) => {
     if (number > 0) {
-      return (Math.round(number * 100) / 100).toFixed(2);
+      return (Math.round(number * 100) / 100).toFixed(2) + "%";
+    } else if (number == -100) {
+      return "Thỏa thuận";
     } else {
-      return "0.00";
+      return "không hỗ trợ";
     }
   };
 
   max(period, code) {
-    let bank = this.banks.find(e => e.normalized === code);
-    let rates = bank.interests.sort((a, b) => {
-      if (a.value !== b.value) {
-        return b.value - a.value;
-      } else {
-        let x = new Date(b.lastUpdate);
-        let y = new Date(a.lastUpdate);
-        return x.getTime() - y.getTime();
-      }
-    });
-    let currents = rates
-      .filter(e => e.period === period)
-      .sort((a, b) => {
+    let bank = this.banks.find((e) => e.normalized === code);
+
+    let rates = this.getLatestRates(code);
+    if (rates) {
+      rates.sort((a, b) => b.value - a.value);
+      let maximum = rates[0];
+      let current = rates.find((e) => e.period === period);
+      let result = current ? current.value === maximum.value : false;
+      return result;
+    } else {
+      console.log("cannot get rates of bank " + code);
+      return false;
+    }
+  }
+
+  getLatestRates = (code) => {
+    let bank = this.banks.find((e) => e.normalized === code);
+    if (bank && bank.interests) {
+      let unlimit = this.getLatest(bank.interests, 0);
+      let three = this.getLatest(bank.interests, 3);
+      let six = this.getLatest(bank.interests, 6);
+      let twelve = this.getLatest(bank.interests, 12);
+      let thirteen = this.getLatest(bank.interests, 13);
+      let twentyfour = this.getLatest(bank.interests, 24);
+      let thirtysix = this.getLatest(bank.interests, 36);
+      let eighteen = this.getLatest(bank.interests, 18);
+      return [
+        unlimit,
+        three,
+        six,
+        twelve,
+        thirteen,
+        eighteen,
+        twentyfour,
+        thirtysix,
+      ];
+    } else {
+      console.log("bank not found or bank doesnt have any rates " + code);
+      return [];
+    }
+  };
+
+  getLatest = (rates, period) => {
+    rates = rates.filter((e) => e.period === period);
+    if (rates) {
+      rates.sort((a, b) => {
         let x = new Date(b.lastUpdate);
         let y = new Date(a.lastUpdate);
         return x.getTime() - y.getTime();
       });
-    rates = rates.slice(0, 15).sort((a, b) => {
-      //NOTE I DON'T KNOW WHY BUT IT HAVE TO BE 10
-      let x = new Date(b.lastUpdate);
-      let y = new Date(a.lastUpdate);
-      return x.getTime() - y.getTime();
-    });
-    let maximum = rates[0].value;
-    return currents[0].value === maximum;
-  }
+      return rates[0];
+    } else {
+      console.log("cannot get rates of period " + period);
+      return {};
+    }
+  };
 
   getColor(code: string) {
     if (code) {
@@ -252,7 +284,7 @@ export class RowComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
-  getRandomInt = max => {
+  getRandomInt = (max) => {
     return Math.floor(Math.random() * Math.floor(max));
   };
 

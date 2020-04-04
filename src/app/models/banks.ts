@@ -62,4 +62,6 @@ export class Logos {
   standard: string = "/assets/images/standard.jpg";
   pgbank: string = "/assets/images/pgb.png";
   seabank: string = "/assets/images/seabank.png";
+  ivb: string = "/assets/images/ivb.jpg";
+  pvcombank: string = "/assets/images/pvc.png";
 }
