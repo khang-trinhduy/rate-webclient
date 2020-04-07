@@ -4,7 +4,7 @@ import { ActivatedRoute } from "@angular/router";
 import { Bank, Information, Utility, Interest } from "src/app/models/rate";
 import { Observable, of } from "rxjs";
 import { MatDialog } from "@angular/material/dialog";
-import { SubscribeComponent } from "../subscribe/subscribe.component";
+import { SubscribeComponent } from "../../../layout/subscribe/subscribe.component";
 import { UserService } from "src/app/services/user.service";
 
 @Component({

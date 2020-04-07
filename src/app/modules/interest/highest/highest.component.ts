@@ -3,9 +3,9 @@ import { RateService } from "src/app/services/rate.service";
 import { ActivatedRoute } from "@angular/router";
 import { UserService } from "src/app/services/user.service";
 import { MatDialog } from "@angular/material/dialog";
-import { SubscribeComponent } from "../subscribe/subscribe.component";
+import { SubscribeComponent } from "../../../layout/subscribe/subscribe.component";
 import { Subscription } from "rxjs";
-import { SdetailComponent } from "src/app/sdetail/sdetail.component";
+import { SdetailComponent } from "src/app/modules/interest/sdetail/sdetail.component";
 
 @Component({
   selector: "app-highest",

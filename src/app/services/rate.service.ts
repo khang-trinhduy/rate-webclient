@@ -5,11 +5,11 @@ import { environment } from "src/environments/environment";
 import { tap, map, catchError } from "rxjs/operators";
 
 @Injectable({
-  providedIn: "root"
+  providedIn: "root",
 })
 export class RateService {
   httpHeaderOptions = new HttpHeaders({
-    "Content-type": "application/json"
+    "Content-type": "application/json",
   });
   constructor(private http: HttpClient) {}
 
@@ -21,24 +21,25 @@ export class RateService {
   searchRates(value): Observable<any> {
     return this.http
       .get(`${environment.api}/rates/search?value=${value}`, {
-        headers: this.httpHeaderOptions
+        headers: this.httpHeaderOptions,
       })
       .pipe(catchError(this.handleError<any>("SEARCH RATES")));
   }
-  addReview(id, form): Observable<any> {
-    return this.http
-      .post(`${environment.api}/users/${id}/reviews`, form, {
-        headers: this.httpHeaderOptions
-      })
-      .pipe(catchError(this.handleError<any>("CREATE REVIEW")));
-  }
 
-  addInterest(form): Observable<any> {
+  addRate(form): Observable<any> {
     return this.http
       .post(`${environment.api}/rates`, form, {
-        headers: this.httpHeaderOptions
+        headers: this.httpHeaderOptions,
       })
-      .pipe(catchError(this.handleError<any>("CREATE INTEREST")));
+      .pipe(catchError(this.handleError<any>("CREATE RATE")));
+  }
+
+  deleteRate(id): Observable<any> {
+    return this.http
+      .delete(`${environment.api}/rates/${id}`, {
+        headers: this.httpHeaderOptions,
+      })
+      .pipe(catchError(this.handleError<any>("DELETE RATE")));
   }
 
   getRates(): Observable<any> {
@@ -71,22 +72,10 @@ export class RateService {
       .pipe(catchError(this.handleError<any>("GET STATS")));
   }
 
-  getInterests(): Observable<any> {
-    return this.http
-      .get(`${environment.api}/interests`)
-      .pipe(catchError(this.handleError<any>("GET INTERESTS")));
-  }
-
-  getLoans(): Observable<any> {
-    return this.http
-      .get(`${environment.api}/loans`)
-      .pipe(catchError(this.handleError<any>("GET LOANS")));
-  }
-
   getBanks(pageSize, pageIndex): Observable<any> {
     return this.http
       .get(`${environment.api}/banks?size=${pageSize}&index=${pageIndex}`, {
-        headers: this.httpHeaderOptions
+        headers: this.httpHeaderOptions,
       })
       .pipe(catchError(this.handleError<any>("GET BANKS")));
   }
@@ -94,7 +83,7 @@ export class RateService {
   searchBanks(keywords): Observable<any> {
     return this.http
       .get(`${environment.api}/banks/search?keywords=${keywords}`, {
-        headers: this.httpHeaderOptions
+        headers: this.httpHeaderOptions,
       })
       .pipe(catchError(this.handleError<any>("SEARCH BANKS")));
   }
@@ -117,26 +106,12 @@ export class RateService {
       .pipe(catchError(this.handleError<any>("GET BANK BY ID")));
   }
 
-  getInfo(type): Observable<any> {
-    return this.http
-      .get(`${environment.api}/informations?type=${type}`)
-      .pipe(catchError(this.handleError<any>("GET INFORMATION")));
-  }
-
-  getUtility(code): Observable<any> {
-    return this.http
-      .get(`${environment.api}/utilities?b=${code}`, {
-        headers: this.httpHeaderOptions
-      })
-      .pipe(catchError(this.handleError<any>("GET UTILITY")));
-  }
-
   getTop(size, period = NaN, code = NaN): Observable<any> {
     return this.http
       .get(
         `${environment.api}/rates/top?size=${size}&period=${period}&code=${code}`,
         {
-          headers: this.httpHeaderOptions
+          headers: this.httpHeaderOptions,
         }
       )
       .pipe(catchError(this.handleError<any>("GET TOP RATE")));
@@ -145,17 +120,9 @@ export class RateService {
   getReview(bankid): Observable<any> {
     return this.http
       .get(`${environment.api}/reviews?bank=${bankid}`, {
-        headers: this.httpHeaderOptions
+        headers: this.httpHeaderOptions,
       })
       .pipe(catchError(this.handleError<any>("GET REVIEWS")));
-  }
-
-  getReviewSummary(bankid): Observable<any> {
-    return this.http
-      .get(`${environment.api}/reviews/summary/${bankid}`, {
-        headers: this.httpHeaderOptions
-      })
-      .pipe(catchError(this.handleError<any>("GET REVIEW SUMMARY")));
   }
 
   private handleError<T>(operation = "operation", result?: T) {

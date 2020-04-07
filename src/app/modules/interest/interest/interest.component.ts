@@ -3,7 +3,7 @@ import { RateService } from "src/app/services/rate.service";
 import { Observable, concat, of, merge, combineLatest } from "rxjs";
 import { Bank } from "src/app/models/rate";
 import { MatDialog } from "@angular/material/dialog";
-import { SubscribeComponent } from "../subscribe/subscribe.component";
+import { SubscribeComponent } from "../../../layout/subscribe/subscribe.component";
 import { UserService } from "src/app/services/user.service";
 import { Router } from "@angular/router";
 
