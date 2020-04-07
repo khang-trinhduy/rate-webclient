@@ -115,59 +115,67 @@
               </a>
             </div>
             <app-cell
+              *ngIf="getCellProps(0, bank.normalized) as prop"
               [period]="0"
-              [max]="max(0, bank.normalized)"
-              [rate]="rate(bank.normalized, 0)"
-              [change]="change(bank.normalized, 0)"
+              [max]="prop.max"
+              [rate]="prop.rate"
+              [change]="prop.change"
               [bank]="bank.normalized"
             ></app-cell>
             <app-cell
+              *ngIf="getCellProps(3, bank.normalized) as prop"
               [period]="3"
-              [max]="max(3, bank.normalized)"
-              [rate]="rate(bank.normalized, 3)"
-              [change]="change(bank.normalized, 3)"
+              [max]="prop.max"
+              [rate]="prop.rate"
+              [change]="prop.change"
               [bank]="bank.normalized"
             ></app-cell>
             <app-cell
+              *ngIf="getCellProps(6, bank.normalized) as prop"
               [period]="6"
-              [max]="max(6, bank.normalized)"
-              [rate]="rate(bank.normalized, 6)"
-              [change]="change(bank.normalized, 6)"
+              [max]="prop.max"
+              [rate]="prop.rate"
+              [change]="prop.change"
               [bank]="bank.normalized"
             ></app-cell>
             <app-cell
+              *ngIf="getCellProps(12, bank.normalized) as prop"
               [period]="12"
-              [max]="max(12, bank.normalized)"
-              [rate]="rate(bank.normalized, 12)"
-              [change]="change(bank.normalized, 12)"
+              [max]="prop.max"
+              [rate]="prop.rate"
+              [change]="prop.change"
               [bank]="bank.normalized"
             ></app-cell>
             <app-cell
+              *ngIf="getCellProps(13, bank.normalized) as prop"
               [period]="13"
-              [max]="max(13, bank.normalized)"
-              [rate]="rate(bank.normalized, 13)"
-              [change]="change(bank.normalized, 13)"
+              [max]="prop.max"
+              [rate]="prop.rate"
+              [change]="prop.change"
               [bank]="bank.normalized"
             ></app-cell>
             <app-cell
+              *ngIf="getCellProps(18, bank.normalized) as prop"
               [period]="18"
-              [max]="max(18, bank.normalized)"
-              [rate]="rate(bank.normalized, 18)"
-              [change]="change(bank.normalized, 18)"
+              [max]="prop.max"
+              [rate]="prop.rate"
+              [change]="prop.change"
               [bank]="bank.normalized"
             ></app-cell>
             <app-cell
+              *ngIf="getCellProps(24, bank.normalized) as prop"
               [period]="24"
-              [max]="max(24, bank.normalized)"
-              [rate]="rate(bank.normalized, 24)"
-              [change]="change(bank.normalized, 24)"
+              [max]="prop.max"
+              [rate]="prop.rate"
+              [change]="prop.change"
               [bank]="bank.normalized"
             ></app-cell>
             <app-cell
+              *ngIf="getCellProps(36, bank.normalized) as prop"
               [period]="36"
-              [max]="max(36, bank.normalized)"
-              [rate]="rate(bank.normalized, 36)"
-              [change]="change(bank.normalized, 36)"
+              [max]="prop.max"
+              [rate]="prop.rate"
+              [change]="prop.change"
               [bank]="bank.normalized"
             ></app-cell>
             <div class="asxiRR">

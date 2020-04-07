@@ -105,9 +105,8 @@ export class RowComponent implements OnInit, OnDestroy, AfterViewInit {
     });
   }
 
-  rate(code, period) {
-    let bank = this.banks.find((e) => e.normalized === code);
-    let rates = bank.interests.sort((a, b) => {
+  sortByPeriodAndLastUpdate = (rates) => {
+    return rates.sort((a, b) => {
       if (a.period !== b.period) {
         return b.period - a.period;
       } else {
@@ -117,49 +116,88 @@ export class RowComponent implements OnInit, OnDestroy, AfterViewInit {
         return x.getTime() - y.getTime();
       }
     });
+  };
+
+  /**
+   *
+   * params:
+   *  +period: the period of rate
+   *  +code: the bank code
+   *
+   * return: A cell object including:
+   *  +max: A boolean value to indicate that the current rate is maximum of rates of the current bank
+   *  +rate: A rate interface, used as @Input of cell-component
+   *  +change: A change object (detail see below on getChangeProps()) serve as @Input of cell-component. Its main purpose is to display how the current rate has been changed since last change.
+   *
+   */
+  getCellProps = (period, code) => {
+    try {
+      let bank = this.banks.find((e) => e.normalized === code);
+      let sortedRatesOfCurrentBank = this.sortByPeriodAndLastUpdate(
+        bank.interests
+      );
+      let currentRate = this.getCurrentRate(sortedRatesOfCurrentBank, period);
+      let latestRates = this.getLatestRatesOfBank(bank);
+      let isMaximum = this.getMaximumRateOfBank(latestRates, currentRate);
+      let change = this.getChangeProps(
+        sortedRatesOfCurrentBank,
+        period,
+        currentRate
+      );
+      let result = {
+        rate: currentRate,
+        max: isMaximum,
+        change: change,
+      };
+      return result;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  getCurrentRate(rates, period) {
     return rates.find((e) => e.period === period);
   }
 
-  change = (code, period) => {
-    let bank = this.banks.find((e) => e.normalized === code);
-    if (bank) {
-      let rates = bank.interests.sort((a, b) => {
-        if (a.period !== b.period) {
-          return b.period - a.period;
-        } else {
-          let x = new Date(b.lastUpdate);
-          let y = new Date(a.lastUpdate);
-
-          return x.getTime() - y.getTime();
-        }
-      });
-      let results = [];
-      let current = rates.find((e) => e.period === period);
-      for (let i = 0; i < rates.length; i++) {
-        const rate = rates[i];
-        if (rate.period === period && rate.value != current.value) {
-          results.push(rate);
-        }
+  /**
+   *
+   * params:
+   *  +rates: sortedRates (sorted by decreasing period and latest update )
+   *  +period: period that we want to get change props
+   *  +currentRate: current rate that we want to see how it has been changed.
+   *
+   * return: return an object that have the following properties:
+   *  + diff: the amount of value that has been change since last time
+   *  it change (not lasttime update)
+   *  + value: the string indicate how the rates value changed (flat: unchanged; inc: increased; dec: decreased)
+   *
+   * *note: value property should be different name but i'll keep it for now
+   *
+   */
+  getChangeProps = (rates, period, currentRate) => {
+    let results = [];
+    for (let i = 0; i < rates.length; i++) {
+      const rate = rates[i];
+      if (rate.period === period && rate.value != currentRate.value) {
+        results.push(rate);
       }
-      if (results.length <= 0) {
+    }
+    if (results.length <= 0) {
+      return { value: "flat", diff: undefined };
+    } else {
+      if (results[0].value === 0) {
+        // get rid of new rates
+        return { value: "flat", diff: undefined };
+      }
+      let diff =
+        parseFloat(currentRate.value.toString()) - parseFloat(results[0].value);
+      if (diff > 0) {
+        return { value: "inc", diff: diff };
+      } else if (diff === 0) {
         return { value: "flat", diff: undefined };
       } else {
-        if (results[0].value === 0) {
-          // get rid of new rates
-          return { value: "flat", diff: undefined };
-        }
-        let diff =
-          parseFloat(current.value.toString()) - parseFloat(results[0].value);
-        if (diff > 0) {
-          return { value: "inc", diff: diff };
-        } else if (diff === 0) {
-          return { value: "flat", diff: undefined };
-        } else {
-          return { value: "dec", diff: diff };
-        }
+        return { value: "dec", diff: diff };
       }
-    } else {
-      return { value: "flat", diff: undefined };
     }
   };
 
@@ -214,24 +252,19 @@ export class RowComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   };
 
-  max(period, code) {
-    let bank = this.banks.find((e) => e.normalized === code);
-
-    let rates = this.getLatestRates(code);
-    if (rates) {
+  getMaximumRateOfBank(rates, rate) {
+    try {
       rates.sort((a, b) => b.value - a.value);
       let maximum = rates[0];
-      let current = rates.find((e) => e.period === period);
-      let result = current ? current.value === maximum.value : false;
+      let result = rate ? rate.value === maximum.value : false;
       return result;
-    } else {
-      console.log("cannot get rates of bank " + code);
+    } catch (error) {
+      console.log(error);
       return false;
     }
   }
 
-  getLatestRates = (code) => {
-    let bank = this.banks.find((e) => e.normalized === code);
+  getLatestRatesOfBank = (bank) => {
     if (bank && bank.interests) {
       let unlimit = this.getLatest(bank.interests, 0);
       let three = this.getLatest(bank.interests, 3);
@@ -252,7 +285,7 @@ export class RowComponent implements OnInit, OnDestroy, AfterViewInit {
         thirtysix,
       ];
     } else {
-      console.log("bank not found or bank doesnt have any rates " + code);
+      console.log("bank not found or bank doesnt have any rates " + bank.code);
       return [];
     }
   };

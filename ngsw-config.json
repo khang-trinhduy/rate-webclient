@@ -34,11 +34,7 @@
     {
       "name": "rate-api",
       "urls": [
-        "https://interest-rate-api.herokuapp.com/api/banks?size=50&index=1",
-        "https://interest-rate-api.herokuapp.com/api/rates/**",
-        "https://interest-rate-api.herokuapp.com/api/rates/recommend",
-        "https://interest-rate-api.herokuapp.com/api/rates/search",
-        "https://interest-rate-api.herokuapp.com/api/banks/detail/**"
+        "https://interest-rate-api.herokuapp.com/**"
       ],
       "cacheConfig": {
         "strategy": "freshness",
