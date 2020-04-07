@@ -11,6 +11,7 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatMenuModule } from "@angular/material/menu";
 import { MatExpansionModule } from "@angular/material/expansion";
 import { MatInputModule } from "@angular/material/input";
+import {MatTableModule} from '@angular/material/table';
 
 @NgModule({
   declarations: [],
@@ -26,7 +27,8 @@ import { MatInputModule } from "@angular/material/input";
     MatMenuModule,
     MatExpansionModule,
     MatInputModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatTableModule
   ],
   exports: [
     MatIconModule,
@@ -40,7 +42,8 @@ import { MatInputModule } from "@angular/material/input";
     MatMenuModule,
     MatExpansionModule,
     MatInputModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatTableModule
   ],
   bootstrap: [],
   providers: []
