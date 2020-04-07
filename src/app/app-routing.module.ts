@@ -5,22 +5,31 @@ import { MobileModule } from "./modules/mobile/mobile.module";
 
 const routes: Routes = [
   {
+    path: "",
+    loadChildren: () =>
+      import("./modules/interest/interest.module").then((m) => InterestModule),
+  },
+  {
     path: "mobile",
-    loadChildren: "./modules/mobile/mobile.module#MobileModule"
+    loadChildren: () =>
+      import("./modules/mobile/mobile.module").then((m) => m.MobileModule),
   },
   {
-    path: "",
-    loadChildren: "./modules/interest/interest.module#InterestModule"
+    path: "admin",
+    loadChildren: () =>
+      import("./modules/dashboard/dashboard.module").then(
+        (m) => m.DashboardModule
+      ),
   },
   {
-    path: "",
+    path: "**",
     redirectTo: "",
-    pathMatch: "full"
-  }
+    pathMatch: "full",
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes), InterestModule, MobileModule],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppRoutingModule {}

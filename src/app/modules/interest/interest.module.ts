@@ -9,20 +9,14 @@ import { HighestComponent } from "src/app/modules/interest/highest/highest.compo
 import { SdetailComponent } from "src/app/modules/interest/sdetail/sdetail.component";
 import { DetailComponent } from "src/app/modules/interest/detail/detail.component";
 import { CriteriaComponent } from "src/app/modules/interest/criteria/criteria.component";
-import { LoginComponent } from "src/app/modules/interest/login/login.component";
-import { RegisterComponent } from "src/app/modules/interest/register/register.component";
-import { SubscribeComponent } from "src/app/layout/subscribe/subscribe.component";
 const routes: Routes = [
   {
     path: "",
-    component: InterestComponent
+    component: InterestComponent,
   },
   { path: "highest", component: HighestComponent },
   { path: "criteria", component: CriteriaComponent },
-  { path: "signin", component: LoginComponent },
-  { path: "signup", component: RegisterComponent },
-  { path: "register", component: SubscribeComponent },
-  { path: "detail", component: DetailComponent }
+  { path: "detail", component: DetailComponent },
 ];
 @NgModule({
   declarations: [
@@ -32,10 +26,10 @@ const routes: Routes = [
     HighestComponent,
     DetailComponent,
     SdetailComponent,
-    CriteriaComponent
+    CriteriaComponent,
   ],
   imports: [BasicModule, MaterialsModule, RouterModule.forChild(routes)],
   exports: [InterestComponent],
-  entryComponents: [SdetailComponent]
+  entryComponents: [SdetailComponent],
 })
 export class InterestModule {}

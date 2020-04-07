@@ -14,6 +14,7 @@ import { MaterialsModule } from "./modules/materials/materials.module";
 import { BasicModule } from "./shared/basic/basic.module";
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { DashboardModule } from './modules/dashboard/dashboard.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +31,7 @@ import { environment } from '../environments/environment';
     MobileModule,
     MaterialsModule,
     BasicModule,
+    DashboardModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   entryComponents: [],
