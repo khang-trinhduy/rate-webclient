@@ -1,20 +1,27 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, OnDestroy } from '@angular/core'
 import { MatDialog } from '@angular/material/dialog'
 import { AddBankComponent } from '../add-bank/add-bank.component'
 import { RateService } from 'src/app/services/rate.service'
 import { MatSnackBar } from '@angular/material/snack-bar'
+import { Subscription } from 'rxjs'
+import { catchError } from 'rxjs/operators'
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.sass'],
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
+  observables: Subscription[] = []
+
   constructor(
     private _snackBar: MatSnackBar,
     public dialog: MatDialog,
     private rateService: RateService
   ) {}
+  ngOnDestroy(): void {
+    this.observables.forEach((obs) => obs.unsubscribe())
+  }
 
   ngOnInit() {}
 
@@ -26,9 +33,15 @@ export class HomeComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this._snackBar.open('Create bank successful', 'Close', {
-          duration: 3000,
-        })
+        this.observables.push(
+          this.rateService.addBank(result).subscribe((res) => {
+            if (res) {
+              this._snackBar.open(`Bank ${res.name} created`, 'Close', {
+                duration: 3000,
+              })
+            }
+          })
+        )
       }
     })
   }
