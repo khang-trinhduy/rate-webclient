@@ -210,7 +210,7 @@ export class RowComponent implements OnInit, OnDestroy, AfterViewInit {
     });
     this.observers.push(
       this.service.getBanks(50, 1).subscribe((res) => {
-        this.banks = res.sort((a, b) => {
+        this.banks = res.items.sort((a, b) => {
           if (b.name > a.name) {
             return -1;
           } else if (a.name < b.name) {

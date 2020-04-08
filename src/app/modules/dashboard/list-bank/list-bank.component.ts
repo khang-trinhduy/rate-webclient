@@ -5,6 +5,7 @@ import { merge, Observable, of as observableOf } from "rxjs";
 import { catchError, switchMap, startWith, map } from "rxjs/operators";
 import { Bank } from "src/app/models/rate";
 import { RateService } from "src/app/services/rate.service";
+import { MatTableDataSource } from "@angular/material/table";
 
 @Component({
   selector: "app-list-bank",
@@ -13,13 +14,12 @@ import { RateService } from "src/app/services/rate.service";
 })
 export class ListBankComponent implements AfterViewInit {
   displayedColumns: string[] = ["STT", "Name", "Code", "Created"];
-  banks: Bank[] = [];
+  dataSource: MatTableDataSource<any>;
 
   resultsLength = 0;
   isLoadingResults = true;
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort: MatSort;
-
   constructor(private rateService: RateService) {}
 
   ngAfterViewInit(): void {
@@ -39,16 +39,21 @@ export class ListBankComponent implements AfterViewInit {
         }),
         map((data) => {
           this.isLoadingResults = false;
-          this.resultsLength = this.banks.length;
-          return this.banks;
+          this.resultsLength = data.total_count;
+          return data.items;
         }),
         catchError(() => {
           this.isLoadingResults = false;
           return observableOf([]);
         })
       )
-      .subscribe((data) => (this.banks = data));
+      .subscribe(
+        (data) => (this.dataSource = new MatTableDataSource(data))
+      );
   }
 
-  ngOnInit() {}
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
 }
