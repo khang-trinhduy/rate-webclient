@@ -1,32 +1,27 @@
-import { NgModule } from "@angular/core";
-import { Routes, RouterModule } from "@angular/router";
-import { InterestModule } from "./modules/interest/interest.module";
-import { MobileModule } from "./modules/mobile/mobile.module";
+import { NgModule } from '@angular/core'
+import { Routes, RouterModule } from '@angular/router'
+import { InterestModule } from './modules/interest/interest.module'
+import { MobileModule } from './modules/mobile/mobile.module'
 
 const routes: Routes = [
   {
-    path: "",
-    loadChildren: () =>
-      import("./modules/interest/interest.module").then((m) => InterestModule),
+    path: '',
+    loadChildren: './modules/interest/interest.module#InterestModule',
   },
   {
-    path: "mobile",
-    loadChildren: () =>
-      import("./modules/mobile/mobile.module").then((m) => m.MobileModule),
+    path: 'mobile',
+    loadChildren: './modules/mobile/mobile.module#MobileModule',
   },
   {
-    path: "admin",
-    loadChildren: () =>
-      import("./modules/dashboard/dashboard.module").then(
-        (m) => m.DashboardModule
-      ),
+    path: 'admin',
+    loadChildren: './modules/dashboard/dashboard.module#DashboardModule',
   },
   {
-    path: "**",
-    redirectTo: "",
-    pathMatch: "full",
+    path: '**',
+    redirectTo: '',
+    pathMatch: 'full',
   },
-];
+]
 
 @NgModule({
   imports: [RouterModule.forRoot(routes), InterestModule, MobileModule],
