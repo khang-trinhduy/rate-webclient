@@ -27,13 +27,10 @@
       </div>
       <mat-tab-group class="tabs-area">
         <mat-tab label="Tại quầy">
-          <div class="flex-data" *ngIf="$banks">
-            <app-row *ngIf="tableStyle === 'row'"></app-row>
-          </div>
+          <app-row *ngIf="tableStyle === 'row'"></app-row>
         </mat-tab>
       </mat-tab-group>
       <p *ngIf="date" class="update">Ngày cập nhật: {{ toDate(date) }}</p>
     </div>
   </div>
-
 </div>

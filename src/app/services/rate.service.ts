@@ -80,6 +80,12 @@ export class RateService {
       .pipe(catchError(this.handleError<any>("GET BANKS")));
   }
 
+  getSortedBanks(sort: string, order: string, page: number): Observable<any> {
+    return this.http
+      .get(`${environment.api}/banks?sort=${sort}&order=${order}&page=${page}`)
+      .pipe(catchError(this.handleError<any>("GET BANKS")));
+  }
+
   searchBanks(keywords): Observable<any> {
     return this.http
       .get(`${environment.api}/banks/search?keywords=${keywords}`, {

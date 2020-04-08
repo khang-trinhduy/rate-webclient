@@ -1,15 +1,54 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ViewChild, AfterViewInit } from "@angular/core";
+import { MatPaginator } from "@angular/material/paginator";
+import { MatSort } from "@angular/material/sort";
+import { merge, Observable, of as observableOf } from "rxjs";
+import { catchError, switchMap, startWith, map } from "rxjs/operators";
+import { Bank } from "src/app/models/rate";
+import { RateService } from "src/app/services/rate.service";
 
 @Component({
-  selector: 'app-list-bank',
-  templateUrl: './list-bank.component.html',
-  styleUrls: ['./list-bank.component.sass']
+  selector: "app-list-bank",
+  templateUrl: "./list-bank.component.html",
+  styleUrls: ["./list-bank.component.sass"],
 })
-export class ListBankComponent implements OnInit {
+export class ListBankComponent implements AfterViewInit {
+  displayedColumns: string[] = ["STT", "Name", "Code", "Created"];
+  banks: Bank[] = [];
 
-  constructor() { }
+  resultsLength = 0;
+  isLoadingResults = true;
+  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: false }) sort: MatSort;
 
-  ngOnInit() {
+  constructor(private rateService: RateService) {}
+
+  ngAfterViewInit(): void {
+    // If user changes the sort order, reset back to the first page.
+    this.sort.sortChange.subscribe(() => (this.paginator.pageIndex = 0));
+
+    merge(this.sort.sortChange, this.paginator.page)
+      .pipe(
+        startWith({}),
+        switchMap(() => {
+          this.isLoadingResults = true;
+          return this.rateService.getSortedBanks(
+            this.sort.active,
+            this.sort.direction,
+            this.paginator.pageIndex
+          );
+        }),
+        map((data) => {
+          this.isLoadingResults = false;
+          this.resultsLength = this.banks.length;
+          return this.banks;
+        }),
+        catchError(() => {
+          this.isLoadingResults = false;
+          return observableOf([]);
+        })
+      )
+      .subscribe((data) => (this.banks = data));
   }
 
+  ngOnInit() {}
 }

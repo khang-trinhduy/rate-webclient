@@ -10,10 +10,9 @@ import { Router } from "@angular/router";
 @Component({
   selector: "app-interest",
   templateUrl: "./interest.component.html",
-  styleUrls: ["./interest.component.sass"]
+  styleUrls: ["./interest.component.sass"],
 })
 export class InterestComponent implements OnInit {
-  $banks: Observable<Bank[]>;
   tableStyle: string = "row";
   pageSize = 10;
   pageIndex = 1;
@@ -30,25 +29,24 @@ export class InterestComponent implements OnInit {
     if (window.innerWidth <= 1024) {
       this.router.navigateByUrl("/mobile", { replaceUrl: true });
     }
-    this.$banks = this.rateService.getBanks(this.pageSize, this.pageIndex);
-    this.rateService.getDate().subscribe(res => (this.date = res.date));
+    this.rateService.getDate().subscribe((res) => (this.date = res.date));
     this.best = this.rateService.getTop(1);
   }
 
   openDialog(bank, period): void {
     const dialogRef = this.dialog.open(SubscribeComponent, {
-      width: "auto"
+      width: "auto",
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         result.bank = bank;
         result.period = period;
         this.userService.subscribe(result).subscribe(
-          res => {
+          (res) => {
             console.log(res);
           },
-          error => {
+          (error) => {
             console.log(error);
           },
           () => {
@@ -60,18 +58,14 @@ export class InterestComponent implements OnInit {
   }
 
   toDate(date) {
-    return date
-      .split("T")[0]
-      .split("-")
-      .reverse()
-      .join("/");
+    return date.split("T")[0].split("-").reverse().join("/");
   }
 
-  tableStyleHandler = event => {
+  tableStyleHandler = (event) => {
     this.tableStyle = event;
   };
 
-  showChart = event => {
+  showChart = (event) => {
     var chart = document.querySelector("app-chart");
     var row = document.querySelector("app-row");
     var line = document.querySelector("app-line");
@@ -93,5 +87,4 @@ export class InterestComponent implements OnInit {
       }
     }
   };
-
 }
