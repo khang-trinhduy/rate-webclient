@@ -1,8 +1,7 @@
 <mat-tab-group>
   <mat-tab label="Ngân hàng">
-    <app-add-bank></app-add-bank>
     <app-list-bank></app-list-bank>
-    <app-delete-bank></app-delete-bank>
+    <button style="margin-left: 2vw; margin-top: 2vh;" color="accent" mat-raised-button (click)="openDialog()">Create new bank</button>
   </mat-tab>
   <mat-tab label="Lãi suất">
     <app-add-rate></app-add-rate>
