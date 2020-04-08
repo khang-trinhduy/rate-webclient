@@ -47,8 +47,11 @@
     "@angular/service-worker": "~8.2.14",
     "chart.js": "^2.9.3",
     "hammerjs": "^2.0.8",
+    "husky": "^4.2.3",
+    "lint-staged": "^10.1.2",
     "ng2-charts": "^2.3.0",
     "ngx-infinite-scroll": "^8.0.1",
+    "prettier": "^2.0.4",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "typescript": "~3.5.3",
@@ -70,5 +73,23 @@
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+      "prettier --single-quote --trailing-comma es5 --print-width 100 --tab-width 2 --no-semi --write"
+    ]
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "es5",
+    "printWidth": 100,
+    "tabWidth": 2,
+    "semi": false,
+    "bracketSpacing": true
   }
 }
