@@ -9,7 +9,7 @@ import { HighestComponent } from 'src/app/modules/interest/highest/highest.compo
 import { SdetailComponent } from 'src/app/modules/interest/sdetail/sdetail.component'
 import { DetailComponent } from 'src/app/modules/interest/detail/detail.component'
 import { CriteriaComponent } from 'src/app/modules/interest/criteria/criteria.component'
-import { SubscribeComponent } from 'src/app/layout/subscribe/subscribe.component'
+import { SubscribeComponent } from 'src/app/modules/interest/subscribe/subscribe.component'
 const routes: Routes = [
   {
     path: '',

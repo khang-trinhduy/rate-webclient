@@ -21,7 +21,11 @@
       <ng-container matColumnDef="Action">
         <th mat-header-cell *matHeaderCellDef>Action</th>
         <td mat-cell *matCellDef="let row">
-          <button mat-icon-button color="accent" (click)="clear(row._id)"><mat-icon>clear</mat-icon></button>
+          <button mat-icon-button color="accent" (click)="clear(row._id)">
+            <mat-icon>clear</mat-icon>
+          </button>
+          <!-- <button mat-icon-button color="accent" (click)="clear(row._id)"></button>
+          <a [routerLink]="['/']">Rates</a> -->
         </td>
       </ng-container>
 
