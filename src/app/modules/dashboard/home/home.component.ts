@@ -4,7 +4,7 @@ import { AddBankComponent } from '../add-bank/add-bank.component'
 import { RateService } from 'src/app/services/rate.service'
 import { MatSnackBar } from '@angular/material/snack-bar'
 import { Subscription } from 'rxjs'
-import { catchError } from 'rxjs/operators'
+import { AddRateComponent } from '../add-rate/add-rate.component'
 
 @Component({
   selector: 'app-home',
@@ -37,6 +37,27 @@ export class HomeComponent implements OnInit, OnDestroy {
           this.rateService.addBank(result).subscribe((res) => {
             if (res) {
               this._snackBar.open(`Bank ${res.name} created`, 'Close', {
+                duration: 3000,
+              })
+            }
+          })
+        )
+      }
+    })
+  }
+
+  openAnotherDialog(): void {
+    const dialogRef = this.dialog.open(AddRateComponent, {
+      width: 'auto',
+      height: 'auto',
+    })
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.observables.push(
+          this.rateService.addRate(result).subscribe((res) => {
+            if (res) {
+              this._snackBar.open(`Rate ${res.bank}-${res.period}-${res.value} created`, 'Close', {
                 duration: 3000,
               })
             }

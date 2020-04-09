@@ -1,7 +1,7 @@
 <div class="mmeid">
   <form [formGroup]="addBankForm">
     <mat-form-field>
-      <input formControlName="name" matInput placeholder="Name" value="" />
+      <input cdkFocusInitial formControlName="name" matInput placeholder="Name" value="" />
     </mat-form-field>
     <mat-form-field>
       <input formControlName="code" matInput placeholder="Code" value="" />
@@ -11,7 +11,15 @@
     </mat-form-field>
     <div mat-dialog-actions>
       <button mat-flat-button (click)="onNoClick()">No Thanks</button>
-      <button color="primary" mat-flat-button [disabled]="!addBankForm.valid" (click)="submit()" cdkFocusInitial>Ok</button>
+      <button
+        color="primary"
+        mat-flat-button
+        [disabled]="!addBankForm.valid"
+        (click)="submit()"
+        cdkFocusInitial
+      >
+        Ok
+      </button>
     </div>
   </form>
 </div>

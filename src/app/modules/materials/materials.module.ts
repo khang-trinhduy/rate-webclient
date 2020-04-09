@@ -6,7 +6,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox'
 import { MatRadioModule } from '@angular/material/radio'
 import { MatSelectModule } from '@angular/material/select'
 import { MatTabsModule } from '@angular/material/tabs'
-import { MatDialogModule } from '@angular/material/dialog'
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog'
 import { MatButtonModule } from '@angular/material/button'
 import { MatMenuModule } from '@angular/material/menu'
 import { MatExpansionModule } from '@angular/material/expansion'
@@ -55,6 +55,11 @@ import { MatSnackBarModule } from '@angular/material/snack-bar'
     MatSnackBarModule,
   ],
   bootstrap: [],
-  providers: [],
+  providers: [
+    {
+      provide: MatDialogRef,
+      useValue: {},
+    },
+  ],
 })
 export class MaterialsModule {}

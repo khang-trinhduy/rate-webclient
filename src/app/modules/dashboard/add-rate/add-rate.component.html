@@ -1,1 +1,38 @@
-<p>add-rate works!</p>
+<div class="mmeid">
+  <form [formGroup]="addRateForm">
+    <mat-form-field>
+      <mat-label>Bank</mat-label>
+      <mat-select formControlName="bank">
+        <mat-option *ngFor="let bank of banks" [value]="bank.normalized">
+          {{ bank.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Period</mat-label>
+      <mat-select formControlName="period">
+        <mat-option *ngFor="let period of periods" [value]="period.value">
+          {{ period.viewValue }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <input formControlName="value" type="number" matInput placeholder="percent" value="" />
+    </mat-form-field>
+    <mat-form-field>
+      <input formControlName="threshold" type="text" matInput placeholder="requirement" value="" />
+    </mat-form-field>
+    <div mat-dialog-actions>
+      <button mat-flat-button (click)="onNoClick()">No Thanks</button>
+      <button
+        color="primary"
+        mat-flat-button
+        [disabled]="!addRateForm.valid"
+        (click)="submit()"
+        cdkFocusInitial
+      >
+        Ok
+      </button>
+    </div>
+  </form>
+</div>
