@@ -13,7 +13,7 @@ import { ListBankComponent } from './list-bank/list-bank.component'
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'rate', component: ListRateComponent },
-  { path: 'bank', component: ListBankComponent },
+  { path: 'bank/:id', component: ListRateComponent },
   { path: '**', redirectTo: '' },
 ]
 

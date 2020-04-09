@@ -5,6 +5,7 @@ import { RateService } from 'src/app/services/rate.service'
 import { MatSnackBar } from '@angular/material/snack-bar'
 import { Subscription } from 'rxjs'
 import { AddRateComponent } from '../add-rate/add-rate.component'
+import { Bank } from 'src/app/models/rate'
 
 @Component({
   selector: 'app-home',
@@ -13,7 +14,8 @@ import { AddRateComponent } from '../add-rate/add-rate.component'
 })
 export class HomeComponent implements OnInit, OnDestroy {
   observables: Subscription[] = []
-
+  tabIndex = 0
+  selectedBank: Bank
   constructor(
     private _snackBar: MatSnackBar,
     public dialog: MatDialog,
@@ -57,13 +59,26 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.observables.push(
           this.rateService.addRate(result).subscribe((res) => {
             if (res) {
-              this._snackBar.open(`Rate ${res.bank}-${res.period}-${res.value} created`, 'Close', {
-                duration: 3000,
-              })
+              this._snackBar.open(
+                `Rate { ${result.bank}-${result.period}-${result.value} } created`,
+                'Close',
+                {
+                  duration: 3000,
+                }
+              )
             }
           })
         )
       }
     })
+  }
+
+  selectBankHandler = (bank) => {
+    this.tabIndex = 1
+    this.selectedBank = bank
+  }
+
+  changeTabIndex = (event) => {
+    this.tabIndex = event
   }
 }

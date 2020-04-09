@@ -1,4 +1,4 @@
-import { Component, ViewChild, AfterViewInit } from '@angular/core'
+import { Component, ViewChild, AfterViewInit, Output, EventEmitter } from '@angular/core'
 import { MatPaginator } from '@angular/material/paginator'
 import { MatSort } from '@angular/material/sort'
 import { merge, Observable, of as observableOf, Subscription } from 'rxjs'
@@ -23,6 +23,7 @@ export class ListBankComponent implements AfterViewInit {
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator
   @ViewChild(MatSort, { static: false }) sort: MatSort
   @ViewChild(MatButton, { static: false }) button: MatButton
+  @Output() onSelectBank: EventEmitter<any> = new EventEmitter<any>()
   constructor(private _snackbar: MatSnackBar, private rateService: RateService) {}
 
   ngAfterViewInit(): void {
@@ -78,5 +79,9 @@ export class ListBankComponent implements AfterViewInit {
         }
       })
     )
+  }
+
+  selectBank(bank) {
+    this.onSelectBank.emit(bank)
   }
 }

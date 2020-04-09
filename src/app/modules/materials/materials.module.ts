@@ -15,6 +15,7 @@ import { MatTableModule } from '@angular/material/table'
 import { MatPaginatorModule } from '@angular/material/paginator'
 import { MatSortModule } from '@angular/material/sort'
 import { MatSnackBarModule } from '@angular/material/snack-bar'
+import { MatCardModule } from '@angular/material/card'
 
 @NgModule({
   declarations: [],
@@ -35,6 +36,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar'
     MatPaginatorModule,
     MatSortModule,
     MatSnackBarModule,
+    MatCardModule,
   ],
   exports: [
     MatIconModule,
@@ -53,6 +55,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar'
     MatPaginatorModule,
     MatSortModule,
     MatSnackBarModule,
+    MatCardModule,
   ],
   bootstrap: [],
   providers: [
