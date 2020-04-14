@@ -1,4 +1,7 @@
 <div class="row-container">
+  <div class="mSpjf" #loader>
+    <img src="/assets/images/logo.png" alt="" />
+  </div>
   <div class="row-header">
     <h3 class="header-line">Danh sách lãi suất</h3>
     <div class="ErmGg">
@@ -10,67 +13,31 @@
         [queryParams]="{ bank: 'vib' }"
         >Lãi suất cao nhất tại VIB</a
       >
-      <a
-        #tag
-        target="_blank"
-        [routerLink]="['/criteria']"
-        [queryParams]="{ bank: 'scb' }"
+      <a #tag target="_blank" [routerLink]="['/criteria']" [queryParams]="{ bank: 'scb' }"
         >Chính sách cộng lãi suất tốt nhất từ SCB</a
       >
-      <a
-        #tag
-        target="_blank"
-        [routerLink]="['/criteria']"
-        [queryParams]="{ bank: 'abb' }"
+      <a #tag target="_blank" [routerLink]="['/criteria']" [queryParams]="{ bank: 'abb' }"
         >Ngân hàng ABBank mới cập lãi suất tháng 3/2020</a
       >
-      <a
-        #tag
-        target="_blank"
-        [routerLink]="['/criteria']"
-        [queryParams]="{ bank: 'tcb' }"
+      <a #tag target="_blank" [routerLink]="['/criteria']" [queryParams]="{ bank: 'tcb' }"
         >Techcombank cộng thêm 0.2% cho Khách hàng VIP</a
       >
-      <a
-        #tag
-        target="_blank"
-        [routerLink]="['/criteria']"
-        [queryParams]="{ bank: 'pvc' }"
+      <a #tag target="_blank" [routerLink]="['/criteria']" [queryParams]="{ bank: 'pvc' }"
         >PVcombank +0.3% khi gửi tiết kiệm online</a
       >
-      <a
-        #tag
-        target="_blank"
-        [routerLink]="['/criteria']"
-        [queryParams]="{ bank: 'vib' }"
+      <a #tag target="_blank" [routerLink]="['/criteria']" [queryParams]="{ bank: 'vib' }"
         >Lãi suất cao nhất tại VIB</a
       >
-      <a
-        #tag
-        target="_blank"
-        [routerLink]="['/criteria']"
-        [queryParams]="{ bank: 'scb' }"
+      <a #tag target="_blank" [routerLink]="['/criteria']" [queryParams]="{ bank: 'scb' }"
         >Chính sách cộng lãi suất tốt nhất từ SCB</a
       >
-      <a
-        #tag
-        target="_blank"
-        [routerLink]="['/criteria']"
-        [queryParams]="{ bank: 'abb' }"
+      <a #tag target="_blank" [routerLink]="['/criteria']" [queryParams]="{ bank: 'abb' }"
         >Ngân hàng ABBank mới cập lãi suất tháng 3/2020</a
       >
-      <a
-        #tag
-        target="_blank"
-        [routerLink]="['/criteria']"
-        [queryParams]="{ bank: 'tcb' }"
+      <a #tag target="_blank" [routerLink]="['/criteria']" [queryParams]="{ bank: 'tcb' }"
         >Techcombank cộng thêm 0.2% cho Khách hàng VIP</a
       >
-      <a
-        #tag
-        target="_blank"
-        [routerLink]="['/criteria']"
-        [queryParams]="{ bank: 'pvc' }"
+      <a #tag target="_blank" [routerLink]="['/criteria']" [queryParams]="{ bank: 'pvc' }"
         >PVcombank +0.3% khi gửi tiết kiệm online</a
       >
     </div>
@@ -113,19 +80,18 @@
           <div class="cell-content 36m">
             <a class="cell-text">36 tháng</a>
           </div>
-          <div class="cell-content unused">
-            <a class="cell-text"></a>
+          <div class="cell-content rate-changer unused">
+            <a #changer class="cell-text" (click)="changeRateType()">
+              Tại quầy
+            </a>
+            <span style="font-size: 12px;font-style: italic!important;color: white!important;">(click để thay đổi lãi suất)</span>
           </div>
         </div>
         <div class="cell-area" *ngFor="let bank of banks">
-          <div class="row-line">
+          <div #offline class="row-line active">
             <div class="cell-content head">
               <a [routerLink]="['/detail']" [queryParams]="{ c: bank._id }">
-                <img
-                  class="head-logo"
-                  [src]="getLogo(bank.normalized)"
-                  alt=""
-                />
+                <img class="head-logo" [src]="getLogo(bank.normalized)" alt="" />
               </a>
             </div>
             <app-cell
@@ -193,9 +159,81 @@
               [bank]="bank.normalized"
             ></app-cell>
             <div class="asxiRR">
-              <a [routerLink]="['/detail']" [queryParams]="{ c: bank._id }"
-                >Chi tiết</a
-              >
+              <a [routerLink]="['/detail']" [queryParams]="{ c: bank._id }">Chi tiết</a>
+            </div>
+          </div>
+          <div #online class="row-line">
+            <div class="cell-content head">
+              <a [routerLink]="['/detail']" [queryParams]="{ c: bank._id }">
+                <img class="head-logo" [src]="getLogo(bank.normalized)" alt="" />
+              </a>
+            </div>
+            <app-cell
+              *ngIf="getCellProps(0, bank.normalized, true) as prop"
+              [period]="0"
+              [max]="prop.max"
+              [rate]="prop.rate"
+              [change]="prop.change"
+              [bank]="bank.normalized"
+            ></app-cell>
+            <app-cell
+              *ngIf="getCellProps(3, bank.normalized, true) as prop"
+              [period]="3"
+              [max]="prop.max"
+              [rate]="prop.rate"
+              [change]="prop.change"
+              [bank]="bank.normalized"
+            ></app-cell>
+            <app-cell
+              *ngIf="getCellProps(6, bank.normalized, true) as prop"
+              [period]="6"
+              [max]="prop.max"
+              [rate]="prop.rate"
+              [change]="prop.change"
+              [bank]="bank.normalized"
+            ></app-cell>
+            <app-cell
+              *ngIf="getCellProps(12, bank.normalized, true) as prop"
+              [period]="12"
+              [max]="prop.max"
+              [rate]="prop.rate"
+              [change]="prop.change"
+              [bank]="bank.normalized"
+            ></app-cell>
+            <app-cell
+              *ngIf="getCellProps(13, bank.normalized, true) as prop"
+              [period]="13"
+              [max]="prop.max"
+              [rate]="prop.rate"
+              [change]="prop.change"
+              [bank]="bank.normalized"
+            ></app-cell>
+            <app-cell
+              *ngIf="getCellProps(18, bank.normalized, true) as prop"
+              [period]="18"
+              [max]="prop.max"
+              [rate]="prop.rate"
+              [change]="prop.change"
+              [bank]="bank.normalized"
+            ></app-cell>
+            <app-cell
+              *ngIf="getCellProps(24, bank.normalized, true) as prop"
+              [period]="24"
+              [max]="prop.max"
+              [rate]="prop.rate"
+              [change]="prop.change"
+              [bank]="bank.normalized"
+            ></app-cell>
+            <app-cell
+              *ngIf="getCellProps(36, bank.normalized, true) as prop"
+              [period]="36"
+              [max]="prop.max"
+              [rate]="prop.rate"
+              [change]="prop.change"
+              [bank]="bank.normalized"
+            ></app-cell>
+            <div class="asxiRR">
+              <a [routerLink]="['/detail']" [queryParams]="{ c: bank._id }">Chi tiết</a>
             </div>
           </div>
         </div>
@@ -209,12 +247,7 @@
       <form [formGroup]="downloadForm" (ngSubmit)="download()">
         <h2>Đăng ký tài khoản</h2>
         <mat-form-field>
-          <input
-            formControlName="name"
-            matInput
-            placeholder="Họ và tên"
-            value=""
-          />
+          <input formControlName="name" matInput placeholder="Họ và tên" value="" />
         </mat-form-field>
         <mat-form-field>
           <input

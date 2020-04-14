@@ -29,11 +29,16 @@ export class RowComponent implements OnInit, OnDestroy, AfterViewInit {
   observers: Subscription[] = []
   typeahead
   downloadForm: FormGroup
+  online: boolean = false
   @ViewChild('search', { static: false }) search: ElementRef
   @ViewChild('holder', { static: false }) holder: ElementRef
   @ViewChild('popup', { static: false }) popup: ElementRef
+  @ViewChild('changer', { static: false }) rateChanger: ElementRef
+  @ViewChildren('online') onlineRates: QueryList<any>
+  @ViewChildren('offline') offlineRates: QueryList<any>
   @ViewChildren('icon') icons: QueryList<any>
   @ViewChildren('tag') tags: QueryList<any>
+  @ViewChild('loader', { static: false }) loader: ElementRef
 
   constructor(
     private userService: UserService,
@@ -117,10 +122,16 @@ export class RowComponent implements OnInit, OnDestroy, AfterViewInit {
    *  +change: A change object (detail see below on getChangeProps()) serve as @Input of cell-component. Its main purpose is to display how the current rate has been changed since last change.
    *
    */
-  getCellProps = (period, code) => {
+  getCellProps = (period, code, online = false) => {
     try {
       let bank = this.banks.find((e) => e.normalized === code)
-      let sortedRatesOfCurrentBank = this.sortByPeriodAndLastUpdate(bank.interests)
+      let rates = bank.interests
+      if (online) {
+        rates = rates.filter((rate) => rate.online)
+      } else {
+        rates = rates.filter((rate) => !rate.online)
+      }
+      let sortedRatesOfCurrentBank = this.sortByPeriodAndLastUpdate(rates)
       let currentRate = this.getCurrentRate(sortedRatesOfCurrentBank, period)
       let latestRates = this.getLatestRatesOfBank(bank)
       let isMaximum = this.getMaximumRateOfBank(latestRates, currentRate)
@@ -129,6 +140,10 @@ export class RowComponent implements OnInit, OnDestroy, AfterViewInit {
         rate: currentRate,
         max: isMaximum,
         change: change,
+      }
+      if (bank.normalized === 'vib') {
+        let loader = this.loader.nativeElement
+        ;(<HTMLElement>loader).classList.add('mkdih')
       }
       return result
     } catch (error) {
@@ -179,6 +194,35 @@ export class RowComponent implements OnInit, OnDestroy, AfterViewInit {
         return { value: 'dec', diff: diff }
       }
     }
+  }
+
+  changeRateType() {
+    if (!!this.online) {
+      // hide online rate
+      let onlines = this.onlineRates.toArray()
+      onlines.forEach((online) => {
+        online.nativeElement.classList.remove('active')
+      })
+      // show offline rate
+      let offlines = this.offlineRates.toArray()
+      offlines.forEach((offline) => {
+        offline.nativeElement.classList.add('active')
+      })
+    } else {
+      // hide offline rate
+      let offlines = this.offlineRates.toArray()
+      offlines.forEach((offline) => {
+        offline.nativeElement.classList.remove('active')
+      })
+      // show online rate
+      let onlines = this.onlineRates.toArray()
+      onlines.forEach((online) => {
+        online.nativeElement.classList.add('active')
+      })
+    }
+    let link = this.rateChanger.nativeElement as HTMLLinkElement
+    link.textContent = !!this.online ? 'Tại quầy' : 'Online'
+    this.online = !this.online
   }
 
   ngOnInit() {
