@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog'
 import { SubscribeComponent } from '../subscribe/subscribe.component'
 import { UserService } from 'src/app/services/user.service'
 import { Router } from '@angular/router'
+import { environment } from 'src/environments/environment'
 
 @Component({
   selector: 'app-interest',
@@ -87,4 +88,6 @@ export class InterestComponent implements OnInit {
       }
     }
   }
+
+  getDownloadLink = () => `${environment.api}/download`
 }

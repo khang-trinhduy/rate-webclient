@@ -4,9 +4,7 @@
       <div class="data-header">
         <div class="post-ck" *ngIf="best | async as item">
           <h2>
-            Lãi suất tiền gửi cao nhất thị trường <br /><span
-              >{{ item[0]?.value }}/năm</span
-            >
+            Lãi suất tiền gửi cao nhất thị trường <br /><span>{{ item[0]?.value }}/năm</span>
           </h2>
           <div class="ck-pr">
             <button
@@ -16,10 +14,7 @@
             >
               Xem chi tiết
             </button>
-            <button
-              class="rglr"
-              (click)="openDialog(item[0]?.bank, item[0]?.period)"
-            >
+            <button class="rglr" (click)="openDialog(item[0]?.bank, item[0]?.period)">
               Đăng ký
             </button>
           </div>
@@ -28,6 +23,11 @@
       <mat-tab-group class="tabs-area">
         <mat-tab label="Tại quầy">
           <app-row *ngIf="tableStyle === 'row'"></app-row>
+          <div class="download-link">
+            <a [href]="getDownloadLink()" target="_blank">
+              Tải xuống (định dạng file xlsx)
+            </a>
+          </div>
         </mat-tab>
       </mat-tab-group>
       <p *ngIf="date" class="update">Ngày cập nhật: {{ toDate(date) }}</p>
