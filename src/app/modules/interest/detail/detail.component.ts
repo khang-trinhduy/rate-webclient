@@ -6,6 +6,7 @@ import { Observable, of } from 'rxjs'
 import { MatDialog } from '@angular/material/dialog'
 import { SubscribeComponent } from '../subscribe/subscribe.component'
 import { UserService } from 'src/app/services/user.service'
+import { MatSnackBar } from '@angular/material/snack-bar'
 
 @Component({
   selector: 'app-detail',
@@ -28,7 +29,8 @@ export class DetailComponent implements OnInit, OnDestroy {
     private userService: UserService,
     private dialogRef: MatDialog,
     private service: RateService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private _snackbar: MatSnackBar
   ) {}
 
   ngOnDestroy() {
@@ -45,8 +47,6 @@ export class DetailComponent implements OnInit, OnDestroy {
       (res) => (this.bank = res),
       (error) => {},
       () => {
-        console.log(this.bank)
-
         if (this.bank) {
           let interests = this.bank.interests.sort((a, b) => {
             if (a.period != b.period) {
@@ -111,7 +111,11 @@ export class DetailComponent implements OnInit, OnDestroy {
         result.bank = bank
         this.userService.subscribe(result).subscribe(
           (res) => {
-            console.log(res)
+            this._snackbar.open(
+              `Cảm ơn bạn đã đăng ký. Chúng tôi sẽ tiến hành liên lạc với bạn sớm nhất có thể qua SĐT ${res.phone}!`,
+              'Đóng thông báo',
+              { duration: 5000 }
+            )
           },
           (error) => {
             console.log(error)

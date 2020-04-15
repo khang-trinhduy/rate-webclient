@@ -17,6 +17,7 @@ import { Observable, merge, combineLatest, fromEvent, Subscription } from 'rxjs'
 import { map, filter, debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators'
 import { FormBuilder, Validators, FormGroup } from '@angular/forms'
 import { UserService } from 'src/app/services/user.service'
+import { MatSnackBar } from '@angular/material/snack-bar'
 
 @Component({
   selector: 'app-row',
@@ -43,7 +44,8 @@ export class RowComponent implements OnInit, OnDestroy, AfterViewInit {
   constructor(
     private userService: UserService,
     private service: RateService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private _snackbar: MatSnackBar
   ) {}
   async ngAfterViewInit() {
     let searchBox = this.search.nativeElement
@@ -242,7 +244,16 @@ export class RowComponent implements OnInit, OnDestroy, AfterViewInit {
 
   download() {
     this.observers.push(
-      this.userService.subscribe(this.downloadForm.value).subscribe((res) => console.log(res))
+      this.userService.subscribe(this.downloadForm.value).subscribe((res) => {
+        this._snackbar.open(
+          `Cảm ơn bạn đã đăng ký. Chúng tôi sẽ gửi lại thông tin lãi suất qua hòm thư ${res.email}!`,
+          'Đóng thông báo',
+          { duration: 5000 }
+        )
+        let popUpForm = this.popup.nativeElement
+        popUpForm.classList.add('deactive')
+        popUpForm.classList.remove('active')
+      })
     )
   }
 

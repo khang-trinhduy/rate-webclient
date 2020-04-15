@@ -7,6 +7,7 @@ import { SubscribeComponent } from '../subscribe/subscribe.component'
 import { UserService } from 'src/app/services/user.service'
 import { Router } from '@angular/router'
 import { environment } from 'src/environments/environment'
+import { MatSnackBar } from '@angular/material/snack-bar'
 
 @Component({
   selector: 'app-interest',
@@ -23,7 +24,8 @@ export class InterestComponent implements OnInit {
     private userService: UserService,
     public dialog: MatDialog,
     private rateService: RateService,
-    private router: Router
+    private router: Router,
+    private _snackbar: MatSnackBar
   ) {}
 
   ngOnInit() {
@@ -45,7 +47,11 @@ export class InterestComponent implements OnInit {
         result.period = period
         this.userService.subscribe(result).subscribe(
           (res) => {
-            console.log(res)
+            this._snackbar.open(
+              `Cảm ơn bạn đã đăng ký. Chúng tôi sẽ tiến hành liên lạc với bạn sớm nhất có thể qua SĐT ${res.phone}!`,
+              'Đóng thông báo',
+              { duration: 5000 }
+            )
           },
           (error) => {
             console.log(error)
