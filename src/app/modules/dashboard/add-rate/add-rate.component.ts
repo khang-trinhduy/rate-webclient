@@ -20,6 +20,7 @@ export class AddRateComponent implements OnInit {
       period: ['', Validators.required],
       value: ['', Validators.required],
       threshold: [''],
+      online: [false],
     })
     this.observables.push(
       this.rateService.getBanks(100, 1).subscribe((res) => (this.banks = res.items))
