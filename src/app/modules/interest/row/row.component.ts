@@ -160,9 +160,9 @@ export class RowComponent implements OnInit, OnDestroy, AfterViewInit {
   /**
    *
    * params:
-   *  +rates: sortedRates (sorted by decreasing period and latest update )
-   *  +period: period that we want to get change props
-   *  +currentRate: current rate that we want to see how it has been changed.
+   *  @param {Interest[]} rates: sortedRates (sorted by decreasing period and latest update )
+   *  @param {number} period: period that we want to get change props
+   *  @param {Interest} currentRate: current rate that we want to see how it has been changed.
    *
    * return: return an object that have the following properties:
    *  + diff: the amount of value that has been change since last time
@@ -176,7 +176,15 @@ export class RowComponent implements OnInit, OnDestroy, AfterViewInit {
     let results = []
     for (let i = 0; i < rates.length; i++) {
       const rate = rates[i]
-      if (rate.period === period && rate.value != currentRate.value) {
+      let month = new Date().getMonth() + 1
+      let day1 = new Date(rate.lastUpdate).getDate()
+      let month1 = new Date(rate.lastUpdate).getMonth() + 1
+      if (
+        rate.period === period &&
+        rate.value != currentRate.value &&
+        month1 === month &&
+        day1 >= 5
+      ) {
         results.push(rate)
       }
     }
