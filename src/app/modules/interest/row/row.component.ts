@@ -183,7 +183,7 @@ export class RowComponent implements OnInit, OnDestroy, AfterViewInit {
         rate.period === period &&
         rate.value != currentRate.value &&
         month1 === month &&
-        day1 >= 5
+        day1 >= 1
       ) {
         results.push(rate)
       }
