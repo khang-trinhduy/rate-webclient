@@ -4,9 +4,10 @@
 
 export const environment = {
   production: false,
-  api: "http://localhost:3000/api",
-  static: "http://localhost:4200",
-};
+  docker: false,
+  api: 'http://localhost:3000/api',
+  static: 'http://localhost:4200',
+}
 
 /*
  * For easier debugging in development mode, you can import the following file
