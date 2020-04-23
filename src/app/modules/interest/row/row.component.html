@@ -25,21 +25,11 @@
       <a #tag target="_blank" [routerLink]="['/criteria']" [queryParams]="{ bank: 'pvc' }"
         >PVcombank +0.3% khi gửi tiết kiệm online</a
       >
-      <a #tag target="_blank" [routerLink]="['/criteria']" [queryParams]="{ bank: 'vib' }"
-        >Lãi suất cao nhất tại VIB</a
+      <a #tag target="_blank" [routerLink]="['/criteria']" [queryParams]="{ bank: 'vibn' }"
+        >VIB ưu đãi trong mùa dịch</a
       >
-      <a #tag target="_blank" [routerLink]="['/criteria']" [queryParams]="{ bank: 'scb' }"
-        >Chính sách cộng lãi suất tốt nhất từ SCB</a
-      >
-      <a #tag target="_blank" [routerLink]="['/criteria']" [queryParams]="{ bank: 'abb' }"
-        >Ngân hàng ABBank mới cập lãi suất tháng 3/2020</a
-      >
-      <a #tag target="_blank" [routerLink]="['/criteria']" [queryParams]="{ bank: 'tcb' }"
-        >Techcombank cộng thêm 0.2% cho Khách hàng VIP</a
-      >
-      <a #tag target="_blank" [routerLink]="['/criteria']" [queryParams]="{ bank: 'pvc' }"
-        >PVcombank +0.3% khi gửi tiết kiệm online</a
-      >
+      
+      
     </div>
     <input
       #search
@@ -84,7 +74,15 @@
             <a #changer class="cell-text" (click)="changeRateType()">
               Tại quầy
             </a>
-            <span style="font-size: 12px;font-style: italic!important;color: white!important;cursor: default!important;">(click phía trên để thay đổi lãi suất)</span>
+            <span
+              style="
+                font-size: 12px;
+                font-style: italic !important;
+                color: white !important;
+                cursor: default !important;
+              "
+              >(click phía trên để thay đổi lãi suất)</span
+            >
           </div>
         </div>
         <div class="cell-area" *ngFor="let bank of banks">
@@ -245,7 +243,7 @@
     </div>
     <div class="EmsFF active" #popup>
       <form [formGroup]="downloadForm" (ngSubmit)="download()">
-        <h2>ĐĂNG KÝ CẬP NHẬT<br/>LÃI SUẤT</h2>
+        <h2>ĐĂNG KÝ CẬP NHẬT<br />LÃI SUẤT</h2>
         <mat-form-field>
           <input formControlName="name" matInput placeholder="Họ và tên" value="" />
         </mat-form-field>

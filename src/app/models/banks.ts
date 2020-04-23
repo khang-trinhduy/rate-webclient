@@ -65,4 +65,5 @@ export class Logos {
   ivb: string = '/assets/images/ivb.jpg'
   pvcombank: string = '/assets/images/pvc.png'
   shbvn: string = '/assets/images/shbvn.jpg'
+  vrb: string = '/assets/images/vrb.png'
 }
