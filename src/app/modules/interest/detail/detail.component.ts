@@ -57,6 +57,7 @@ export class DetailComponent implements OnInit, OnDestroy {
               return x - y
             }
           })
+          interests = interests.filter((e) => !e.online)
           let zero = interests.find((e) => e.period === 0)
           let two = interests.find((e) => e.period === 2)
           let three = interests.find((e) => e.period === 3)
@@ -70,6 +71,7 @@ export class DetailComponent implements OnInit, OnDestroy {
           let one = interests.find((e) => e.period === 1)
           let six = interests.find((e) => e.period === 6)
           this.main = [one, six]
+          console.table(interests)
         }
       }
     )
