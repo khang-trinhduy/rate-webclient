@@ -13,7 +13,7 @@
           <th>Từ 5 tỷ trở lên</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody *ngIf="!isVib()">
         <tr>
           <td colspan="5" class="medTdr">
             Kỳ hạn nổi bật
@@ -67,6 +67,64 @@
           <td>
             <p [ngClass]="{ max: max(item.value) }">
               {{ toDecimal(item.value) }}
+            </p>
+          </td>
+        </tr>
+      </tbody>
+      <tbody *ngIf="isVib()">
+        <tr>
+          <td colspan="5" class="medTdr">
+            Kỳ hạn nổi bật
+          </td>
+        </tr>
+        <tr *ngFor="let item of main">
+          <td>{{ item.period }} tháng</td>
+          <td>
+            <p [ngClass]="{ max: isMax(item.values[0]) }">
+              {{ toDecimal(item.values[0]) }}
+            </p>
+          </td>
+          <td>
+            <p [ngClass]="{ max: isMax(item.values[1]) }">
+              {{ toDecimal(item.values[1]) }}
+            </p>
+          </td>
+          <td>
+            <p [ngClass]="{ max: isMax(item.values[2]) }">
+              {{ toDecimal(item.values[2]) }}
+            </p>
+          </td>
+          <td>
+            <p [ngClass]="{ max: isMax(item.values[3]) }">
+              {{ toDecimal(item.values[3]) }}
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="5" class="medTdr">
+            Kỳ hạn khác
+          </td>
+        </tr>
+        <tr *ngFor="let item of others">
+          <td>{{ item.period }} tháng</td>
+          <td>
+            <p [ngClass]="{ max: isMax(item.values[0]) }">
+              {{ toDecimal(item.values[0]) }}
+            </p>
+          </td>
+          <td>
+            <p [ngClass]="{ max: isMax(item.values[1]) }">
+              {{ toDecimal(item.values[1]) }}
+            </p>
+          </td>
+          <td>
+            <p [ngClass]="{ max: isMax(item.values[2]) }">
+              {{ toDecimal(item.values[2]) }}
+            </p>
+          </td>
+          <td>
+            <p [ngClass]="{ max: isMax(item.values[3]) }">
+              {{ toDecimal(item.values[3]) }}
             </p>
           </td>
         </tr>

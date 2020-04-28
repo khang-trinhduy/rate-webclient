@@ -22,8 +22,8 @@ export class DetailComponent implements OnInit, OnDestroy {
   reviews
   summary
   bankid
-  others: Interest[]
-  main: Interest[]
+  others
+  main
   toBeDestroyed
   constructor(
     private userService: UserService,
@@ -71,7 +71,56 @@ export class DetailComponent implements OnInit, OnDestroy {
           let one = interests.find((e) => e.period === 1)
           let six = interests.find((e) => e.period === 6)
           this.main = [one, six]
-          console.table(interests)
+          if (this.bank.normalized === 'vib') {
+            this.main = [
+              {
+                period: 1,
+                values: [4.75, 4.75, 4.75, 4.75],
+              },
+              {
+                period: 6,
+                values: [6.7, 6.8, 6.9, 6.9],
+              },
+            ]
+            this.others = [
+              {
+                period: 0,
+                values: [0.5, 0.5, 0.5, 0.5],
+              },
+              {
+                period: 2,
+                values: [4.75, 4.75, 4.75, 4.75],
+              },
+              {
+                period: 3,
+                values: [4.75, 4.75, 4.75, 4.75],
+              },
+              {
+                period: 9,
+                values: [6.7, 6.8, 6.9, 6.9],
+              },
+              {
+                period: 12,
+                values: [6.7, 6.8, 6.9, 6.9],
+              },
+              {
+                period: 13,
+                values: [7.59, 7.59, 7.59, 7.59],
+              },
+              {
+                period: 18,
+                values: [7, 7.1, 7.2, 7.2],
+              },
+              {
+                period: 24,
+                values: [7.3, 7.4, 7.5, 7.5],
+              },
+              {
+                period: 36,
+                values: [7.3, 7.4, 7.5, 7.5],
+              },
+            ]
+          }
         }
       }
     )
@@ -92,6 +141,10 @@ export class DetailComponent implements OnInit, OnDestroy {
       }
     })
   }
+
+  isMax = (value) => value === 7.59
+
+  isVib = () => this.bank.normalized === 'vib'
 
   max = (value) => {
     let maximum
