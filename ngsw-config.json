@@ -29,19 +29,5 @@
         ]
       }
     }
-  ],
-  "dataGroups": [
-    {
-      "name": "rate-api",
-      "urls": [
-        "https://interest-rate-api.herokuapp.com/**"
-      ],
-      "cacheConfig": {
-        "strategy": "performance",
-        "maxSize": 100,
-        "maxAge": "3d",
-        "timeout": "10s"
-      }
-    }
   ]
 }
