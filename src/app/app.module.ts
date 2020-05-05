@@ -25,7 +25,7 @@ import { DashboardModule } from './modules/dashboard/dashboard.module'
     MaterialsModule,
     BasicModule,
     DashboardModule,
-    ServiceWorkerModule.register('ngsw-worker.js', {
+    ServiceWorkerModule.register('safety-worker.js', {
       enabled: environment.production || environment.docker,
     }),
   ],
