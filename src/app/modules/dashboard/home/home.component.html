@@ -1,22 +1,28 @@
 <mat-tab-group [selectedIndex]="tabIndex" (selectedIndexChange)="changeTabIndex($event)">
   <mat-tab label="Ngân hàng">
-    <app-list-bank (onSelectBank)="selectBankHandler($event)"></app-list-bank>
-    <button
-      style="margin-left: 2vw; margin-top: 2vh;"
-      color="accent"
-      mat-raised-button
-      (click)="openDialog()"
-    >
-      Create new bank
-    </button>
-    <button
-      style="margin-left: 2vw; margin-top: 2vh;"
-      color="primary"
-      mat-raised-button
-      (click)="openAnotherDialog()"
-    >
-      Create new rate
-    </button>
+    <div class="wrapper">
+      <app-list-bank (onSelectBank)="selectBankHandler($event)"></app-list-bank>
+      <div class="holder">
+        <button color="accent" mat-raised-button (click)="openDialog()">
+          Create new bank
+        </button>
+        <button color="primary" mat-raised-button (click)="openAnotherDialog()">
+          Create new rate
+        </button>
+        <div>
+          <mat-radio-group [(ngModel)]="isOnline">
+            <mat-radio-button [value]="false">Offline</mat-radio-button>
+            <mat-radio-button [value]="true">Online</mat-radio-button>
+          </mat-radio-group>
+          <button type="button" mat-raised-button (click)="fileInput.click()">
+            Import rates
+          </button>
+        </div>
+      </div>
+    </div>
+    <form method="post" enctype="multipart/form-data">
+      <input name="file" hidden (change)="onFileSelected()" #fileInput id="file" type="file" />
+    </form>
   </mat-tab>
   <mat-tab label="Lãi suất">
     <app-list-rate></app-list-rate>

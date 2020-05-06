@@ -8,6 +8,11 @@ import { tap, map, catchError } from 'rxjs/operators'
   providedIn: 'root',
 })
 export class RateService {
+  import(form: any): Observable<any> {
+    return this.http
+      .post(`${environment.api}/rates/import`, form, { headers: this.httpHeaderOptions })
+      .pipe(catchError(this.handleError<any>('IMPORT FILE')))
+  }
   deleteBank(id: any) {
     return this.http
       .delete(`${environment.api}/banks/${id}`, { headers: this.httpHeaderOptions })
