@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core'
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core'
 import { MatDialog } from '@angular/material/dialog'
 import { AddBankComponent } from '../add-bank/add-bank.component'
 import { RateService } from 'src/app/services/rate.service'
@@ -21,6 +21,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   importError = ''
   importResult = { total: 0, ok: 0, errors: [] }
   isOnline: boolean = false
+  @ViewChild('tab', { static: false, read: ElementRef }) tab: ElementRef<any>
+  @ViewChild('progress', { static: false, read: ElementRef }) progress: ElementRef<any>
   constructor(
     private fb: FormBuilder,
     private _snackBar: MatSnackBar,
@@ -44,9 +46,11 @@ export class HomeComponent implements OnInit, OnDestroy {
     })
 
     dialogRef.afterClosed().subscribe((result) => {
+      this.showSpinner()
       if (result) {
         this.observables.push(
           this.rateService.addBank(result).subscribe((res) => {
+            this.hideSpinner()
             if (res) {
               this._snackBar.open(`Bank ${res.name} created`, 'Close', {
                 duration: 3000,
@@ -65,9 +69,12 @@ export class HomeComponent implements OnInit, OnDestroy {
     })
 
     dialogRef.afterClosed().subscribe((result) => {
+      this.showSpinner()
       if (result) {
         this.observables.push(
           this.rateService.addRate(result).subscribe((res) => {
+            this.hideSpinner()
+
             if (res) {
               this._snackBar.open(
                 `Rate { ${result.bank}-${result.period}-${result.value} } created`,
@@ -156,9 +163,34 @@ export class HomeComponent implements OnInit, OnDestroy {
     return rates
   }
 
+  showSpinner() {
+    const tabElem = this.tab.nativeElement
+    const progressElem = this.progress.nativeElement
+
+    if (tabElem && progressElem) {
+      tabElem.classList.add('active')
+      progressElem.classList.add('active')
+    }
+  }
+
+  hideSpinner() {
+    const tabElem = this.tab.nativeElement as HTMLElement
+    const progressElem = this.progress.nativeElement as HTMLElement
+    if (
+      tabElem &&
+      progressElem &&
+      tabElem.classList.contains('active') &&
+      progressElem.classList.contains('active')
+    ) {
+      tabElem.classList.remove('active')
+      progressElem.classList.remove('active')
+    }
+  }
+
   onFileSelected() {
     const inputNode: any = document.querySelector('#file')
     this.importResult = { errors: [], ok: 0, total: 0 }
+    this.showSpinner()
 
     if (typeof FileReader !== 'undefined') {
       const reader = new FileReader()
@@ -173,6 +205,7 @@ export class HomeComponent implements OnInit, OnDestroy {
           this.uploadForm.patchValue({ rates: results })
           this.observables.push(
             this.rateService.import(this.uploadForm.value).subscribe((res) => {
+              this.hideSpinner()
               this._snackBar.open(
                 `import: ${this.importResult.total} banks, success: ${
                   this.importResult.ok
@@ -194,6 +227,7 @@ export class HomeComponent implements OnInit, OnDestroy {
           this.uploadForm.patchValue({ rates: results })
           this.observables.push(
             this.rateService.import(this.uploadForm.value).subscribe((res) => {
+              this.hideSpinner()
               this._snackBar.open(
                 `import: ${this.importResult.total} banks, success: ${
                   this.importResult.ok

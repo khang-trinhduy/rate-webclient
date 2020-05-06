@@ -1,4 +1,4 @@
-<mat-tab-group [selectedIndex]="tabIndex" (selectedIndexChange)="changeTabIndex($event)">
+<mat-tab-group #tab [selectedIndex]="tabIndex" (selectedIndexChange)="changeTabIndex($event)">
   <mat-tab label="Ngân hàng">
     <div class="wrapper">
       <app-list-bank (onSelectBank)="selectBankHandler($event)"></app-list-bank>
@@ -28,3 +28,4 @@
     <app-list-rate></app-list-rate>
   </mat-tab>
 </mat-tab-group>
+<mat-progress-bar #progress mode="indeterminate"></mat-progress-bar>
