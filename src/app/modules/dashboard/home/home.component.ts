@@ -165,7 +165,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       reader.onload = ({ target }) => {
         if ('TextDecoder' in window) {
           // Decode as UTF-8
-          var dataView = new DataView(target.result as ArrayBuffer)
+          var dataView = new DataView(reader.result as ArrayBuffer)
           var decoder = new TextDecoder('utf8')
           const fileContent = decoder.decode(dataView)
           const rates = this.parseToRate(fileContent)
@@ -186,7 +186,7 @@ export class HomeComponent implements OnInit, OnDestroy {
           // Fallback decode as ASCII
           var decodedString = String.fromCharCode.apply(
             null,
-            new Uint8Array(target.result as ArrayBuffer)
+            new Uint8Array(reader.result as ArrayBuffer)
           )
           const fileContent = decodedString
           const rates = this.parseToRate(fileContent)
