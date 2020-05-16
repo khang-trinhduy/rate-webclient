@@ -3,17 +3,15 @@
     <div class="data-container">
       <div class="data-header">
         <div class="post-ck" *ngIf="best | async as item">
-          <h2>
-            Lãi suất tiền gửi cao nhất thị trường <br /><span>{{ item[0]?.value }}/năm</span>
-          </h2>
+          <h2 style="font-weight: 450;"><strong>Lãi suất tiền gửi</strong> ngân hàng <strong>cập nhật</strong> 24/7</h2>
           <div class="ck-pr">
-            <button
+            <!-- <button
               class="rglr"
               [routerLink]="['/highest']"
               [queryParams]="{ value: item[0]?.value }"
             >
               Xem chi tiết
-            </button>
+            </button> -->
             <button class="rglr" (click)="openDialog(item[0]?.bank, item[0]?.period)">
               Đăng ký
             </button>
